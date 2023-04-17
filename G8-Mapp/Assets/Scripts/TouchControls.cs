@@ -15,15 +15,10 @@ public class TouchControls : MonoBehaviour
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     private bool snakeCaught = false;
+    [SerializeField] private float lerpFactor = 1000f;
 
     private float width;
     private float height;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void Awake()
     {
@@ -50,7 +45,7 @@ public class TouchControls : MonoBehaviour
 
         if (snakeCaught)
         {
-            transform.position = Vector2.Lerp(transform.position, mousePos, 1000f);
+            transform.position = Vector2.Lerp(transform.position, mousePos, lerpFactor);
 
         }
     }
