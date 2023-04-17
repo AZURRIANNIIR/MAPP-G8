@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GoToLevelSelect : MonoBehaviour
     }
     public void ClickToLevel()
     {
-        SceneManager.LoadScene("LevelSelection");
+        SceneManager.LoadScene("SelectLevel");
+        Console.WriteLine("Funkar!");
     }
 }

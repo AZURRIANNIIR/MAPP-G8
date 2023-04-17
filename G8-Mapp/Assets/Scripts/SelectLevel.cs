@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SelectLevel : MonoBehaviour
 {
     public static int selectedLevel;
     public int level;
-    public Text text;
+    public TMP_Text text;
     void Start()
     {
         text.text = level.ToString();

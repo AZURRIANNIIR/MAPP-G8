@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 311843534}
   - component: {fileID: 311843533}
   - component: {fileID: 311843532}
+  - component: {fileID: 311843535}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -456,7 +457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: -117}
+  m_AnchoredPosition: {x: -0.000030517578, y: -124}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311843532
@@ -502,7 +503,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 311843533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 311843535}
+        m_TargetAssemblyTypeName: GoToLevelSelect, Assembly-CSharp
+        m_MethodName: ClickToQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &311843533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +554,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311843530}
   m_CullTransparentMesh: 1
+--- !u!114 &311843535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311843530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c9298cadefc114388eddd5c97b2d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &397632347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,15 +1288,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 835956543}
-        m_TargetAssemblyTypeName: GoToLevelSelect, Assembly-CSharp
-        m_MethodName: ClickToLevel
-        m_Mode: 1
+        m_TargetAssemblyTypeName: BackToMainMenu, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SelectLevel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &835956541
@@ -1321,7 +1346,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 835956538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c9298cadefc114388eddd5c97b2d7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 992b42c2e8900ee4ba975e2d5afeb0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1213877110
@@ -1734,7 +1759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -30}
+  m_AnchoredPosition: {x: 0.000015259, y: -470}
   m_SizeDelta: {x: 366.991, y: 486.6764}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617536793
