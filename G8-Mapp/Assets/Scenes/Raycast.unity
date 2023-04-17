@@ -679,7 +679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 776353067}
   - component: {fileID: 776353066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TouchController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -700,7 +700,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLength: 0
   snake: {fileID: 1570938720}
-  margin: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &776353067
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +817,7 @@ GameObject:
   - component: {fileID: 1570938725}
   - component: {fileID: 1570938726}
   - component: {fileID: 1570938727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orm
   m_TagString: Snake
   m_Icon: {fileID: 0}
@@ -950,7 +952,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!96 &1570938726
 TrailRenderer:
@@ -1065,7 +1067,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLength: 0
   snake: {fileID: 1570938720}
-  margin: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1820709135
 GameObject:
   m_ObjectHideFlags: 0

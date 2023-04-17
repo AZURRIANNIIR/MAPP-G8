@@ -13,7 +13,8 @@ public class TouchControls : MonoBehaviour
 
     [SerializeField] private float movementLength;
     [SerializeField] private GameObject snake;
-    [SerializeField] private float margin = 5f;
+    [SerializeField] private LayerMask mask;
+    private bool snakeCaught = false;
 
     private float width;
     private float height;
@@ -28,66 +29,41 @@ public class TouchControls : MonoBehaviour
     {
         width = (float)Screen.width;
         height = (float)Screen.height;
-        //TouchSimulation.Enable();
-        //PlayerInput.SwitchCurrentControlScheme(InputSystem.devices.First(d => d == Touchscreen.current));
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && RaycastIsHitting(mousePos))
         {
-
-            Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = Vector2.Lerp(transform.position, mousePos, 0.1f);
+            snakeCaught = true;
             print("mus ner");
-
-            //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit hit;
-
-            //if (Physics.Raycast(ray, out hit, 100))
-            //{
-            //    if (hit.collider.tag == "snake")
-            //    {
-            //        snake.transform.position = mousePos;
-            //        print("Orm träffad");
-            //    }
-
-            //}
-
-
-            //if (((snake.transform.position.x + margin) >= mousePos.x ) && ()>= (snake.transform.position.x - margin)) && (mousePos.x <= () && (mousePos.y >= snake.transform.position.y - margin) && (mousePos.y <= snake.transform.position.y + margin)))
-            //{
-            //    print("rör ormen");
-            //}
-
         }
 
-        //if (Input.touchCount > 0)
-        //{
+        if (Input.GetMouseButtonUp(0))
+        {
+            snakeCaught = false;
+        }
 
-        //    print("touch");
+        if (snakeCaught)
+        {
+            transform.position = Vector2.Lerp(transform.position, mousePos, 1000f);
 
-        //    Touch touch = Input.GetTouch(0);
+        }
+    }
 
-        //    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-        //    touchPosition.z = 0f;
-        //    transform.position = touchPosition;
-
-        //    Vector2 startPosition = touch.position;
-
-        //    //if ((startPosition.x >= (snake.transform.position.x - margin)) && (startPosition.x <= (snake.transform.position.x + margin) && (startPosition.y >= snake.transform.position.y - margin) && (startPosition.y <= snake.transform.position.y + margin)))
-        //    //{
-        //    //    print("rörd");
-        //    //}
-        //}
-
-        //            if ((mousePos.x >= (snake.transform.position.x - margin)) && (mousePos.x <= (snake.transform.position.x + margin) && (mousePos.y >= snake.transform.position.y - margin) && (mousePos.y <= snake.transform.position.y + margin)))
-
+    private bool RaycastIsHitting(Vector3 mousePos)
+    {
+        RaycastHit2D orm = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
+        if (orm.collider != null)
+        {
+            print("orm träffad");
+            return true;
+        }
+        return false;
     }
 
 }
