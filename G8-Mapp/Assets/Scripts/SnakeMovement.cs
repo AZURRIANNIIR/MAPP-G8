@@ -35,6 +35,10 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (OnDisabledTile())
+        {
+            return;
+        }
         //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
@@ -78,5 +82,19 @@ public class SnakeMovement : MonoBehaviour
         ResetTrailRenderer();
     }
 
+    private bool OnDisabledTile()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+        RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
+        if (tile.collider != null)
+        {
+            //print("orm träffad");
+            return true;
+        }
+        return false;
+    }
 }
+
+
