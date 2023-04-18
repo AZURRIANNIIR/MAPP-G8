@@ -14,21 +14,23 @@ public class TouchControls : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
 
+    [Header("Attributes")]
     [SerializeField] private float movementLength;
+    [Header("Components")]
     [SerializeField] private GameObject snake;
-    [SerializeField] private LayerMask mask;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private GridList gridListScript;
     private bool snakeCaught = false;
+    [Header("Technical attributes")]
     [SerializeField] private float lerpFactor = 1000f;
-
-    
 
     private Vector2 startPosition;
 
     private void Awake()
     {
         snakeTrailRenderer = GetComponent<TrailRenderer>();
-  
+        gridListScript = GetComponent<GridList>();
         startPosition = transform.position;
     }
 
@@ -49,7 +51,7 @@ public class TouchControls : MonoBehaviour
         if (Input.GetMouseButtonUp(LMB_NUMBER) && snakeCaught)
         {
             snakeCaught = false;
-            ResetSnakeToStart();
+            ResetSnakePosition();
             snakeTrailRenderer.Clear();
         }
 
@@ -71,9 +73,10 @@ public class TouchControls : MonoBehaviour
         return false;
     }
 
-    private void ResetSnakeToStart()
+    private void ResetSnakePosition()
     {
-        transform.position = startPosition;
+        GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+        transform.position = mostRecentTile != null ? mostRecentTile.transform.position : startPosition;
     }
 
 }

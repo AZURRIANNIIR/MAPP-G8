@@ -11,6 +11,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
+    [SerializeField] private GridList gridListScript;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -23,6 +24,7 @@ public class SnakeMovement : MonoBehaviour
         startPosition = new Vector3(1f, 1f, 0f);
         transform.position = startPosition;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
+        gridListScript = GetComponent<GridList>();
     }
 
     private void OnMouseDown()
@@ -34,16 +36,12 @@ public class SnakeMovement : MonoBehaviour
     private void OnMouseDrag()
     {
         //Rörelse längst grid
-        if (OnDisabledTile())
-        {
-            return;
-        }
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
-        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
-        transform.position = currentPosition;
+        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
+        transform.position = currentPosition;  
 
     }
 
@@ -51,28 +49,33 @@ public class SnakeMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            ResetSnakeToStart();
+            GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+            if (mostRecentTile == null)
+            {
+                ResetSnakeToStart();
+            }
+            else
+            {
+                ResetSnakeToGrid(mostRecentTile.transform);
+            }
         }
     }
 
     private void ResetSnakeToStart()
     {
         transform.position = startPosition;
+        ResetTrailRenderer();
+    }
+
+    private void ResetTrailRenderer()
+    {
         snakeTrailRenderer.Clear();
     }
 
-    private bool OnDisabledTile()
+    private void ResetSnakeToGrid(Transform gridLocation)
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-        RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
-        if (tile.collider != null)
-        {
-            //print("orm träffad");
-            return true;
-        }
-        return false;
+        transform.position = gridLocation.position;
+        ResetTrailRenderer();
     }
 
 
