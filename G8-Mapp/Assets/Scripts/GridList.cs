@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class GridList : MonoBehaviour
 {
+    [SerializeField] private bool findAllTilesOnLaunch;
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
+
+    private void Awake()
+    {
+        if (findAllTilesOnLaunch)
+        {
+            GameObject[] allTiles = GameObject.FindGameObjectsWithTag("Grid");
+            foreach (GameObject tile in allTiles)
+            {
+                gridList.Add(tile);
+            }
+        }
+        
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
