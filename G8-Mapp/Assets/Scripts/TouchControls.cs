@@ -25,8 +25,7 @@ public class TouchControls : MonoBehaviour
     [Header("Technical attributes")]
     [SerializeField] private float lerpFactor = 1000f;
 
-    private float width;
-    private float height;
+    
 
     private Vector2 startPosition;
 
@@ -42,6 +41,8 @@ public class TouchControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 worldPos = gameObject.transform.position;
+
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
@@ -60,7 +61,8 @@ public class TouchControls : MonoBehaviour
 
         if (snakeCaught)
         {
-            transform.position = Vector2.Lerp(transform.position, mousePos, lerpFactor);
+            //transform.position = Vector2.Lerp(transform.position, mousePos, lerpFactor);
+            transform.position = new Vector3(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y), lerpFactor);
         }
     }
 
