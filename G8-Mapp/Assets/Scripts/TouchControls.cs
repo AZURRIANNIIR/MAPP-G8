@@ -25,16 +25,12 @@ public class TouchControls : MonoBehaviour
     [Header("Technical attributes")]
     [SerializeField] private float lerpFactor = 1000f;
 
-    
-
     private Vector2 startPosition;
 
     private void Awake()
     {
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
-        width = Screen.width;
-        height = Screen.height;
         startPosition = transform.position;
     }
 

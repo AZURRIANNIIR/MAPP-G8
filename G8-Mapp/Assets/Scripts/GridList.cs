@@ -21,6 +21,7 @@ public class GridList : MonoBehaviour
         {
             return null;
         }
+        //Om det finns en grid i listan
         return gridList[gridList.Count - 1];
     }
 }

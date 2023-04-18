@@ -11,6 +11,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
+    [SerializeField] private GridList gridListScript;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -23,6 +24,7 @@ public class SnakeMovement : MonoBehaviour
         startPosition = new Vector3(1f, 1f, 0f);
         transform.position = startPosition;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
+        gridListScript = GetComponent<GridList>();
     }
 
     private void OnMouseDown()
@@ -47,14 +49,33 @@ public class SnakeMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            ResetSnakeToStart();
+            GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+            if (mostRecentTile == null)
+            {
+                ResetSnakeToStart();
+            }
+            else
+            {
+                ResetSnakeToGrid(gridListScript.GetMostRecentTile().transform);
+            }
         }
     }
 
     private void ResetSnakeToStart()
     {
         transform.position = startPosition;
+        ResetTrailRenderer();
+    }
+
+    private void ResetTrailRenderer()
+    {
         snakeTrailRenderer.Clear();
+    }
+
+    private void ResetSnakeToGrid(Transform gridLocation)
+    {
+        transform.position = gridLocation.position;
+        ResetTrailRenderer();
     }
 
 
