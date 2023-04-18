@@ -56,7 +56,7 @@ public class SnakeMovement : MonoBehaviour
             }
             else
             {
-                ResetSnakeToGrid(gridListScript.GetMostRecentTile().transform);
+                ResetSnakeToGrid(mostRecentTile.transform);
             }
         }
     }
