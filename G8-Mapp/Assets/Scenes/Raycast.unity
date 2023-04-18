@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 367581851}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +320,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -764,10 +764,11 @@ GameObject:
   - component: {fileID: 1570938723}
   - component: {fileID: 1570938722}
   - component: {fileID: 1570938721}
+  - component: {fileID: 1570938727}
+  - component: {fileID: 1570938728}
   - component: {fileID: 1570938724}
   - component: {fileID: 1570938725}
   - component: {fileID: 1570938726}
-  - component: {fileID: 1570938727}
   m_Layer: 6
   m_Name: Orm
   m_TagString: Snake
@@ -830,7 +831,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.69304687, g: 0.9056604, b: 0.38875046, a: 1}
   m_FlipX: 0
@@ -1017,11 +1018,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLength: 0
   snake: {fileID: 1570938720}
+  snakeTrailRenderer: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 64
-  snakeTrailRenderer: {fileID: 0}
+  gridListScript: {fileID: 0}
   lerpFactor: 1000
+--- !u!114 &1570938728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570938720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea49d4c2217a624db2fec9368b2962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridList: []
 --- !u!1 &1820709135
 GameObject:
   m_ObjectHideFlags: 0
