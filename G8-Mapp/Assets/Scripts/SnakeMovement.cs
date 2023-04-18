@@ -5,20 +5,18 @@ using UnityEngine;
 public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
-    private float gridSize = 0.2f;
-    private bool snakeCaught = false;
+    private float gridSize = 0f;
 
     [SerializeField] private float movementLength;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
-    [SerializeField] private float lerpFactor = 1000f;
 
-    Vector3 screenPoint;
-    Vector3 scanPos;
-    Vector3 currentPosition;
-    Vector3 currentScreenPoint;
-    Vector3 startPosition;
+    private Vector3 screenPoint;
+    private Vector3 scanPos;
+    private Vector3 currentPosition;
+    private Vector3 currentScreenPoint;
+    private Vector3 startPosition;
 
     private void Awake()
     {
@@ -35,6 +33,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
