@@ -5,24 +5,18 @@ using UnityEngine;
 public class GridTile : MonoBehaviour
 {
     private bool taken = false;
-    [SerializeField] private ColliderScript _cs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private ColliderScript tileCollider;
+    [SerializeField] private GameController gameController;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake"))
         {
+            taken = true;
             print("ny plats");
+            //tileCollider.TakeTile();
+            gameController.tileTaken();
+
         }
     }
 
@@ -30,8 +24,6 @@ public class GridTile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Snake"))
         {
-            taken = true;
-            _cs.TakeTile();
             print(taken);
         }
     }
