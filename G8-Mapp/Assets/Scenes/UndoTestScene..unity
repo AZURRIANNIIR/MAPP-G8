@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 7913251}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Grid
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCollider: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1438560703}
 --- !u!50 &7913252
 Rigidbody2D:
   serializedVersion: 4
@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 136976306}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Grid
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCollider: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1438560703}
 --- !u!50 &136976307
 Rigidbody2D:
   serializedVersion: 4
@@ -1263,7 +1263,7 @@ GameObject:
   - component: {fileID: 654087647}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Grid
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCollider: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1438560703}
 --- !u!50 &654087648
 Rigidbody2D:
   serializedVersion: 4
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1893bb359094d7e8934f06d7cc4dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastBoxPrefab: {fileID: 0}
+  raycastBoxPrefab: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
   raycastBoxes: []
   gridTilesLeft: 0
 --- !u!4 &1438560704
@@ -1906,7 +1906,7 @@ GameObject:
   - component: {fileID: 1797083056}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Grid
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileCollider: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1438560703}
 --- !u!50 &1797083057
 Rigidbody2D:
   serializedVersion: 4
