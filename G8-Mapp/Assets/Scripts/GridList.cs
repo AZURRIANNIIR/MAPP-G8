@@ -40,7 +40,7 @@ public class GridList : MonoBehaviour
         gridList.Remove(tile);
     }
 
-    public void GridListFeelsClick()
+    public void GridListUndoAction()
     {
         Debug.Log("GridList kände av en knapptryckning från undo-knappen");
         DeleteTileFromList(gridList[gridList.Count - 1]);
@@ -55,12 +55,12 @@ public class GridList : MonoBehaviour
 
     private void OnEnable()
     {
-        UndoButton.OnClick += GridListFeelsClick;
+        UndoButton.OnClick += GridListUndoAction;
     }
 
     private void OnDisable()
     {
-        UndoButton.OnClick -= GridListFeelsClick;
+        UndoButton.OnClick -= GridListUndoAction;
     }
     #endregion
 }
