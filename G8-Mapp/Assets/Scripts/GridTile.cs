@@ -10,13 +10,12 @@ public class GridTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake"))
+        if (collision.gameObject.CompareTag("Snake") && !taken)
         {
             taken = true;
             print("ny plats");
             //tileCollider.TakeTile();
             gameController.tileTaken();
-
         }
     }
 
