@@ -8,8 +8,6 @@ public class GridList : MonoBehaviour
     [SerializeField] private bool findAllTilesOnLaunch;
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
 
-    public static event Action OnTileRemove;
-
     private void Awake()
     {
         if (findAllTilesOnLaunch)
