@@ -1,219 +1,42 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-
-[System.Serializable]
-public class Player
-{
-    public Image panel;
-    public Text text;
-    public Button button;
-    public Sprite playerImage;
-}
-
-[System.Serializable]
-public class PlayerColor
-{
-    public Color panelColor;
-}
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GridSpace[] gridSpaceList;
-    private string playerSide;
-    public GameObject gameOverPanel;
-    public Text gameOverText;
-    private int moveCount;
-    public GameObject restartButton;
-    public Player playerX;
-    public Player playerO;
-    public PlayerColor activePlayerColor;
-    public PlayerColor inactivePlayerColor;
-    public GameObject startInfo;
+    public GameObject raycastBoxPrefab;
+    public GameObject[] raycastBoxes;
+    private int gridTilesLeft;
 
-    void Awake()
+    private void Start()
     {
-        SetGameControllerReferenceOnButtons();
-        gameOverPanel.SetActive(false);
-        moveCount = 0;
-        restartButton.SetActive(false);
+        //Lägger till alla tiles i en lista
+        raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
+
+        foreach(GameObject GridTile in raycastBoxes)
+        {
+            Instantiate(raycastBoxPrefab, GridTile.transform.position, GridTile.transform.rotation);
+        }
+
+        //sparar antalet vid start
+        gridTilesLeft = raycastBoxes.Length;
     }
 
-    void SetGameControllerReferenceOnButtons()
+    private void Update()
     {
-        for (int i = 0; i < gridSpaceList.Length; i++)
+        if(gridTilesLeft == 0)
         {
-            gridSpaceList[i].SetGameControllerReference(this);
-        }
-    }
-
-    public void SetStartingSide(string startingSide)
-    {
-        playerSide = startingSide;
-        if (playerSide == "X")
-        {
-            SetPlayerColors(playerX, playerO);
-        }
-        else
-        {
-            SetPlayerColors(playerO, playerX);
-        }
-        StartGame();
-    }
-
-    void StartGame()
-    {
-        SetBoardInteractable(true);
-        SetPlayerButtons(false);
-        startInfo.SetActive(false);
-    }
-
-    public string GetPlayerSide()
-    {
-        return playerSide;
-    }
-
-    public void EndTurn()
-    {
-        moveCount++;
-        if (gridSpaceList[0].text == playerSide && gridSpaceList[1].text == playerSide
-        && gridSpaceList[2].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[3].text == playerSide && gridSpaceList[4].text == playerSide
-        && gridSpaceList[5].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[6].text == playerSide && gridSpaceList[7].text == playerSide
-        && gridSpaceList[8].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[0].text == playerSide && gridSpaceList[3].text == playerSide
-        && gridSpaceList[6].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[1].text == playerSide && gridSpaceList[4].text == playerSide
-        && gridSpaceList[7].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[2].text == playerSide && gridSpaceList[5].text == playerSide
-        && gridSpaceList[8].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[0].text == playerSide && gridSpaceList[4].text == playerSide
-        && gridSpaceList[8].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (gridSpaceList[2].text == playerSide && gridSpaceList[4].text == playerSide
-        && gridSpaceList[6].text == playerSide)
-        {
-            GameOver(playerSide);
-        }
-        else if (moveCount >= 9)
-        {
-            GameOver("draw");
-        }
-        else
-        {
-            ChangeSides();
+            print("win");
         }
     }
 
-    void ChangeSides()
+    public void tileTaken()
     {
-        playerSide = (playerSide == "X") ? "O" : "X";
-        if (playerSide == "X")
-        {
-            SetPlayerColors(playerX, playerO);
-        }
-        else
-        {
-            SetPlayerColors(playerO, playerX);
-        }
+        gridTilesLeft -= 1;
     }
 
-    void SetPlayerColors(Player newPlayer, Player oldPlayer)
+    public void tileNotTaken()
     {
-        newPlayer.panel.color = activePlayerColor.panelColor;
-        oldPlayer.panel.color = inactivePlayerColor.panelColor;
-    }
-
-    void GameOver(string winningPlayer)
-    {
-        SetBoardInteractable(false);
-        if (winningPlayer == "draw")
-        {
-            SetGameOverText("It’s a Draw!");
-            SetPlayerColorsActive();
-        }
-        else if (winningPlayer == "X")
-        {
-            SetGameOverText("Predator Wins!");
-        }
-        else
-        {
-            SetGameOverText("Prey Wins!");
-        }
-        restartButton.SetActive(true);
-    }
-
-    void SetGameOverText(string value)
-    {
-        gameOverPanel.SetActive(true);
-        gameOverText.text = value;
-    }
-
-    public void RestartGame()
-    {
-        moveCount = 0;
-        gameOverPanel.SetActive(false);
-        restartButton.SetActive(false);
-        SetPlayerButtons(true);
-        SetPlayerColorsActive();
-        startInfo.SetActive(true);
-
-        for (int i = 0; i < gridSpaceList.Length; i++)
-        {
-            gridSpaceList[i].ResetGridSpace();
-        }
-    }
-
-    private void SetBoardInteractable(bool toggle)
-    {
-        for (int i = 0; i < gridSpaceList.Length; i++)
-        {
-            gridSpaceList[i].button.interactable = toggle;
-        }
-    }
-
-    void SetPlayerButtons(bool toggle)
-    {
-        playerX.button.interactable = toggle;
-        playerO.button.interactable = toggle;
-    }
-
-    void SetPlayerColorsActive()
-    {
-        playerX.panel.color = activePlayerColor.panelColor;
-        playerO.panel.color = activePlayerColor.panelColor;
-    }
-
-    public Sprite GetPlayerSideImage()
-    {
-        if (playerSide == "X")
-        {
-            return playerX.playerImage;
-        }
-        else
-        {
-            return playerO.playerImage;
-        }
+        gridTilesLeft += 1;
     }
 }
