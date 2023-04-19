@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UndoButton : MonoBehaviour
 {
-    //Denna event kan andra skript subscriba till och köra egan funktioner
+    //Denna event kan andra skript subscriba till och köra egna funktioner
     //Det måste dock göras i kod, inte genom inspektorn som det går med UnityEvents
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
