@@ -15,14 +15,8 @@ public class GameController : MonoBehaviour
         //Lägger till alla tiles i en lista
         raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
 
-        foreach(GameObject GridTile in raycastBoxes)
-        {
-            Instantiate(raycastBoxPrefab, GridTile.transform.position, GridTile.transform.rotation);
-        }
-
-        //sparar antalet vid start
-        //Gångrar med två för att allt registreras två gånger, dålig lösning som måste fixas
-        gridTilesLeft = raycastBoxes.Length * 2;
+        //sparar antalet tiles kvar att ta vid start (dvs alla)
+        gridTilesLeft = raycastBoxes.Length;
     }
 
     private void Update()
@@ -44,6 +38,18 @@ public class GameController : MonoBehaviour
     {
         gridTilesLeft += 1;
     }
+
+    #region Enable/Disable functions
+    private void OnEnable()
+    {
+        UndoButton.OnClick += tileNotTaken;
+    }
+
+    private void OnDisable()
+    {
+        UndoButton.OnClick -= tileNotTaken;
+    }
+    #endregion
 
 
 }

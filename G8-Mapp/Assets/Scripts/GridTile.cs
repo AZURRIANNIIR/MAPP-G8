@@ -26,4 +26,9 @@ public class GridTile : MonoBehaviour
             print(taken);
         }
     }
+
+    public void SetTakenStatus(bool state)
+    {
+        taken = state;
+    }
 }
