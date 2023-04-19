@@ -35,6 +35,8 @@ public class GridList : MonoBehaviour
         }
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
+        //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
+        tile.GetComponent<GridTile>().SetTakenStatus(false);
         gridList.Remove(tile);
     }
 
