@@ -170,7 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cs: {fileID: 536476779}
+  tileCollider: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!50 &7913252
 Rigidbody2D:
   serializedVersion: 4
@@ -768,7 +769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cs: {fileID: 26861701}
+  tileCollider: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!50 &136976307
 Rigidbody2D:
   serializedVersion: 4
@@ -1293,7 +1295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cs: {fileID: 1542141823}
+  tileCollider: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!50 &654087648
 Rigidbody2D:
   serializedVersion: 4
@@ -1694,6 +1697,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1438560702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438560704}
+  - component: {fileID: 1438560703}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1438560703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438560702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1893bb359094d7e8934f06d7cc4dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastBoxPrefab: {fileID: 0}
+  raycastBoxes: []
+  gridTilesLeft: 0
+--- !u!4 &1438560704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438560702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542141822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,7 +1938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cs: {fileID: 192060812}
+  tileCollider: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!50 &1797083057
 Rigidbody2D:
   serializedVersion: 4
@@ -2165,7 +2216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_LocalPosition.x
