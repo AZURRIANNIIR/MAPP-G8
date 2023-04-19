@@ -9,9 +9,9 @@ public class GridList : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("Grid"))
+        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile"))
         {
-            Debug.Log("Lägger till grid i listan");
+            Debug.Log("Lägger till " + collision.gameObject.name + " i listan");
             gridList.Add(collision.gameObject);
         }
     }
@@ -35,6 +35,8 @@ public class GridList : MonoBehaviour
         }
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
+        //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
+        tile.GetComponent<GridTile>().SetTakenStatus(false);
         gridList.Remove(tile);
     }
 
