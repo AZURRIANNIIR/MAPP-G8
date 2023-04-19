@@ -20,11 +20,12 @@ public class GameController : MonoBehaviour
             Instantiate(raycastBoxPrefab, GridTile.transform.position, GridTile.transform.rotation);
         }
 
-        //sparar antalet vid start
+        //sparar antalet tiles kvar att ta vid start (dvs alla)
         //Gångrar med två för att allt registreras två gånger, dålig lösning som måste fixas
         gridTilesLeft = raycastBoxes.Length * 2;
     }
 
+    //Kollar om villkoren för vinst är uppfyllda
     private void Update()
     {
         if(gridTilesLeft == 0 && player.transform.position == goal.transform.position)
