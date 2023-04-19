@@ -51,7 +51,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
             GameObject mostRecentTile = gridListScript.GetMostRecentTile();

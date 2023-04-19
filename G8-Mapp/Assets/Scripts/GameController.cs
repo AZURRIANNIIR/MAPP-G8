@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject raycastBoxPrefab;
     public GameObject[] raycastBoxes;
-    public int gridTilesLeft;
+    private int gridTilesLeft;
 
     private void Start()
     {
@@ -19,8 +19,7 @@ public class GameController : MonoBehaviour
         }
 
         //sparar antalet vid start
-        //Gångrar med två för att allt registreras två gånger, dålig lösning som måste fixas
-        gridTilesLeft = raycastBoxes.Length * 2;
+        gridTilesLeft = raycastBoxes.Length;
     }
 
     private void Update()
@@ -33,11 +32,9 @@ public class GameController : MonoBehaviour
 
     public void tileTaken()
     {
-        gridTilesLeft = gridTilesLeft- 1;
-        print("Tagen");
+        gridTilesLeft -= 1;
     }
 
-    //Metodnamn upp för debatt
     public void tileNotTaken()
     {
         gridTilesLeft += 1;
