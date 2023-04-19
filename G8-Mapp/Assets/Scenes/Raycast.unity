@@ -942,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastBoxPrefab: {fileID: 1820709135}
   raycastBoxes: []
+  gridTilesLeft: 0
 --- !u!4 &1740183920
 Transform:
   m_ObjectHideFlags: 0
@@ -962,6 +963,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
   m_PrefabInstance: {fileID: 7264726167108500593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820709141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7264726165556391268, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
+  m_PrefabInstance: {fileID: 7264726167108500593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820709135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7264726167108500593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -969,6 +981,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7264726165556391264, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7264726165556391269, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1017,5 +1033,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: RaycastBox
       objectReference: {fileID: 0}
+    - target: {fileID: 7264726166774507242, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
+      propertyPath: tileCollider
+      value: 
+      objectReference: {fileID: 1820709141}
+    - target: {fileID: 7264726166774507242, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1740183919}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}

@@ -5,18 +5,18 @@ using UnityEngine;
 public class ColliderScript : MonoBehaviour
 {
 
-    private BoxCollider2D _bc;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        _bc = gameObject.GetComponent<BoxCollider2D>();
+        //boxCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
-    public void TakeTile()
-    {
-        _bc.enabled = true;
-        print("ruta tagen");
-    }
+    //public void TakeTile()
+    //{
+    //    //boxCollider.enabled = true;
+    //    print("ruta tagen");
+    //}
 
 }

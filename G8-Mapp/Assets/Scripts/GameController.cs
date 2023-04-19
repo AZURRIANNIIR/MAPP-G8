@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject raycastBoxPrefab;
     public GameObject[] raycastBoxes;
-    private int gridTilesLeft;
+    public int gridTilesLeft;
 
     private void Start()
     {
@@ -32,9 +32,11 @@ public class GameController : MonoBehaviour
 
     public void tileTaken()
     {
-        gridTilesLeft -= 1;
+        gridTilesLeft = gridTilesLeft- 1;
+        print("Tagen");
     }
 
+    //Metodnamn upp för debatt
     public void tileNotTaken()
     {
         gridTilesLeft += 1;
