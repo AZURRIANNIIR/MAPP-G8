@@ -25,18 +25,21 @@ public class Raycast : MonoBehaviour
         if (left.collider != null)
         {
             print("Left");
+            Debug.DrawRay(transform.position, Vector2.left, Color.green);
         }
 
         RaycastHit2D up = Physics2D.Raycast(transform.position, Vector2.up, 1f, mask);
         if (up.collider != null)
         {
             print("Up");
+            Debug.DrawRay(transform.position, Vector2.up, Color.green);
         }
 
         RaycastHit2D down = Physics2D.Raycast(transform.position, Vector2.down, 1f, mask);
         if (down.collider != null)
         {
             print("Down");
+            Debug.DrawRay(transform.position, Vector2.down, Color.green);
         }
     }
 }

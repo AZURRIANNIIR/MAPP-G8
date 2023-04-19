@@ -8,86 +8,75 @@ using UnityEngine.UI;
 using Touch = UnityEngine.Touch;
 //using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(TrailRenderer))]
+
 public class TouchControls : MonoBehaviour
 {
+    private const int LMB_NUMBER = 0;
 
+    [Header("Attributes")]
     [SerializeField] private float movementLength;
+    [Header("Components")]
     [SerializeField] private GameObject snake;
-    [SerializeField] private float margin = 5f;
+    [SerializeField] private TrailRenderer snakeTrailRenderer;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private GridList gridListScript;
+    private bool snakeCaught = false;
+    [Header("Technical attributes")]
+    [SerializeField] private float lerpFactor = 1000f;
 
-    private float width;
-    private float height;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    private Vector2 startPosition;
 
     private void Awake()
     {
-        width = (float)Screen.width;
-        height = (float)Screen.height;
-        //TouchSimulation.Enable();
-        //PlayerInput.SwitchCurrentControlScheme(InputSystem.devices.First(d => d == Touchscreen.current));
-
-
+        snakeTrailRenderer = GetComponent<TrailRenderer>();
+        gridListScript = GetComponent<GridList>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 worldPos = gameObject.transform.position;
 
-        if (Input.GetMouseButton(0))
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        if (Input.GetMouseButton(LMB_NUMBER) && RaycastIsHitting(mousePos))
         {
-
-            Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = Vector2.Lerp(transform.position, mousePos, 0.1f);
+            snakeCaught = true;
             print("mus ner");
-
-            //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit hit;
-
-            //if (Physics.Raycast(ray, out hit, 100))
-            //{
-            //    if (hit.collider.tag == "snake")
-            //    {
-            //        snake.transform.position = mousePos;
-            //        print("Orm träffad");
-            //    }
-
-            //}
-
-
-            //if (((snake.transform.position.x + margin) >= mousePos.x ) && ()>= (snake.transform.position.x - margin)) && (mousePos.x <= () && (mousePos.y >= snake.transform.position.y - margin) && (mousePos.y <= snake.transform.position.y + margin)))
-            //{
-            //    print("rör ormen");
-            //}
-
         }
 
-        //if (Input.touchCount > 0)
-        //{
+        if (Input.GetMouseButtonUp(LMB_NUMBER) && snakeCaught)
+        {
+            snakeCaught = false;
+            ResetSnakePosition();
+            snakeTrailRenderer.Clear();
+        }
 
-        //    print("touch");
+        if (snakeCaught)
+        {
+            //transform.position = Vector2.Lerp(transform.position, mousePos, lerpFactor);
+            transform.position = new Vector3(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y), lerpFactor);
+        }
+    }
 
-        //    Touch touch = Input.GetTouch(0);
+    private bool RaycastIsHitting(Vector3 mousePos)
+    {
+        RaycastHit2D orm = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
+        if (orm.collider != null)
+        {
+            print("orm träffad");
+            return true;
+        }
+        return false;
+    }
 
-        //    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-        //    touchPosition.z = 0f;
-        //    transform.position = touchPosition;
-
-        //    Vector2 startPosition = touch.position;
-
-        //    //if ((startPosition.x >= (snake.transform.position.x - margin)) && (startPosition.x <= (snake.transform.position.x + margin) && (startPosition.y >= snake.transform.position.y - margin) && (startPosition.y <= snake.transform.position.y + margin)))
-        //    //{
-        //    //    print("rörd");
-        //    //}
-        //}
-
-        //            if ((mousePos.x >= (snake.transform.position.x - margin)) && (mousePos.x <= (snake.transform.position.x + margin) && (mousePos.y >= snake.transform.position.y - margin) && (mousePos.y <= snake.transform.position.y + margin)))
-
+    private void ResetSnakePosition()
+    {
+        GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+        transform.position = mostRecentTile != null ? mostRecentTile.transform.position : startPosition;
     }
 
 }
