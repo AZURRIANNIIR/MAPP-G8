@@ -71,11 +71,6 @@ public class SnakeMovement : MonoBehaviour
         ResetTrailRenderer();
     }
 
-    private void ResetTrailRenderer()
-    {
-        snakeTrailRenderer.Clear();
-    }
-
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
@@ -86,6 +81,11 @@ public class SnakeMovement : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+	}
+    private void ResetTrailRenderer()
+    {
+        snakeTrailRenderer.Clear();
+    }
 
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
         if (tile.collider != null)
