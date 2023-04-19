@@ -3,11 +3,12 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 [Ll]ibrary/
+[Uu]serSettings/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-/[Ll]ogs/
+[Ll]ogs/
 /[Mm]emoryCaptures/
 
 # For the main repository of the project
@@ -16,7 +17,7 @@ G8-Mapp/[Tt]emp/
 G8-Mapp/[Oo]bj/
 G8-Mapp/[Bb]uild/
 G8-Mapp/[Bb]uilds/
-/G8-Mapp/[Ll]ogs/
+G8-Mapp/[Ll]ogs/
 /G8-Mapp/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
@@ -44,6 +45,8 @@ ExportedObj/
 *.sln
 *.suo
 *.tmp
+*.log
+*.exe
 *.user
 *.userprefs
 *.pidb
