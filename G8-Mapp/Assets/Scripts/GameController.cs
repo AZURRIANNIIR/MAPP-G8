@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject raycastBoxPrefab;
-    public GameObject[] raycastBoxes;
-    public int gridTilesLeft;
+    [SerializeField] private GameObject raycastBoxPrefab;
+    [SerializeField] private GameObject[] raycastBoxes;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject goal;
+    [SerializeField] private int gridTilesLeft;
 
     private void Start()
     {
@@ -25,7 +27,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if(gridTilesLeft == 0)
+        if(gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
             print("win");
         }
@@ -42,4 +44,6 @@ public class GameController : MonoBehaviour
     {
         gridTilesLeft += 1;
     }
+
+
 }
