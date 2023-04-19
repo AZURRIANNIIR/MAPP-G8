@@ -67,16 +67,15 @@ public class SnakeMovement : MonoBehaviour
         ResetTrailRenderer();
     }
 
-    private void ResetTrailRenderer()
-    {
-        snakeTrailRenderer.Clear();
-    }
-
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
         ResetTrailRenderer();
     }
 
+    private void ResetTrailRenderer()
+    {
+        snakeTrailRenderer.Clear();
+    }
 
 }
