@@ -19,7 +19,8 @@ public class GameController : MonoBehaviour
         }
 
         //sparar antalet vid start
-        gridTilesLeft = raycastBoxes.Length;
+        //Gångrar med två för att allt registreras två gånger, dålig lösning som måste fixas
+        gridTilesLeft = raycastBoxes.Length * 2;
     }
 
     private void Update()
