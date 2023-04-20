@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private ColliderScript tileCollider;
+    [SerializeField] private ColliderScript[] tileCollider;
     [SerializeField] private GameObject raycastBoxPrefab;
     [SerializeField] private GameObject[] raycastBoxes;
     [SerializeField] private GameObject bridgeBoxPrefab;
@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour
         //sparar antalet tiles kvar att ta vid start (dvs alla)
         numberOfTiles = raycastBoxes.Length + bridgeBoxes.Length;
         gridTilesLeft = numberOfTiles;
+
+        tileCollider = FindObjectsOfType<ColliderScript>();
     }
 
     //Kollar om villkoren för vinst är uppfyllda
@@ -46,18 +48,13 @@ public class GameController : MonoBehaviour
         gridTilesLeft += 1;
     }
 	
-    private void FindAllGrids()
-    {
-        //Lägger till alla tiles i en lista
-        raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
-
-        //sparar antalet tiles kvar att ta vid start (dvs alla)
-        gridTilesLeft = raycastBoxes.Length;
-	}
-	
     public void ResetTilesOnGrid()
     {
-        tileCollider.resetTile();
+        foreach(ColliderScript colliderScript in tileCollider)
+        {
+            colliderScript.resetTile();
+        }
+        
         resetNumberOfTilesLeft();
     }
 
@@ -70,13 +67,11 @@ public class GameController : MonoBehaviour
     private void OnEnable()
     {
         UndoButton.OnClick += tileNotTaken;
-        ClearButton.OnClick += FindAllGrids;
     }
 
     private void OnDisable()
     {
         UndoButton.OnClick -= tileNotTaken;
-        ClearButton.OnClick -= FindAllGrids;
     }    
     #endregion
 
