@@ -12,6 +12,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [Header("Components")]
+	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
 
@@ -75,13 +76,16 @@ public class SnakeMovement : MonoBehaviour
     {
         transform.position = startPosition;
         ResetTrailRenderer();
+        gameController.ResetTilesOnGrid();
     }
 
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
         ResetTrailRenderer();
+        
     }
+    
 
     private bool OnDisabledTile()
     {
