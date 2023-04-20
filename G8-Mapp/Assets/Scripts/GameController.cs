@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private ColliderScript[] tileCollider;
+    [SerializeField] private ColliderScript[] tileColliders;
     [SerializeField] private GameObject raycastBoxPrefab;
     [SerializeField] private GameObject[] raycastBoxes;
     [SerializeField] private GameObject bridgeBoxPrefab;
@@ -24,7 +25,13 @@ public class GameController : MonoBehaviour
         numberOfTiles = raycastBoxes.Length + bridgeBoxes.Length;
         gridTilesLeft = numberOfTiles;
 
-        tileCollider = FindObjectsOfType<ColliderScript>();
+        tileColliders = FindObjectsOfType<ColliderScript>();
+
+        //Är ingen orm tilldelad i inspektorn så försöker vi hitta den
+        if (!player)
+        {
+            player = GameObject.FindGameObjectWithTag("Snake");
+        }
     }
 
     //Kollar om villkoren för vinst är uppfyllda
@@ -50,7 +57,7 @@ public class GameController : MonoBehaviour
 	
     public void ResetTilesOnGrid()
     {
-        foreach(ColliderScript colliderScript in tileCollider)
+        foreach(ColliderScript colliderScript in tileColliders)
         {
             colliderScript.resetTile();
         }
