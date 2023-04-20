@@ -11,7 +11,10 @@ public class GridTile : MonoBehaviour
 
     private void Start()
     {
-        
+        if (!tileCollider)
+        {
+            tileCollider = GetComponentInParent<ColliderScript>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
