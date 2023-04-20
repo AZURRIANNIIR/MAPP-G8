@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
         int level = SelectLevel.selectedLevel;
         text.text = "Level " + level.ToString();
         background.sprite = backgrounds[level - 1];
-
     }
 
     public void GoBackToLevelSelection()
