@@ -8,22 +8,28 @@ public class GridTile : MonoBehaviour
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
 
+
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake") && !taken)
         {
             taken = true;
             print("ny plats");
-            //tileCollider.TakeTile();
+            tileCollider.TakeTile();
             gameController.tileTaken();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake"))
+        if (collision.gameObject.CompareTag("Snake") && taken)
         {
-            print(taken);
+            tileCollider.enableCollider();
         }
     }
 

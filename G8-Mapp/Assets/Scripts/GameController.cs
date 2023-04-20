@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameObject raycastBoxPrefab;
     [SerializeField] private GameObject[] raycastBoxes;
     [SerializeField] private GameObject bridgeBoxPrefab;
@@ -11,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
+    private int numberOfTiles;
 
     private void Start()
     {
@@ -19,7 +21,8 @@ public class GameController : MonoBehaviour
         bridgeBoxes = GameObject.FindGameObjectsWithTag("BridgeTile");
 		
         //sparar antalet tiles kvar att ta vid start (dvs alla)
-        gridTilesLeft = raycastBoxes.Length + bridgeBoxes.Length;
+        numberOfTiles = raycastBoxes.Length + bridgeBoxes.Length;
+        gridTilesLeft = numberOfTiles;
     }
 
     //Kollar om villkoren för vinst är uppfyllda
@@ -43,6 +46,17 @@ public class GameController : MonoBehaviour
         gridTilesLeft += 1;
     }
 
+    public void ResetTilesOnGrid()
+    {
+        tileCollider.resetTile();
+        resetNumberOfTilesLeft();
+    }
+
+    private void resetNumberOfTilesLeft()
+    {
+        gridTilesLeft = numberOfTiles;
+    }
+
     #region Enable/Disable functions
     private void OnEnable()
     {
@@ -53,6 +67,8 @@ public class GameController : MonoBehaviour
     {
         UndoButton.OnClick -= tileNotTaken;
     }
+
+    
     #endregion
 
 
