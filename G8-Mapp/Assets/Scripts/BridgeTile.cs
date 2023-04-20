@@ -12,7 +12,7 @@ public class BridgeTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake") && crossedOnce)
+        if (collision.gameObject.CompareTag("Snake") && crossedOnce && !taken)
         {
             taken = true;
             print("ny plats");

@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject raycastBoxPrefab;
     [SerializeField] private GameObject[] raycastBoxes;
+    [SerializeField] private GameObject bridgeBoxPrefab;
+    [SerializeField] private GameObject[] bridgeBoxes;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
@@ -14,9 +16,10 @@ public class GameController : MonoBehaviour
     {
         //Lägger till alla tiles i en lista
         raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
+        bridgeBoxes = GameObject.FindGameObjectsWithTag("BridgeTile");
 		
         //sparar antalet tiles kvar att ta vid start (dvs alla)
-        gridTilesLeft = raycastBoxes.Length;
+        gridTilesLeft = raycastBoxes.Length + bridgeBoxes.Length;
     }
 
     //Kollar om villkoren för vinst är uppfyllda
