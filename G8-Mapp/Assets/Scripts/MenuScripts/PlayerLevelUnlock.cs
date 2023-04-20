@@ -19,7 +19,6 @@ public class PlayerLevelUnlock : MonoBehaviour
                 PlayerPrefs.SetInt("levelIsUnlocked", numberLocked +1);
                 
             }
-
         }
     }
 
