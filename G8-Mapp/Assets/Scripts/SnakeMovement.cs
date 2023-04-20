@@ -85,7 +85,6 @@ public class SnakeMovement : MonoBehaviour
         ResetTrailRenderer();
         
     }
-    
 
     private bool OnDisabledTile()
     {

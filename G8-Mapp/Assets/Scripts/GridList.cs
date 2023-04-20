@@ -36,7 +36,7 @@ public class GridList : MonoBehaviour
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        tile.GetComponent<GridTile>().SetTakenStatus(false);
+        tile.GetComponentInParent<ColliderScript>().resetTile();
         gridList.Remove(tile);
     }
 
@@ -51,10 +51,7 @@ public class GridList : MonoBehaviour
         DeleteTileFromList(gridList[gridList.Count - 1]);
     }
 
-    public int GetLength()
-    {
-        return gridList.Count;
-    }
+    public int GetLength() { return gridList.Count; }
 
     #region Enable/Disable funktioner
 

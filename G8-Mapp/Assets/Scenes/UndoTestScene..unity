@@ -259,7 +259,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTakenColor: {r: 0, g: 0, b: 0, a: 0}
-  tileStartColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
+  tileStartColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &26861702
 Rigidbody2D:
   serializedVersion: 4
@@ -556,7 +556,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -616,8 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTakenColor: {r: 0, g: 0, b: 0, a: 0}
-  tileStartColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
+  tileStartColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &192060813
 Rigidbody2D:
   serializedVersion: 4
@@ -849,8 +849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTakenColor: {r: 0, g: 0, b: 0, a: 0}
-  tileStartColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
+  tileStartColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &536476780
 Rigidbody2D:
   serializedVersion: 4
@@ -1290,7 +1290,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1495,7 +1495,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1507,6 +1507,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &745711889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5244110412170537296, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+  m_PrefabInstance: {fileID: 1442154574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1124241122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,8 +1561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTakenColor: {r: 0, g: 0, b: 0, a: 0}
-  tileStartColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  tileStartColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &1124241125
 Rigidbody2D:
   serializedVersion: 4
@@ -2133,12 +2138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1893bb359094d7e8934f06d7cc4dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileCollider: []
+  tileColliders: []
   raycastBoxPrefab: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
   raycastBoxes: []
   bridgeBoxPrefab: {fileID: 0}
   bridgeBoxes: []
-  player: {fileID: 0}
+  player: {fileID: 745711889}
   goal: {fileID: 1345010170}
   gridTilesLeft: 0
 --- !u!4 &1438560704
@@ -2148,7 +2153,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438560702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2215,6 +2220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1438560703}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
 --- !u!1 &1542141822
@@ -2249,8 +2258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileTakenColor: {r: 0, g: 0, b: 0, a: 0}
-  tileStartColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
+  tileStartColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &1542141824
 Rigidbody2D:
   serializedVersion: 4
@@ -2507,7 +2516,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
