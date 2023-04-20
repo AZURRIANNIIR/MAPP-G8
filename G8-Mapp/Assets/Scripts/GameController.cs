@@ -12,11 +12,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        //Lägger till alla tiles i en lista
-        raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
-		
-        //sparar antalet tiles kvar att ta vid start (dvs alla)
-        gridTilesLeft = raycastBoxes.Length;
+        FindAllGrids();
     }
 
     //Kollar om villkoren för vinst är uppfyllda
@@ -40,15 +36,26 @@ public class GameController : MonoBehaviour
         gridTilesLeft += 1;
     }
 
+    private void FindAllGrids()
+    {
+        //Lägger till alla tiles i en lista
+        raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
+
+        //sparar antalet tiles kvar att ta vid start (dvs alla)
+        gridTilesLeft = raycastBoxes.Length;
+    }
+
     #region Enable/Disable functions
     private void OnEnable()
     {
         UndoButton.OnClick += tileNotTaken;
+        ClearButton.OnClick += FindAllGrids;
     }
 
     private void OnDisable()
     {
         UndoButton.OnClick -= tileNotTaken;
+        ClearButton.OnClick -= FindAllGrids;
     }
     #endregion
 

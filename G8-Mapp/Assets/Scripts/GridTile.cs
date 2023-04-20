@@ -31,4 +31,19 @@ public class GridTile : MonoBehaviour
     {
         taken = state;
     }
+
+    //Kodrepetition, men den ovanstående fungerar inte med ClearButtons event
+    private void SetTakenStatusToFalse() => SetTakenStatus(false);
+
+    #region Enable/Disable funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += SetTakenStatusToFalse;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick += SetTakenStatusToFalse;
+    }
+    #endregion
 }

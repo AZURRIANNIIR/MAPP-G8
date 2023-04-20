@@ -40,6 +40,11 @@ public class GridList : MonoBehaviour
         gridList.Remove(tile);
     }
 
+    private void ClearList()
+    {
+        gridList.Clear();
+    }
+
     public void GridListUndoAction()
     {
         Debug.Log("GridList kände av en knapptryckning från undo-knappen");
@@ -51,16 +56,18 @@ public class GridList : MonoBehaviour
         return gridList.Count;
     }
 
-    #region Enable/Disable functions
+    #region Enable/Disable funktioner
 
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;
+        ClearButton.OnClick += ClearList;
     }
 
     private void OnDisable()
     {
         UndoButton.OnClick -= GridListUndoAction;
+        ClearButton.OnClick -= ClearList;
     }
     #endregion
 }
