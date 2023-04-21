@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5244110412170537298}
   - component: {fileID: 5244110412170537305}
   - component: {fileID: 5244110412170537297}
+  - component: {fileID: 5244110412170537303}
   - component: {fileID: 5244110412170537304}
   - component: {fileID: 5244110412170537300}
   - component: {fileID: 5244110412170537301}
@@ -118,6 +119,26 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &5244110412170537303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244110412170537296}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb80f80b1afe4eda9badea354d67ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementLength: 0
+  snake: {fileID: 5244110412170537296}
+  snakeTrailRenderer: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  gridListScript: {fileID: 0}
+  lerpFactor: 1000
 --- !u!114 &5244110412170537304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39662cc77cd98410687cc54f2e20c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
   movementLength: 0
   snake: {fileID: 5244110412170537296}
   mask:
