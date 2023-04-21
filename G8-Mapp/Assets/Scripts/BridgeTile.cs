@@ -32,9 +32,19 @@ public class BridgeTile : MonoBehaviour
         }
     }
 
+    public bool GetCrossedOnce()
+    {
+        return crossedOnce;
+    }
+
     public void SetTakenStatus(bool state)
     {
         taken = state;
+    }
+
+    public void SetCrossedOnceStatus(bool state)
+    {
+        crossedOnce = state;
     }
 }
 

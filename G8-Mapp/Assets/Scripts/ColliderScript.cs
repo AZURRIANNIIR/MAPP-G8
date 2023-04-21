@@ -10,6 +10,7 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private Color tileTakenColor;
     [SerializeField] private Color tileStartColor;
     [SerializeField] private Color bridgeTakenOnceColor;
+    private BridgeTile bridgeTile;
 
     private SpriteRenderer spriteRenderer;
 
@@ -20,11 +21,15 @@ public class ColliderScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
         spriteRenderer.color = tileStartColor;
+        if (gameObject.tag == "BridgeTile")
+        {
+            bridgeTile = GetComponentInChildren<BridgeTile>();
+        }
     }
 
     public void TakeTile()
     {
-        
+
         print("ruta tagen");
         spriteRenderer.color = tileTakenColor;
     }
@@ -43,6 +48,16 @@ public class ColliderScript : MonoBehaviour
     {
         boxCollider.enabled = false;
         spriteRenderer.color = tileStartColor;
-        gridTile.SetTakenStatus(false);
+
+        if (gameObject.tag == "GridTile")
+        {
+            gridTile.SetTakenStatus(false);
+        }
+
+        if (gameObject.tag == "BridgeTile")
+        {
+            bridgeTile.SetCrossedOnceStatus(false);
+            bridgeTile.SetTakenStatus(false);
+        }
     }
 }
