@@ -7,9 +7,12 @@ public class SnakeMovement : MonoBehaviour
     private const int LMB_NUMBER = 0;
     private float gridSize = 0f;
 
+    [Header("Attributes")]
     [SerializeField] private float movementLength;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [Header("Components")]
+	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
 
@@ -51,16 +54,20 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
+        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            GameObject mostRecentTile = gridListScript.GetMostRecentTile();
-            if (mostRecentTile == null)
+            if (!ClearButton.EventFired)
             {
-                ResetSnakeToStart();
-            }
-            else
-            {
-                ResetSnakeToGrid(mostRecentTile.transform);
+                GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+                if (mostRecentTile == null)
+                {
+                    ResetSnakeToStart();
+                }
+                else
+                {
+                    ResetSnakeToGrid(mostRecentTile.transform);
+                }
             }
         }
     }
@@ -69,12 +76,14 @@ public class SnakeMovement : MonoBehaviour
     {
         transform.position = startPosition;
         ResetTrailRenderer();
+        gameController.ResetTilesOnGrid();
     }
 
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
         ResetTrailRenderer();
+        
     }
 
     private bool OnDisabledTile()
@@ -94,6 +103,18 @@ public class SnakeMovement : MonoBehaviour
     {
         snakeTrailRenderer.Clear();
     }
+
+    #region Enable/Disable funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += ResetSnakeToStart;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick -= ResetSnakeToStart;
+    }
+    #endregion
 }
 
 

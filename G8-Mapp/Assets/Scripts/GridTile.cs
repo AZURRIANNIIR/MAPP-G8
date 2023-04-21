@@ -8,22 +8,31 @@ public class GridTile : MonoBehaviour
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
 
+
+    private void Start()
+    {
+        if (!tileCollider)
+        {
+            tileCollider = GetComponentInParent<ColliderScript>();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake") && !taken)
         {
             taken = true;
             print("ny plats");
-            //tileCollider.TakeTile();
+            tileCollider.TakeTile();
             gameController.tileTaken();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake"))
+        if (collision.gameObject.CompareTag("Snake") && taken)
         {
-            print(taken);
+            tileCollider.enableCollider();
         }
     }
 
@@ -31,4 +40,19 @@ public class GridTile : MonoBehaviour
     {
         taken = state;
     }
+
+    //Kodrepetition, men den ovanstående fungerar inte med ClearButtons event
+    private void SetTakenStatusToFalse() => SetTakenStatus(false);
+
+    #region Enable/Disable funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += SetTakenStatusToFalse;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick += SetTakenStatusToFalse;
+    }
+    #endregion
 }
