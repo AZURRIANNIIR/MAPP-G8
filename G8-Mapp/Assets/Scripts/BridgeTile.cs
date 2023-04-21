@@ -16,6 +16,7 @@ public class BridgeTile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Om vi redan har korsat bron en gång
         if (collision.gameObject.CompareTag("Snake") && crossedOnce && !taken)
         {
             taken = true;
@@ -24,11 +25,21 @@ public class BridgeTile : MonoBehaviour
             gameController.tileTaken();
             return;
         }
+
+        //Om bron korsas för första gången
         else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !taken)
         {
             tileCollider.ChangeBridgeColor();
             crossedOnce = true;
             print("bridge taken once");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Snake") && taken)
+        {
+            tileCollider.enableCollider();
         }
     }
 

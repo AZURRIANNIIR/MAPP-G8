@@ -876,17 +876,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
   m_PrefabInstance: {fileID: 7264726167108500593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1820709136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7264726165556391268, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
-  m_PrefabInstance: {fileID: 7264726167108500593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820709135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1914709307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8553892132776217570, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
@@ -968,10 +957,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1570938720}
-    - target: {fileID: 4219013621393710763, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
-      propertyPath: tileCollider
-      value: 
-      objectReference: {fileID: 1820709136}
     - target: {fileID: 4219013621393710763, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
       propertyPath: bridgeBoxPrefab
       value: 
@@ -1162,6 +1147,26 @@ PrefabInstance:
     - target: {fileID: 8553892132776217570, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: m_Name
       value: BridgeBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553892132776217570, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553892132776217572, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553892132776217572, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553892132776217573, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553892132776217573, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553892132776217574, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: m_RootOrder
