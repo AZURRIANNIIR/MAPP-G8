@@ -6,9 +6,13 @@ public class ColliderScript : MonoBehaviour
 {
 
     private BoxCollider2D boxCollider;
-    GridTile gridTile;
+    [SerializeField] private GridTile gridTile;
     [SerializeField] private Color tileTakenColor;
     [SerializeField] private Color tileStartColor;
+    [SerializeField] private Color tileDisabledColor;
+    [SerializeField] private Color bridgeTakenOnceColor;
+    private BridgeTile bridgeTile;
+
     private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
@@ -17,24 +21,54 @@ public class ColliderScript : MonoBehaviour
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
+        spriteRenderer.color = tileStartColor;
+        if (gameObject.tag == "BridgeTile")
+        {
+            bridgeTile = GetComponentInChildren<BridgeTile>();
+        }
     }
 
     public void TakeTile()
     {
-        
+
         print("ruta tagen");
         spriteRenderer.color = tileTakenColor;
     }
 
-    public void enableCollider()
+    public void ChangeBridgeColor()
+    {
+        spriteRenderer.color = bridgeTakenOnceColor;
+    }
+
+    public void EnableCollider()
     {
         boxCollider.enabled = true;
     }
 
-    public void resetTile()
+    public void ResetTile()
     {
         boxCollider.enabled = false;
         spriteRenderer.color = tileStartColor;
+
+        if (gameObject.tag == "GridTile")
+        {
+            gridTile.SetTakenStatus(false);
+        }
+
+        if (gameObject.tag == "BridgeTile")
+        {
+            bridgeTile.SetCrossedOnceStatus(false);
+            bridgeTile.SetTakenStatus(false);
+        }
+    }
+
+    public void disableTile()
+    {
+        boxCollider.enabled = true;
+        spriteRenderer.color = tileDisabledColor;
         gridTile.SetTakenStatus(false);
     }
 }
+
+
+

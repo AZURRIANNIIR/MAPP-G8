@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7264726165556391268}
   m_Layer: 3
   m_Name: RaycastBox
-  m_TagString: GridTile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,8 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 7264726166774507242}
   tileTakenColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7264726166774507243
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ GameObject:
   - component: {fileID: 7264726166774507242}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Grid
+  m_TagString: GridTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

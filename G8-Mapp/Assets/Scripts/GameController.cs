@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private ColliderScript[] tileColliders;
+    [SerializeField] private TriggerButtonScript button;
     [SerializeField] private GameObject raycastBoxPrefab;
     [SerializeField] private GameObject[] raycastBoxes;
     [SerializeField] private GameObject bridgeBoxPrefab;
@@ -59,9 +61,11 @@ public class GameController : MonoBehaviour
     {
         foreach(ColliderScript colliderScript in tileColliders)
         {
-            colliderScript.resetTile();
+            colliderScript.ResetTile();
         }
-        
+
+        button.resetTiles();
+
         resetNumberOfTilesLeft();
     }
 
