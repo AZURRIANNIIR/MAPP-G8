@@ -9,6 +9,8 @@ public class ColliderScript : MonoBehaviour
     GridTile gridTile;
     [SerializeField] private Color tileTakenColor;
     [SerializeField] private Color tileStartColor;
+    [SerializeField] private Color tileDisabledColor;
+
     private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
@@ -35,6 +37,13 @@ public class ColliderScript : MonoBehaviour
     {
         boxCollider.enabled = false;
         spriteRenderer.color = tileStartColor;
+        gridTile.SetTakenStatus(false);
+    }
+
+    public void disableTile()
+    {
+        boxCollider.enabled = true;
+        spriteRenderer.color = tileDisabledColor;
         gridTile.SetTakenStatus(false);
     }
 }
