@@ -9,6 +9,7 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private GridTile gridTile;
     [SerializeField] private Color tileTakenColor;
     [SerializeField] private Color tileStartColor;
+    [SerializeField] private Color tileDisabledColor;
     [SerializeField] private Color bridgeTakenOnceColor;
     private BridgeTile bridgeTile;
 
@@ -60,4 +61,14 @@ public class ColliderScript : MonoBehaviour
             bridgeTile.SetTakenStatus(false);
         }
     }
+
+    public void disableTile()
+    {
+        boxCollider.enabled = true;
+        spriteRenderer.color = tileDisabledColor;
+        gridTile.SetTakenStatus(false);
+    }
 }
+
+
+
