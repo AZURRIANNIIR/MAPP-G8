@@ -5,35 +5,46 @@ using UnityEngine;
 public class BridgeTile : MonoBehaviour
 {
 
-    public bool crossedOnce = false;
+    public bool crossedOnce;
     public bool taken = false;
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
 
+    private void Start()
+    {
+        crossedOnce = false;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake") && crossedOnce && !taken)
         {
             taken = true;
             print("ny plats");
-            //tileCollider.TakeTile();
+            tileCollider.TakeTile();
             gameController.tileTaken();
+            return;
         }
-
-        crossedOnce = true;
+        else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !taken)
+        {
+            tileCollider.ChangeBridgeColor();
+            crossedOnce = true;
+            print("bridge taken once");
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public bool GetCrossedOnce()
     {
-        if (collision.gameObject.CompareTag("Snake"))
-        {
-            print(taken);
-        }
+        return crossedOnce;
     }
 
     public void SetTakenStatus(bool state)
     {
         taken = state;
+    }
+
+    public void SetCrossedOnceStatus(bool state)
+    {
+        crossedOnce = state;
     }
 }
 

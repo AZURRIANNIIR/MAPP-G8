@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8553892132776217497}
   m_Layer: 0
   m_Name: BridgeBoxPrefab
-  m_TagString: BridgeTile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
+  tileTakenColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  tileStartColor: {r: 1, g: 0.45882356, b: 0.60784316, a: 1}
+  bridgeTakenOnceColor: {r: 1, g: 0.6650944, b: 0.7573148, a: 1}
 --- !u!1 &8553892133717021021
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +165,7 @@ GameObject:
   - component: {fileID: 8553892133717021009}
   m_Layer: 0
   m_Name: TriggerBox
-  m_TagString: Untagged
+  m_TagString: BridgeTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,9 +225,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
