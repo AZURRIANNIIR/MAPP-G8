@@ -24,8 +24,7 @@ public class TriggerButtonScript : MonoBehaviour
         {
             for (int i = 0; i< tileList.Count; i++)
             {
-                tileList[i].GetComponent<ColliderScript>().resetTile();
-
+                tileList[i].GetComponent<ColliderScript>().ResetTile();
             }
         }
 
@@ -33,6 +32,11 @@ public class TriggerButtonScript : MonoBehaviour
 
     public void resetTiles()
     {
+        if (tileList.Count == 0) 
+        {
+            Debug.LogError("Det finns inga tiles i TriggerButtonScripts lista.");
+            return;
+        }
         for (int i = 0; i < tileList.Count; i++)
         {
             tileList[i].GetComponent<ColliderScript>().disableTile();

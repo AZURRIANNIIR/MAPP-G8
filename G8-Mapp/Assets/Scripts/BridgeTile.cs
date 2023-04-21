@@ -39,7 +39,7 @@ public class BridgeTile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Snake") && taken)
         {
-            tileCollider.enableCollider();
+            tileCollider.EnableCollider();
         }
     }
 

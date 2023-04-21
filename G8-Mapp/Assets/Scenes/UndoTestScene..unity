@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &7913252
@@ -319,8 +320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &26861702
 Rigidbody2D:
   serializedVersion: 4
@@ -467,6 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &136976307
@@ -616,8 +621,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &192060813
 Rigidbody2D:
   serializedVersion: 4
@@ -849,8 +857,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &536476780
 Rigidbody2D:
   serializedVersion: 4
@@ -997,6 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &586985548
@@ -1123,7 +1135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1226,6 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &654087648
@@ -1376,8 +1389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &687719554
 Rigidbody2D:
   serializedVersion: 4
@@ -1540,8 +1556,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1124241125
 Rigidbody2D:
   serializedVersion: 4
@@ -1772,7 +1791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1163500666
 GameObject:
@@ -1809,7 +1828,7 @@ Transform:
   - {fileID: 1124241123}
   - {fileID: 687719552}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181958451
 GameObject:
@@ -1942,7 +1961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1223306013
 PrefabInstance:
@@ -2001,6 +2020,131 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+--- !u!1 &1394201309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394201313}
+  - component: {fileID: 1394201312}
+  - component: {fileID: 1394201310}
+  - component: {fileID: 1394201311}
+  m_Layer: 0
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1394201310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394201309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35d7707167214af68235579500104c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileList: []
+--- !u!61 &1394201311
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394201309}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1394201312
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394201309}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0.8207547, g: 0.23602046, b: 0.21293166, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1394201313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394201309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420874280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,6 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &1420874283
@@ -2179,6 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileColliders: []
+  button: {fileID: 1394201310}
   raycastBoxPrefab: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
   raycastBoxes: []
   bridgeBoxPrefab: {fileID: 0}
@@ -2199,7 +2345,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1442154574
 PrefabInstance:
@@ -2218,7 +2364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2264,6 +2410,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1438560703}
+    - target: {fileID: 9133270873285807790, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: Snake
+      value: 
+      objectReference: {fileID: 745711889}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
 --- !u!1 &1542141822
@@ -2298,8 +2448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridTile: {fileID: 0}
   tileTakenColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1542141824
 Rigidbody2D:
   serializedVersion: 4
@@ -2462,6 +2615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 0}
   gameController: {fileID: 1438560703}
 --- !u!50 &1797083057
@@ -2694,7 +2848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2034668768
 GameObject:

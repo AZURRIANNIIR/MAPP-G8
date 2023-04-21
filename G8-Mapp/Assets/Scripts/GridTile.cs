@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    private bool taken = false;
+    [SerializeField] private bool taken = false;
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
 
