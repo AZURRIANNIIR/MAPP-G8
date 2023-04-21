@@ -130,14 +130,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39662cc77cd98410687cc54f2e20c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
   movementLength: 0
   snake: {fileID: 5244110412170537296}
   mask:
     serializedVersion: 2
     m_Bits: 8
+  gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
-  gridListScript: {fileID: 0}
+  gridListScript: {fileID: 5244110412170537305}
 --- !u!50 &5244110412170537300
 Rigidbody2D:
   serializedVersion: 4

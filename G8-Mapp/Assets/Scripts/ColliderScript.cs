@@ -6,9 +6,11 @@ public class ColliderScript : MonoBehaviour
 {
 
     private BoxCollider2D boxCollider;
-    GridTile gridTile;
+    [SerializeField] private GridTile gridTile;
     [SerializeField] private Color tileTakenColor;
     [SerializeField] private Color tileStartColor;
+    [SerializeField] private Color bridgeTakenOnceColor;
+
     private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
@@ -17,6 +19,7 @@ public class ColliderScript : MonoBehaviour
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
+        spriteRenderer.color = tileStartColor;
     }
 
     public void TakeTile()
@@ -24,6 +27,11 @@ public class ColliderScript : MonoBehaviour
         
         print("ruta tagen");
         spriteRenderer.color = tileTakenColor;
+    }
+
+    public void ChangeBridgeColor()
+    {
+        spriteRenderer.color = bridgeTakenOnceColor;
     }
 
     public void enableCollider()
