@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
     {
         foreach(ColliderScript colliderScript in tileColliders)
         {
-            colliderScript.resetTile();
+            colliderScript.ResetTile();
         }
         
         resetNumberOfTilesLeft();

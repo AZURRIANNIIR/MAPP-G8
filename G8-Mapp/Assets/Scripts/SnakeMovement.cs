@@ -70,6 +70,7 @@ public class SnakeMovement : MonoBehaviour
                 }
             }
         }
+
     }
 
     private void ResetSnakeToStart()
