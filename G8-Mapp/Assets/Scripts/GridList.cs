@@ -36,7 +36,7 @@ public class GridList : MonoBehaviour
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        tile.GetComponentInParent<ColliderScript>().resetTile();
+        tile.GetComponentInParent<ColliderScript>().ResetTile();
         gridList.Remove(tile);
     }
 

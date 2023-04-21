@@ -40,12 +40,12 @@ public class ColliderScript : MonoBehaviour
         spriteRenderer.color = bridgeTakenOnceColor;
     }
 
-    public void enableCollider()
+    public void EnableCollider()
     {
         boxCollider.enabled = true;
     }
 
-    public void resetTile()
+    public void ResetTile()
     {
         boxCollider.enabled = false;
         spriteRenderer.color = tileStartColor;
