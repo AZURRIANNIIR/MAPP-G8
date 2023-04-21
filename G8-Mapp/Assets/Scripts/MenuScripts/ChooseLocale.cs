@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ChooseLocale : MonoBehaviour
 {
+    //Definerar våra två knappar
+  // public Button spanishButton
+  // public Button englishButton
+
+
     // Start is called before the first frame update
     void Start()
     {
