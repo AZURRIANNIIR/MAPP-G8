@@ -36,31 +36,35 @@ public class GridList : MonoBehaviour
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        tile.GetComponent<GridTile>().SetTakenStatus(false);
+        tile.GetComponentInParent<ColliderScript>().resetTile();
         gridList.Remove(tile);
     }
 
-    public void GridListFeelsClick()
+    private void ClearList()
+    {
+        gridList.Clear();
+    }
+
+    public void GridListUndoAction()
     {
         Debug.Log("GridList kände av en knapptryckning från undo-knappen");
         DeleteTileFromList(gridList[gridList.Count - 1]);
     }
 
-    public int GetLength()
-    {
-        return gridList.Count;
-    }
+    public int GetLength() { return gridList.Count; }
 
-    #region Enable/Disable functions
+    #region Enable/Disable funktioner
 
     private void OnEnable()
     {
-        UndoButton.OnClick += GridListFeelsClick;
+        UndoButton.OnClick += GridListUndoAction;
+        ClearButton.OnClick += ClearList;
     }
 
     private void OnDisable()
     {
-        UndoButton.OnClick -= GridListFeelsClick;
+        UndoButton.OnClick -= GridListUndoAction;
+        ClearButton.OnClick -= ClearList;
     }
     #endregion
 }
