@@ -41,7 +41,9 @@ public class GridTile : MonoBehaviour
         taken = state;
     }
 
-    //Kodrepetition, men den ovanstående fungerar inte med ClearButtons event
+    public bool GetTakenStatus() { return taken; }
+
+    //Kodrepetition, men den ovanstående motsvarigheten fungerar inte med ClearButtons event
     private void SetTakenStatusToFalse() => SetTakenStatus(false);
 
     #region Enable/Disable funktioner
