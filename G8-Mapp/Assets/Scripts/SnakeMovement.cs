@@ -7,9 +7,12 @@ public class SnakeMovement : MonoBehaviour
     private const int LMB_NUMBER = 0;
     private float gridSize = 0f;
 
+    [Header("Attributes")]
     [SerializeField] private float movementLength;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [Header("Components")]
+	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
 
@@ -18,6 +21,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
     private Vector3 startPosition;
+
+    private bool mouseDown;
 
     private void Awake()
     {
@@ -35,7 +40,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile())
+        if (OnDisabledTile() || IsRayGoingThroughDisabledTile())
         {
             return;
         }
@@ -51,30 +56,37 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
+        mouseDown = Input.GetMouseButton(LMB_NUMBER);
+        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            GameObject mostRecentTile = gridListScript.GetMostRecentTile();
-            if (mostRecentTile == null)
+            if (!ClearButton.EventFired)
             {
-                ResetSnakeToStart();
-            }
-            else
-            {
-                ResetSnakeToGrid(mostRecentTile.transform);
+                GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+                if (mostRecentTile == null)
+                {
+                    ResetSnakeToStart();
+                }
+                else
+                {
+                    ResetSnakeToGrid(mostRecentTile.transform);
+                }
             }
         }
+
     }
 
     private void ResetSnakeToStart()
     {
         transform.position = startPosition;
         ResetTrailRenderer();
+        gameController.ResetTilesOnGrid();
     }
 
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        ResetTrailRenderer();
+        ResetTrailRenderer(); 
     }
 
     private bool OnDisabledTile()
@@ -90,10 +102,54 @@ public class SnakeMovement : MonoBehaviour
         }
         return false;
     }
+
+    //Lite kodrepetition från ovanstående funktion
+    private bool IsRayGoingThroughDisabledTile()
+    {
+        if (mouseDown)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            RaycastHit2D[] tileChecks = Physics2D.RaycastAll(transform.position, mousePos, Vector2.Distance(transform.position, mousePos));
+            Debug.DrawRay(transform.position, mousePos - transform.position, Color.red);
+
+            //En opraktiskt lösning som är dålig för prestanda, men i nuläget får den fungera
+            for (int i = 0; i < tileChecks.Length; i++)
+            {
+                //Kolla om det är samma tile som ormen står på
+                if (tileChecks[i].collider != null)
+                {
+                    if (tileChecks[i].collider.TryGetComponent(out GridTile gridTileScript))
+                    {
+                        if (gridTileScript.GetTakenStatus() && transform.position != tileChecks[i].collider.gameObject.transform.position)
+                        {
+                            Debug.LogError("Din väg går över en tile som är tagen, du kan därmed inte röra ormen åt detta håll");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private void ResetTrailRenderer()
     {
         snakeTrailRenderer.Clear();
     }
+
+    #region Enable/Disable funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += ResetSnakeToStart;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick -= ResetSnakeToStart;
+    }
+    #endregion
 }
 
 
