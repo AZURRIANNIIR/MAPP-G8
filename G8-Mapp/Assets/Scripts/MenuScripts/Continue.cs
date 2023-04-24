@@ -9,11 +9,21 @@ public class Continue : MonoBehaviour
 
     public void ContinueGame()
     {
-        sceneToContinue = PlayerPrefs.GetInt("SavedScene");
 
         if (sceneToContinue != 0)
             SceneManager.LoadScene(sceneToContinue);
         else
             return;
+    }
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SavedScene",SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
