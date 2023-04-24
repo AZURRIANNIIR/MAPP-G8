@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    [SerializeField] private bool taken = false;
+    private bool taken = false;
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
-
-
-    private void Start()
-    {
-        if (!tileCollider)
-        {
-            tileCollider = GetComponentInParent<ColliderScript>();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,16 +14,16 @@ public class GridTile : MonoBehaviour
         {
             taken = true;
             print("ny plats");
-            tileCollider.TakeTile();
+            //tileCollider.TakeTile();
             gameController.tileTaken();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake") && taken)
+        if (collision.gameObject.CompareTag("Snake"))
         {
-            tileCollider.EnableCollider();
+            print(taken);
         }
     }
 
@@ -40,21 +31,4 @@ public class GridTile : MonoBehaviour
     {
         taken = state;
     }
-
-    public bool GetTakenStatus() { return taken; }
-
-    //Kodrepetition, men den ovanstående motsvarigheten fungerar inte med ClearButtons event
-    private void SetTakenStatusToFalse() => SetTakenStatus(false);
-
-    #region Enable/Disable funktioner
-    private void OnEnable()
-    {
-        ClearButton.OnClick += SetTakenStatusToFalse;
-    }
-
-    private void OnDisable()
-    {
-        ClearButton.OnClick += SetTakenStatusToFalse;
-    }
-    #endregion
 }
