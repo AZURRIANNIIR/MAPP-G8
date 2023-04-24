@@ -9,7 +9,7 @@ public class TriggerButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        resetTiles();
     }
 
     // Update is called once per frame
@@ -24,11 +24,22 @@ public class TriggerButtonScript : MonoBehaviour
         {
             for (int i = 0; i< tileList.Count; i++)
             {
-                tileList[i].GetComponent<BoxCollider2D>().enabled = false;
-                tileList[i].GetComponent<SpriteRenderer>().color = Color.white;
-
+                tileList[i].GetComponent<ColliderScript>().ResetTile();
             }
         }
 
+    }
+
+    public void resetTiles()
+    {
+        if (tileList.Count == 0) 
+        {
+            Debug.LogError("Det finns inga tiles i TriggerButtonScripts lista.");
+            return;
+        }
+        for (int i = 0; i < tileList.Count; i++)
+        {
+            tileList[i].GetComponent<ColliderScript>().disableTile();
+        }
     }
 }
