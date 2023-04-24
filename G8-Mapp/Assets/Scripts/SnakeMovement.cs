@@ -40,7 +40,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile() || IsRayGoingThroughDisabledTile())
+        if (OnDisabledTile() /*|| IsRayGoingThroughDisabledTile()*/)
         {
             return;
         }
