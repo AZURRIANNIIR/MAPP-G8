@@ -9,12 +9,16 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
+    [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask noMask;
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [Header("States")]
+    [SerializeField] private bool onTile;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -40,7 +44,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile() /*|| IsRayGoingThroughDisabledTile()*/)
+        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut())
         {
             return;
         }
@@ -50,8 +54,7 @@ public class SnakeMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
-        transform.position = currentPosition;  
-
+        transform.position = currentPosition;
     }
 
     private void Update()
@@ -89,10 +92,14 @@ public class SnakeMovement : MonoBehaviour
         ResetTrailRenderer(); 
     }
 
+    private Vector3 GetMousePosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
     private bool OnDisabledTile()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 mousePos = GetMousePosition();
 
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
         if (tile.collider != null)
@@ -103,36 +110,55 @@ public class SnakeMovement : MonoBehaviour
         return false;
     }
 
-    //Lite kodrepetition från ovanstående funktion
-    private bool IsRayGoingThroughDisabledTile()
+    private bool IsMouseDistanceTooLong()
     {
-        if (mouseDown)
+        Vector3 mousePos = GetMousePosition();
+
+        if (Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse)
         {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            RaycastHit2D[] tileChecks = Physics2D.RaycastAll(transform.position, mousePos, Vector2.Distance(transform.position, mousePos));
-            Debug.DrawRay(transform.position, mousePos - transform.position, Color.red);
-
-            //En opraktiskt lösning som är dålig för prestanda, men i nuläget får den fungera
-            for (int i = 0; i < tileChecks.Length; i++)
-            {
-                //Kolla om det är samma tile som ormen står på
-                if (tileChecks[i].collider != null)
-                {
-                    if (tileChecks[i].collider.TryGetComponent(out GridTile gridTileScript))
-                    {
-                        if (gridTileScript.GetTakenStatus() && transform.position != tileChecks[i].collider.gameObject.transform.position)
-                        {
-                            Debug.LogError("Din väg går över en tile som är tagen, du kan därmed inte röra ormen åt detta håll");
-                            return true;
-                        }
-                    }
-                }
-            }
+            Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
+            return true;
         }
         return false;
     }
+
+    private bool OnTileAndTryingToGetOut()
+    {
+        Vector3 mousePos = GetMousePosition();
+
+        //Gör en raycast från musens position
+        RaycastHit2D outsideTileCheck = Physics2D.Raycast(mousePos, Vector2.zero);
+        
+        if (onTile)
+        {
+            if (outsideTileCheck.collider != null)
+            {
+                if (outsideTileCheck.collider.CompareTag("GridTile"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+    #region Trigger functions
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("GridTile"))
+        {
+            onTile = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("GridTile"))
+        {
+            onTile = false;
+        }
+    }
+    #endregion
 
     private void ResetTrailRenderer()
     {
