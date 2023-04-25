@@ -11,7 +11,6 @@ public class NextLevel : MonoBehaviour
 
     private void Start()
     {
-        // måste finnas en knapp som heter LoadNextLevel där spelaren klickar för att aktivera, kan bara klickas på om spelaren har klarat leveln?
         nextLevel.onClick.AddListener(LoadNextLevel);
         nextLevel.interactable = false;
     }
@@ -23,7 +22,6 @@ public class NextLevel : MonoBehaviour
         nextLevel.interactable = true;
     }
     void LoadNextLevel()
-        //har laddar den in nästa scen för spelaren genom att man kunner kunna skriva in namnet på banan i OnClick()?
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(nameLevel);
     }
