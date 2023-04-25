@@ -24,13 +24,12 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
-    private Vector3 startPosition;
+    private readonly Vector2 startPosition = new Vector3(1f, 1f);
 
     private bool mouseDown;
 
     private void Awake()
     {
-        startPosition = new Vector3(1f, 1f, 0f);
         transform.position = startPosition;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
@@ -76,9 +75,8 @@ public class SnakeMovement : MonoBehaviour
                 }
             }
         }
-
     }
-
+    #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
         transform.position = startPosition;
@@ -91,6 +89,7 @@ public class SnakeMovement : MonoBehaviour
         transform.position = gridLocation.position;
         ResetTrailRenderer(); 
     }
+    #endregion
 
     private Vector3 GetMousePosition()
     {
@@ -133,7 +132,7 @@ public class SnakeMovement : MonoBehaviour
         {
             if (outsideTileCheck.collider != null)
             {
-                if (outsideTileCheck.collider.CompareTag("GridTile"))
+                if (outsideTileCheck.collider.CompareTag("GridTile") || outsideTileCheck.collider.CompareTag("BridgeTile"))
                 {
                     return false;
                 }
@@ -142,10 +141,10 @@ public class SnakeMovement : MonoBehaviour
         }
         return false;
     }
-    #region Trigger functions
+    #region OnTrigger-funktioner
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
         {
             onTile = true;
         }
@@ -153,7 +152,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile"))
+        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
         {
             onTile = false;
         }
