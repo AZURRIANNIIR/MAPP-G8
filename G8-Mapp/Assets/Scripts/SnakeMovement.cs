@@ -17,7 +17,6 @@ public class SnakeMovement : MonoBehaviour
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
-    [SerializeField] private GameObject startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
 
@@ -25,14 +24,13 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+    private readonly Vector2 startPosition = new Vector3(1f, 1f);
+
+    private bool mouseDown;
 
     private void Awake()
     {
-        if (!startPosition)
-        {
-            startPosition = GameObject.Find("StartPositionPrefab");
-        }
-        transform.position = startPosition.transform.position;
+        transform.position = startPosition;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -60,6 +58,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
+        mouseDown = Input.GetMouseButton(LMB_NUMBER);
         //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
@@ -80,7 +79,7 @@ public class SnakeMovement : MonoBehaviour
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition.transform.position;
+        transform.position = startPosition;
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
@@ -153,7 +152,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
         {
             onTile = false;
         }
