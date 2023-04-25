@@ -8,7 +8,7 @@ public class SnakeMovement : MonoBehaviour
     private float gridSize = 0f;
 
     [Header("Attributes")]
-    [SerializeField] private float movementLength;
+    private float movementLength = 0.7f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [Header("Components")]
@@ -44,9 +44,20 @@ public class SnakeMovement : MonoBehaviour
         {
             return;
         }
+
         //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
+
+        //få avståndet mellan mus och orm
+        float distance = Vector2.Distance(Camera.main.ScreenToWorldPoint(currentScreenPoint), transform.position);
+
+        //om avståndet är större än en tile slutar ormen röra sig
+        if (distance > movementLength)
+        {
+            return;
+        }
+
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
