@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5244110412170537298}
   - component: {fileID: 5244110412170537305}
   - component: {fileID: 5244110412170537297}
+  - component: {fileID: 5244110412170537303}
   - component: {fileID: 5244110412170537304}
   - component: {fileID: 5244110412170537300}
   - component: {fileID: 5244110412170537301}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.69304687, g: 0.9056604, b: 0.38875046, a: 1}
   m_FlipX: 0
@@ -118,6 +119,26 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &5244110412170537303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244110412170537296}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb80f80b1afe4eda9badea354d67ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementLength: 0
+  snake: {fileID: 5244110412170537296}
+  snakeTrailRenderer: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  gridListScript: {fileID: 0}
+  lerpFactor: 1000
 --- !u!114 &5244110412170537304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,19 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementLength: 0
-  maxAllowedDistanceFromMouse: 1
   snake: {fileID: 5244110412170537296}
   mask:
     serializedVersion: 2
     m_Bits: 8
-  noMask:
-    serializedVersion: 2
-    m_Bits: 0
-  gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
-  gridListScript: {fileID: 5244110412170537305}
-  startPosition: {fileID: 0}
-  onTile: 0
+  gridListScript: {fileID: 0}
 --- !u!50 &5244110412170537300
 Rigidbody2D:
   serializedVersion: 4
@@ -232,7 +246,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Time: 100000
   m_Parameters:
     serializedVersion: 3

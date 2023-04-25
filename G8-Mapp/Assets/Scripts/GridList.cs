@@ -9,7 +9,7 @@ public class GridList : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile") || collision.gameObject.CompareTag("BridgeTile"))
+        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile"))
         {
             Debug.Log("Lägger till " + collision.gameObject.name + " i listan");
             gridList.Add(collision.gameObject);

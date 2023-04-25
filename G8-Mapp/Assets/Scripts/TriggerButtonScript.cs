@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TriggerButtonScript : MonoBehaviour
@@ -23,18 +22,13 @@ public class TriggerButtonScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Snake"))
         {
-            for (int i = 0; i < tileList.Count; i++)
+            for (int i = 0; i< tileList.Count; i++)
             {
                 tileList[i].GetComponent<BoxCollider2D>().enabled = false;
                 tileList[i].GetComponent<SpriteRenderer>().color = Color.white;
 
             }
-            UndoButton.OnClick += resetTiles;
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        UndoButton.OnClick -= resetTiles;
     }
 }
