@@ -26,10 +26,12 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
 
-    private bool mouseDown;
-
     private void Awake()
     {
+        if (!startPosition)
+        {
+            startPosition = GameObject.Find("StartPositionPrefab");
+        }
         transform.position = startPosition.transform.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
@@ -58,7 +60,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        mouseDown = Input.GetMouseButton(LMB_NUMBER);
         //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
@@ -152,7 +153,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
         {
             onTile = false;
         }
