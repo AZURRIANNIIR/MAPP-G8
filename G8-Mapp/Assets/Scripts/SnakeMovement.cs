@@ -17,6 +17,7 @@ public class SnakeMovement : MonoBehaviour
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [SerializeField] private GameObject startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
 
@@ -24,13 +25,12 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
-    private readonly Vector2 startPosition = new Vector3(1f, 1f);
 
     private bool mouseDown;
 
     private void Awake()
     {
-        transform.position = startPosition;
+        transform.position = startPosition.transform.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -79,7 +79,7 @@ public class SnakeMovement : MonoBehaviour
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition;
+        transform.position = startPosition.transform.position;
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
