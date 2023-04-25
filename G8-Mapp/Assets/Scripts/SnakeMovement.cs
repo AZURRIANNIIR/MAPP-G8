@@ -7,22 +7,32 @@ public class SnakeMovement : MonoBehaviour
     private const int LMB_NUMBER = 0;
     private float gridSize = 0f;
 
+    [Header("Attributes")]
     [SerializeField] private float movementLength;
+    [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask noMask;
+    [Header("Components")]
+	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [SerializeField] private GameObject startPosition;
+    [Header("States")]
+    [SerializeField] private bool onTile;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
-    private Vector3 startPosition;
 
     private void Awake()
     {
-        startPosition = new Vector3(1f, 1f, 0f);
-        transform.position = startPosition;
+        if (!startPosition)
+        {
+            startPosition = GameObject.Find("StartPositionPrefab");
+        }
+        transform.position = startPosition.transform.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -35,7 +45,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile())
+        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut())
         {
             return;
         }
@@ -45,42 +55,51 @@ public class SnakeMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
-        transform.position = currentPosition;  
-
+        transform.position = currentPosition;
     }
 
     private void Update()
     {
+        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            GameObject mostRecentTile = gridListScript.GetMostRecentTile();
-            if (mostRecentTile == null)
+            if (!ClearButton.EventFired)
             {
-                ResetSnakeToStart();
-            }
-            else
-            {
-                ResetSnakeToGrid(mostRecentTile.transform);
+                GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+                if (mostRecentTile == null)
+                {
+                    ResetSnakeToStart();
+                }
+                else
+                {
+                    ResetSnakeToGrid(mostRecentTile.transform);
+                }
             }
         }
     }
-
+    #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition;
+        transform.position = startPosition.transform.position;
         ResetTrailRenderer();
+        gameController.ResetTilesOnGrid();
     }
 
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        ResetTrailRenderer();
+        ResetTrailRenderer(); 
+    }
+    #endregion
+
+    private Vector3 GetMousePosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private bool OnDisabledTile()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 mousePos = GetMousePosition();
 
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
         if (tile.collider != null)
@@ -90,10 +109,73 @@ public class SnakeMovement : MonoBehaviour
         }
         return false;
     }
+
+    private bool IsMouseDistanceTooLong()
+    {
+        Vector3 mousePos = GetMousePosition();
+
+        if (Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse)
+        {
+            Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
+            return true;
+        }
+        return false;
+    }
+
+    private bool OnTileAndTryingToGetOut()
+    {
+        Vector3 mousePos = GetMousePosition();
+
+        //Gör en raycast från musens position
+        RaycastHit2D outsideTileCheck = Physics2D.Raycast(mousePos, Vector2.zero);
+        
+        if (onTile)
+        {
+            if (outsideTileCheck.collider != null)
+            {
+                if (outsideTileCheck.collider.CompareTag("GridTile") || outsideTileCheck.collider.CompareTag("BridgeTile"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+    #region OnTrigger-funktioner
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        {
+            onTile = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        {
+            onTile = false;
+        }
+    }
+    #endregion
+
     private void ResetTrailRenderer()
     {
         snakeTrailRenderer.Clear();
     }
+
+    #region Enable/Disable funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += ResetSnakeToStart;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick -= ResetSnakeToStart;
+    }
+    #endregion
 }
 
 
