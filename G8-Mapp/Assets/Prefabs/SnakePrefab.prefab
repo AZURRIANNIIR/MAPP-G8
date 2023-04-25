@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.69304687, g: 0.9056604, b: 0.38875046, a: 1}
   m_FlipX: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
+  startPosition: {fileID: 0}
   onTile: 0
 --- !u!50 &5244110412170537300
 Rigidbody2D:
@@ -231,7 +232,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Time: 100000
   m_Parameters:
     serializedVersion: 3

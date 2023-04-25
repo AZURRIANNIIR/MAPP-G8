@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1687775067734463045}
   - component: {fileID: 8430852027449509567}
   - component: {fileID: 7848486013170092880}
-  - component: {fileID: 5903183935777870207}
+  - component: {fileID: 6058783094098280044}
   m_Layer: 5
   m_Name: SelectLevelButton
   m_TagString: Untagged
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5903183935777870207}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5903183935777870207
+--- !u!114 &6058783094098280044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,10 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 253360497844294281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d97f57cada70e408963f888bfec1e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f9e981b09ad4684e8faf90e11fd25f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
+  level: 1
   text: {fileID: 6524698994305792985}
 --- !u!1 &7559975921494983373
 GameObject:
