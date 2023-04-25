@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
@@ -12,7 +10,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
-    [SerializeField] private LayerMask noMask;
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
@@ -125,7 +122,7 @@ public class SnakeMovement : MonoBehaviour
     {
         Vector3 mousePos = GetMousePosition();
 
-        //Gör en raycast från musens position
+        //Skapa en raycast från musens position
         RaycastHit2D outsideTileCheck = Physics2D.Raycast(mousePos, Vector2.zero);
         
         if (onTile)
