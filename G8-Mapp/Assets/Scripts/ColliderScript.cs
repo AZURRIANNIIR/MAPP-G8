@@ -66,7 +66,17 @@ public class ColliderScript : MonoBehaviour
     {
         boxCollider.enabled = true;
         spriteRenderer.color = tileDisabledColor;
-        gridTile.SetTakenStatus(false);
+
+        if (gameObject.tag == "GridTile")
+        {
+            gridTile.SetTakenStatus(false);
+        }
+
+        if (gameObject.tag == "BridgeTile")
+        {
+            bridgeTile.SetCrossedOnceStatus(false);
+            bridgeTile.SetTakenStatus(false);
+        }
     }
 }
 

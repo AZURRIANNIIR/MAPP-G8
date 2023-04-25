@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   gridTile: {fileID: 7264726166774507242}
   tileTakenColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
+  tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7264726166774507243
 GameObject:
@@ -297,5 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1203681b096b478985f7a36ce003602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taken: 0
   tileCollider: {fileID: 7264726165556391268}
   gameController: {fileID: 0}
