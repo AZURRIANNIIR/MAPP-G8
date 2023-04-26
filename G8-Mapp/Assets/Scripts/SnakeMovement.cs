@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
@@ -109,7 +110,7 @@ public class SnakeMovement : MonoBehaviour
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        ResetTrailRenderer(); 
+        
     }
     #endregion
 
@@ -190,6 +191,20 @@ public class SnakeMovement : MonoBehaviour
     private void ResetTrailRenderer()
     {
         snakeTrailRenderer.Clear();
+    }
+
+    public void TrailRendererPositions()
+    {
+
+        var positions = new Vector3[snakeTrailRenderer.positionCount];
+        snakeTrailRenderer.GetPositions(positions);
+        var positionsList = positions.ToList();
+
+        positionsList.RemoveAt(snakeTrailRenderer.positionCount - 1);
+
+        snakeTrailRenderer.Clear();
+        snakeTrailRenderer.AddPositions(positionsList.ToArray());
+
     }
 
     #region Enable/Disable funktioner
