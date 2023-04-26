@@ -7,7 +7,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
+    [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask horizontalBridgeEdge;
@@ -56,28 +56,6 @@ public class SnakeMovement : MonoBehaviour
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
         transform.position = currentPosition;
-    }
-
-    private void Update()
-    {
-        mouseDown = Input.GetMouseButton(LMB_NUMBER);
-        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
-        if (Input.GetMouseButtonUp(LMB_NUMBER))
-        {
-            if (!ClearButton.EventFired)
-            {
-                GameObject mostRecentTile = gridListScript.GetMostRecentTile();
-                if (mostRecentTile == null)
-                {
-                    ResetSnakeToStart();
-                }
-                else
-                {
-                    ResetSnakeToGrid(mostRecentTile.transform);
-                }
-            }
-        }
-
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -106,9 +84,30 @@ public class SnakeMovement : MonoBehaviour
             {
                 enteredHorizontally = true;
             }
-            else 
+            else
             {
                 enteredHorizontally = false;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        mouseDown = Input.GetMouseButton(LMB_NUMBER);
+        //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
+        if (Input.GetMouseButtonUp(LMB_NUMBER))
+        {
+            if (!ClearButton.EventFired)
+            {
+                GameObject mostRecentTile = gridListScript.GetMostRecentTile();
+                if (mostRecentTile == null)
+                {
+                    ResetSnakeToStart();
+                }
+                else
+                {
+                    ResetSnakeToGrid(mostRecentTile.transform);
+                }
             }
         }
     }
