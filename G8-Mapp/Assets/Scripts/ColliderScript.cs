@@ -72,7 +72,7 @@ public class ColliderScript : MonoBehaviour
                 spriteRenderer.color = bridgeTakenOnceColor;
                 return;
             }
-            else if (bridgeTile.GetCrossedOnceStatus() && !bridgeTile.GetTakenStatus())
+            else
             {
                 bridgeTile.SetCrossedOnceStatus(false);
                 spriteRenderer.color = tileStartColor;

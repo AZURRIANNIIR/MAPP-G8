@@ -23,7 +23,6 @@ public class UndoButton : MonoBehaviour
         gridListScript = FindObjectOfType<GridList>();
     }
 
-
     private void Update()
     {
         undoButton.interactable = gridListScript.GetLength() > 0;
