@@ -10,12 +10,17 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask horizontalBridgeEdge;
+    [SerializeField] private LayerMask verticalBridgeEdge;
+
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [Header("States")]
     [SerializeField] private bool onTile;
+    public bool enteredHorizontally;
+    public bool enteredVertically;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -72,7 +77,42 @@ public class SnakeMovement : MonoBehaviour
                 }
             }
         }
+
+
+        //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
+        Vector3 mousePos = GetMousePosition();
+
+        RaycastHit2D horizontalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, horizontalBridgeEdge);
+        if (horizontalEdge.collider != null)
+        {
+            horizontalEdge.collider.enabled = false;
+
+            if (!enteredVertically)
+            {
+                enteredVertically = true;
+            }
+            else
+            {
+                enteredVertically = false;
+            }
+        }
+
+        RaycastHit2D verticalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, verticalBridgeEdge);
+        if (verticalEdge.collider != null)
+        {
+            verticalEdge.collider.enabled = false;
+
+            if (!enteredHorizontally)
+            {
+                enteredHorizontally = true;
+            }
+            else 
+            {
+                enteredHorizontally = false;
+            }
+        }
     }
+
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
@@ -172,6 +212,7 @@ public class SnakeMovement : MonoBehaviour
         ClearButton.OnClick -= ResetSnakeToStart;
     }
     #endregion
+
 }
 
 
