@@ -136,13 +136,18 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
-  noMask:
+  horizontalBridgeEdge:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  verticalBridgeEdge:
+    serializedVersion: 2
+    m_Bits: 256
   gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
   onTile: 0
+  enteredHorizontally: 0
+  enteredVertically: 0
 --- !u!50 &5244110412170537300
 Rigidbody2D:
   serializedVersion: 4
