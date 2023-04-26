@@ -53,7 +53,7 @@ public class GridTile : MonoBehaviour
 
     protected void OnDisable()
     {
-        ClearButton.OnClick += SetTakenStatusToFalse;
+        ClearButton.OnClick -= SetTakenStatusToFalse;
     }
     #endregion
 }
