@@ -7,29 +7,32 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
+    [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask horizontalBridgeEdge;
+    [SerializeField] private LayerMask verticalBridgeEdge;
+
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
-    [SerializeField] private GameObject startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
+    public bool enteredHorizontally;
+    public bool enteredVertically;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+    private readonly Vector2 startPosition = new Vector3(1f, 1f);
+
+    private bool mouseDown;
 
     private void Awake()
     {
-        if (!startPosition)
-        {
-            startPosition = GameObject.Find("StartPositionPrefab");
-        }
-        transform.position = startPosition.transform.position;
+        transform.position = startPosition;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -53,10 +56,30 @@ public class SnakeMovement : MonoBehaviour
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
         transform.position = currentPosition;
+
+        //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
+        Vector3 mousePos = GetMousePosition();
+
+        RaycastHit2D horizontalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, horizontalBridgeEdge);
+        if (horizontalEdge.collider != null)
+        {
+            horizontalEdge.collider.enabled = false;
+            enteredVertically = true;
+
+        }
+
+        RaycastHit2D verticalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, verticalBridgeEdge);
+        if (verticalEdge.collider != null)
+        {
+            verticalEdge.collider.enabled = false;
+            enteredHorizontally = true;
+ 
+        }
     }
 
     private void Update()
     {
+        mouseDown = Input.GetMouseButton(LMB_NUMBER);
         //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
@@ -74,10 +97,11 @@ public class SnakeMovement : MonoBehaviour
             }
         }
     }
+
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition.transform.position;
+        transform.position = startPosition;
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
@@ -150,9 +174,15 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
         {
             onTile = false;
+        }
+
+        if (collision.CompareTag("BridgeTile"))
+        {
+            enteredHorizontally = false;
+            enteredVertically = false;
         }
     }
     #endregion
@@ -173,6 +203,7 @@ public class SnakeMovement : MonoBehaviour
         ClearButton.OnClick -= ResetSnakeToStart;
     }
     #endregion
+
 }
 
 
