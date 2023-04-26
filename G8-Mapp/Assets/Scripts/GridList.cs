@@ -11,9 +11,25 @@ public class GridList : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile") || collision.gameObject.CompareTag("BridgeTile"))
+        if (collision.gameObject.CompareTag("GridTile"))
         {
-            Debug.Log("Lägger till " + collision.gameObject.name + " i listan");
+            if (gridList.Contains(collision.gameObject)) 
+            {
+                return;
+            }
+            //Om den inte finns i listan
+            gridList.Add(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("BridgeTile"))
+        {
+            Debug.Log("Vi gick över en bro");
+            if (collision.TryGetComponent(out BridgeTile bridgeScript))
+            {
+                if (!bridgeScript.GetCrossedOnceStatus())
+                {
+                    Debug.Log("Bron har endast korsats en gång");
+                }
+            }
             gridList.Add(collision.gameObject);
         }
     }
@@ -38,12 +54,8 @@ public class GridList : MonoBehaviour
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        tile.GetComponentInParent<ColliderScript>().ResetTile();
-        if (tile.CompareTag("GridTile"))
-        {
-            tile.GetComponent<GridTile>().SetTakenStatus(false);
-        }
         gridList.Remove(tile);
+        tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
 
     private void ClearList()
@@ -65,7 +77,6 @@ public class GridList : MonoBehaviour
     public int GetLength() { return gridList.Count; }
 
     #region Enable/Disable funktioner
-
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;

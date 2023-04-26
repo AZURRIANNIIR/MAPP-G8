@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         gridTilesLeft = numberOfTiles;
     }
 
-    #region Enable/Disable functions
+    #region Enable/Disable funktioner
     private void OnEnable()
     {
         UndoButton.OnClick += tileNotTaken;
