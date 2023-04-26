@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    [SerializeField] private bool taken = false;
-    [SerializeField] private ColliderScript tileCollider;
-    [SerializeField] private GameController gameController;
+    [SerializeField] protected bool taken = false;
+    [SerializeField] protected ColliderScript tileCollider;
+    [SerializeField] protected GameController gameController;
 
 
-    private void Start()
+    protected void Start()
     {
         if (!tileCollider)
         {
@@ -28,7 +28,7 @@ public class GridTile : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake") && taken)
         {
@@ -47,12 +47,12 @@ public class GridTile : MonoBehaviour
     private void SetTakenStatusToFalse() => SetTakenStatus(false);
 
     #region Enable/Disable funktioner
-    private void OnEnable()
+    protected void OnEnable()
     {
         ClearButton.OnClick += SetTakenStatusToFalse;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         ClearButton.OnClick += SetTakenStatusToFalse;
     }

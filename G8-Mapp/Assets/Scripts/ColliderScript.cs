@@ -12,8 +12,17 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private Color tileDisabledColor;
     [SerializeField] private Color bridgeTakenOnceColor;
     private BridgeTile bridgeTile;
+    [SerializeField] GameObject childObject;
 
     private SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        if (!childObject)
+        {
+            childObject = gameObject.transform.Find("TriggerBox").gameObject;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +31,7 @@ public class ColliderScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
         spriteRenderer.color = tileStartColor;
-        if (gameObject.tag == "BridgeTile")
+        if (childObject.CompareTag("BridgeTile"))
         {
             bridgeTile = GetComponentInChildren<BridgeTile>();
         }
@@ -50,15 +59,21 @@ public class ColliderScript : MonoBehaviour
         boxCollider.enabled = false;
         spriteRenderer.color = tileStartColor;
 
-        if (gameObject.tag == "GridTile")
+        if (childObject.CompareTag("GridTile"))
         {
             gridTile.SetTakenStatus(false);
         }
 
-        if (gameObject.tag == "BridgeTile")
+        if (childObject.CompareTag("BridgeTile"))
         {
-            bridgeTile.SetCrossedOnceStatus(false);
-            bridgeTile.SetTakenStatus(false);
+            if (bridgeTile.GetTakenStatus())
+            {
+                bridgeTile.SetTakenStatus(false);
+            }
+            else if (bridgeTile.GetCrossedOnceStatus() && !bridgeTile.GetTakenStatus())
+            {
+                bridgeTile.SetCrossedOnceStatus(false);
+            }
         }
     }
 
@@ -67,12 +82,12 @@ public class ColliderScript : MonoBehaviour
         boxCollider.enabled = true;
         spriteRenderer.color = tileDisabledColor;
 
-        if (gameObject.tag == "GridTile")
+        if (childObject.tag == "GridTile")
         {
             gridTile.SetTakenStatus(false);
         }
 
-        if (gameObject.tag == "BridgeTile")
+        if (childObject.tag == "BridgeTile")
         {
             bridgeTile.SetCrossedOnceStatus(false);
             bridgeTile.SetTakenStatus(false);

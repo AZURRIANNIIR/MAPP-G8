@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BridgeTile : MonoBehaviour
+//Vi ärver här från GridTile-skriptet
+public class BridgeTile : GridTile
 {
+    [SerializeField] private bool crossedOnce;
 
-    public bool crossedOnce;
-    public bool taken = false;
-    [SerializeField] private ColliderScript tileCollider;
-    [SerializeField] private GameController gameController;
-
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         crossedOnce = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,27 +33,31 @@ public class BridgeTile : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Snake") && taken)
-        {
-            tileCollider.EnableCollider();
-        }
-    }
-
-    public bool GetCrossedOnce()
+    public bool GetCrossedOnceStatus()
     {
         return crossedOnce;
-    }
-
-    public void SetTakenStatus(bool state)
-    {
-        taken = state;
     }
 
     public void SetCrossedOnceStatus(bool state)
     {
         crossedOnce = state;
     }
+
+    //Samma problem som för SetTakenStatus i parent-skriptet, grundimplementationen fungerar inte med våran Event från Clear-Button
+    private void SetCrossedOnceStatusToFalse() => SetCrossedOnceStatus(false);
+
+    #region Enable/Disable-funktioner
+    new private void OnEnable()
+    {
+        base.OnEnable();
+        ClearButton.OnClick += SetCrossedOnceStatusToFalse;
+    }
+
+    new private void OnDisable()
+    {
+        base.OnDisable();
+        ClearButton.OnClick -= SetCrossedOnceStatusToFalse;
+    }
+    #endregion
 }
 
