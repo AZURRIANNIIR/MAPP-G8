@@ -57,11 +57,11 @@ public class ColliderScript : MonoBehaviour
     public void ResetTile()
     {
         boxCollider.enabled = false;
-        spriteRenderer.color = tileStartColor;
 
         if (childObject.CompareTag("GridTile"))
         {
             gridTile.SetTakenStatus(false);
+            spriteRenderer.color = tileStartColor;
         }
 
         if (childObject.CompareTag("BridgeTile"))
@@ -69,10 +69,13 @@ public class ColliderScript : MonoBehaviour
             if (bridgeTile.GetTakenStatus())
             {
                 bridgeTile.SetTakenStatus(false);
+                spriteRenderer.color = bridgeTakenOnceColor;
+                return;
             }
             else if (bridgeTile.GetCrossedOnceStatus() && !bridgeTile.GetTakenStatus())
             {
                 bridgeTile.SetCrossedOnceStatus(false);
+                spriteRenderer.color = tileStartColor;
             }
         }
     }

@@ -15,9 +15,9 @@ public class BridgeTile : GridTile
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Om vi redan har korsat bron en gång
-        if (collision.gameObject.CompareTag("Snake") && crossedOnce && !taken)
+        if (collision.gameObject.CompareTag("Snake") && crossedOnce && !GetTakenStatus())
         {
-            taken = true;
+            SetTakenStatus(true);
             print("ny plats");
             tileCollider.TakeTile();
             gameController.tileTaken();
@@ -25,7 +25,7 @@ public class BridgeTile : GridTile
         }
 
         //Om bron korsas för första gången
-        else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !taken)
+        else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !GetTakenStatus())
         {
             tileCollider.ChangeBridgeColor();
             crossedOnce = true;

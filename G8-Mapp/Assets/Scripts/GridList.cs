@@ -23,7 +23,7 @@ public class GridList : MonoBehaviour
             Debug.Log("Vi gick över en bro");
             if (collision.TryGetComponent(out BridgeTile bridgeScript))
             {
-                if (!bridgeScript.GetTakenStatus())
+                if (!bridgeScript.GetCrossedOnceStatus())
                 {
                     Debug.Log("Bron har endast korsats en gång");
                 }
@@ -52,8 +52,8 @@ public class GridList : MonoBehaviour
 
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        tile.GetComponentInParent<ColliderScript>().ResetTile();
         gridList.Remove(tile);
+        tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
 
     private void ClearList()
