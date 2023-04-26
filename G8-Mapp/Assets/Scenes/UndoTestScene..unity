@@ -325,6 +325,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &26861702
 Rigidbody2D:
   serializedVersion: 4
@@ -626,6 +627,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &192060813
 Rigidbody2D:
   serializedVersion: 4
@@ -725,6 +727,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &441245554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3973116569632568921, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_Name
+      value: StartPositionPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +921,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &536476780
 Rigidbody2D:
   serializedVersion: 4
@@ -1394,6 +1454,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &687719554
 Rigidbody2D:
   serializedVersion: 4
@@ -1561,6 +1622,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &1124241125
 Rigidbody2D:
   serializedVersion: 4
@@ -1791,7 +1853,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1163500666
 GameObject:
@@ -1828,7 +1890,7 @@ Transform:
   - {fileID: 1124241123}
   - {fileID: 687719552}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181958451
 GameObject:
@@ -1961,7 +2023,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1223306013
 PrefabInstance:
@@ -2143,7 +2205,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420874280
 GameObject:
@@ -2345,7 +2407,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1442154574
 PrefabInstance:
@@ -2457,6 +2519,7 @@ MonoBehaviour:
   tileStartColor: {r: 1, g: 1, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  childObject: {fileID: 0}
 --- !u!50 &1542141824
 Rigidbody2D:
   serializedVersion: 4
@@ -2852,7 +2915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2034668768
 GameObject:
@@ -2883,5 +2946,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
