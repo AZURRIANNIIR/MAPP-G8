@@ -64,7 +64,10 @@ public class GameController : MonoBehaviour
             colliderScript.ResetTile();
         }
 
-        button.resetTiles();
+        if (button != null)
+        {
+            button.resetTiles();
+        }
 
         resetNumberOfTilesLeft();
     }
