@@ -12,26 +12,29 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private Color tileDisabledColor;
     [SerializeField] private Color bridgeTakenOnceColor;
     private BridgeTile bridgeTile;
+    [SerializeField] GameObject childObject;
 
     private SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        if (!childObject)
+        {
+            childObject = gameObject.transform.Find("TriggerBox").gameObject;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (gameObject.tag == "GridTile")
-        {
-            gridTile = GetComponentInChildren<GridTile>();
-        }
-        if (gameObject.tag == "BridgeTile")
+        gridTile = GetComponentInChildren<GridTile>();
+        spriteRenderer.color = tileStartColor;
+        if (childObject.CompareTag("BridgeTile"))
         {
             bridgeTile = GetComponentInChildren<BridgeTile>();
         }
-
-        spriteRenderer.color = tileStartColor;
-        boxCollider.enabled = false;
-
     }
 
     public void TakeTile()
@@ -54,17 +57,26 @@ public class ColliderScript : MonoBehaviour
     public void ResetTile()
     {
         boxCollider.enabled = false;
-        spriteRenderer.color = tileStartColor;
 
-        if (gameObject.tag == "GridTile")
+        if (childObject.CompareTag("GridTile"))
         {
             gridTile.SetTakenStatus(false);
+            spriteRenderer.color = tileStartColor;
         }
 
-        if (gameObject.tag == "BridgeTile")
+        if (childObject.CompareTag("BridgeTile"))
         {
-            bridgeTile.SetCrossedOnceStatus(false);
-            bridgeTile.SetTakenStatus(false);
+            if (bridgeTile.GetTakenStatus())
+            {
+                bridgeTile.SetTakenStatus(false);
+                spriteRenderer.color = bridgeTakenOnceColor;
+                return;
+            }
+            else if (bridgeTile.GetCrossedOnceStatus() && !bridgeTile.GetTakenStatus())
+            {
+                bridgeTile.SetCrossedOnceStatus(false);
+                spriteRenderer.color = tileStartColor;
+            }
         }
     }
 
@@ -73,12 +85,12 @@ public class ColliderScript : MonoBehaviour
         boxCollider.enabled = true;
         spriteRenderer.color = tileDisabledColor;
 
-        if (gameObject.tag == "GridTile")
+        if (childObject.tag == "GridTile")
         {
             gridTile.SetTakenStatus(false);
         }
 
-        if (gameObject.tag == "BridgeTile")
+        if (childObject.tag == "BridgeTile")
         {
             bridgeTile.SetCrossedOnceStatus(false);
             bridgeTile.SetTakenStatus(false);
