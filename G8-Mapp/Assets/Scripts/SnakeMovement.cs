@@ -29,7 +29,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void Awake()
     {
-        if (startPosition)
+        if (!startPosition)
         {
             startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
         }
