@@ -20,12 +20,18 @@ public class ColliderScript : MonoBehaviour
     {
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        gridTile = GetComponentInChildren<GridTile>();
-        spriteRenderer.color = tileStartColor;
+        if (gameObject.tag == "GridTile")
+        {
+            gridTile = GetComponentInChildren<GridTile>();
+        }
         if (gameObject.tag == "BridgeTile")
         {
             bridgeTile = GetComponentInChildren<BridgeTile>();
         }
+
+        spriteRenderer.color = tileStartColor;
+        boxCollider.enabled = false;
+
     }
 
     public void TakeTile()
