@@ -64,30 +64,16 @@ public class SnakeMovement : MonoBehaviour
         if (horizontalEdge.collider != null)
         {
             horizontalEdge.collider.enabled = false;
+            enteredVertically = true;
 
-            if (!enteredVertically)
-            {
-                enteredVertically = true;
-            }
-            else
-            {
-                enteredVertically = false;
-            }
         }
 
         RaycastHit2D verticalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, verticalBridgeEdge);
         if (verticalEdge.collider != null)
         {
             verticalEdge.collider.enabled = false;
-
-            if (!enteredHorizontally)
-            {
-                enteredHorizontally = true;
-            }
-            else
-            {
-                enteredHorizontally = false;
-            }
+            enteredHorizontally = true;
+ 
         }
     }
 
@@ -191,6 +177,12 @@ public class SnakeMovement : MonoBehaviour
         if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
         {
             onTile = false;
+        }
+
+        if (collision.CompareTag("BridgeTile"))
+        {
+            enteredHorizontally = false;
+            enteredVertically = false;
         }
     }
     #endregion

@@ -114,7 +114,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 1}
+  m_Size: {x: 0.1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1240369187
 GameObject:
@@ -172,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05}
+  m_Size: {x: 1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &1300132417
 GameObject:
@@ -288,7 +288,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 1}
+  m_Size: {x: 0.1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1533684334
 GameObject:
@@ -462,7 +462,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05}
+  m_Size: {x: 1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &8553892132776217570
 GameObject:
@@ -624,6 +624,7 @@ MonoBehaviour:
   tileStartColor: {r: 0.845985, g: 0.4481132, b: 1, a: 1}
   tileDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   bridgeTakenOnceColor: {r: 0.83475643, g: 0.5707547, b: 1, a: 1}
+  childObject: {fileID: 0}
 --- !u!1 &8553892133717021021
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,14 +749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff3e2d025239456aaed6b7312c63ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossedOnce: 0
   taken: 0
   tileCollider: {fileID: 8553892132776217497}
-  snakeMovement: {fileID: 0}
   gameController: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
+  crossedOnce: 0
+  snakeMovement: {fileID: 0}
   upperTriggerCollider: {fileID: 1240369187}
   lowerTriggerCollider: {fileID: 1861682689}
   leftTriggerCollider: {fileID: 1344637502}
