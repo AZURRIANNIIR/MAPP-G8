@@ -1,9 +1,11 @@
+using System.Linq;
 using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
     private float gridSize = 0f;
+   
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
@@ -22,6 +24,7 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+    Vector3[] positions = new Vector3[200];
 
     private void Awake()
     {
@@ -85,7 +88,7 @@ public class SnakeMovement : MonoBehaviour
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        ResetTrailRenderer(); 
+        //ResetTrailRenderer(); 
     }
     #endregion
 
@@ -161,6 +164,23 @@ public class SnakeMovement : MonoBehaviour
     {
         snakeTrailRenderer.Clear();
     }
+
+    public void TrailRendererPositions()
+    {
+       
+        var positions = new Vector3[snakeTrailRenderer.positionCount];
+        snakeTrailRenderer.GetPositions(positions);
+        var positionsList = positions.ToList();
+
+        positionsList.RemoveAt(snakeTrailRenderer.positionCount - 1);
+
+        snakeTrailRenderer.Clear();
+        snakeTrailRenderer.AddPositions(positionsList.ToArray());
+
+    }
+
+   
+
 
     #region Enable/Disable funktioner
     private void OnEnable()

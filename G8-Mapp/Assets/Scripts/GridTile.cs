@@ -7,6 +7,7 @@ public class GridTile : MonoBehaviour
     [SerializeField] private bool taken = false;
     [SerializeField] private ColliderScript tileCollider;
     [SerializeField] private GameController gameController;
+    
 
 
     private void Start()
