@@ -12,7 +12,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
-
+    [SerializeField] private Transform startPosition;
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
@@ -26,13 +26,14 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
-    private readonly Vector2 startPosition = new Vector3(1f, 1f);
-
-    private bool mouseDown;
 
     private void Awake()
     {
-        transform.position = startPosition;
+        if (startPosition)
+        {
+            startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+        }
+        transform.position = startPosition.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -79,7 +80,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        mouseDown = Input.GetMouseButton(LMB_NUMBER);
         //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
@@ -101,7 +101,7 @@ public class SnakeMovement : MonoBehaviour
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition;
+        transform.position = startPosition.position;
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
@@ -117,7 +117,7 @@ public class SnakeMovement : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-
+    #region Funktioner som hindrar ormen från att gå om de är true
     private bool OnDisabledTile()
     {
         Vector3 mousePos = GetMousePosition();
@@ -163,6 +163,7 @@ public class SnakeMovement : MonoBehaviour
         }
         return false;
     }
+    #endregion
     #region OnTrigger-funktioner
     private void OnTriggerEnter2D(Collider2D collision)
     {
