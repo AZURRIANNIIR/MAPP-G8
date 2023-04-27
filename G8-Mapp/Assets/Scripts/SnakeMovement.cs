@@ -21,6 +21,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private bool onTile;
     public bool enteredHorizontally;
     public bool enteredVertically;
+    public bool bridgeDisabled;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -183,6 +184,12 @@ public class SnakeMovement : MonoBehaviour
         {
             enteredHorizontally = false;
             enteredVertically = false;
+            bridgeDisabled = true;
+        }
+
+        if (collision.CompareTag("GridTile"))
+        {
+            bridgeDisabled = false;
         }
     }
     #endregion
