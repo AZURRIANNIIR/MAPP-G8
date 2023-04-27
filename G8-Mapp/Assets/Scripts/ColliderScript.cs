@@ -12,17 +12,8 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private Color tileDisabledColor;
     [SerializeField] private Color bridgeTakenOnceColor;
     private BridgeTile bridgeTile;
-    [SerializeField] GameObject childObject;
 
     private SpriteRenderer spriteRenderer;
-
-    void Awake()
-    {
-        if (!childObject)
-        {
-            childObject = gameObject.transform.Find("TriggerBox").gameObject;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +22,7 @@ public class ColliderScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
         spriteRenderer.color = tileStartColor;
-        if (childObject.CompareTag("BridgeTile"))
+        if (gameObject.tag == "BridgeTile")
         {
             bridgeTile = GetComponentInChildren<BridgeTile>();
         }
@@ -57,26 +48,17 @@ public class ColliderScript : MonoBehaviour
     public void ResetTile()
     {
         boxCollider.enabled = false;
+        spriteRenderer.color = tileStartColor;
 
-        if (childObject.CompareTag("GridTile"))
+        if (gameObject.tag == "GridTile")
         {
             gridTile.SetTakenStatus(false);
-            spriteRenderer.color = tileStartColor;
         }
 
-        if (childObject.CompareTag("BridgeTile"))
+        if (gameObject.tag == "BridgeTile")
         {
-            if (bridgeTile.GetTakenStatus())
-            {
-                bridgeTile.SetTakenStatus(false);
-                spriteRenderer.color = bridgeTakenOnceColor;
-                return;
-            }
-            else
-            {
-                bridgeTile.SetCrossedOnceStatus(false);
-                spriteRenderer.color = tileStartColor;
-            }
+            bridgeTile.SetCrossedOnceStatus(false);
+            bridgeTile.SetTakenStatus(false);
         }
     }
 
@@ -85,12 +67,12 @@ public class ColliderScript : MonoBehaviour
         boxCollider.enabled = true;
         spriteRenderer.color = tileDisabledColor;
 
-        if (childObject.tag == "GridTile")
+        if (gameObject.tag == "GridTile")
         {
             gridTile.SetTakenStatus(false);
         }
 
-        if (childObject.tag == "BridgeTile")
+        if (gameObject.tag == "BridgeTile")
         {
             bridgeTile.SetCrossedOnceStatus(false);
             bridgeTile.SetTakenStatus(false);

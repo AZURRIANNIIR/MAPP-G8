@@ -6,12 +6,8 @@ using UnityEngine.UI;
 
 public class UndoButton : MonoBehaviour
 {
-    private const float INVOKE_DELAY = 0.05f;
-
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
-
-    public static bool EventFired { get; private set; }
 
     //Denna event kan andra skript subscriba till och köra egna funktioner
     //Det måste dock göras i kod, inte genom inspektorn som det går med UnityEvents
@@ -23,6 +19,7 @@ public class UndoButton : MonoBehaviour
         gridListScript = FindObjectOfType<GridList>();
     }
 
+
     private void Update()
     {
         undoButton.interactable = gridListScript.GetLength() > 0;
@@ -31,12 +28,5 @@ public class UndoButton : MonoBehaviour
     public void ClickAction()
     {
         OnClick?.Invoke();
-        EventFired = true;
-        Invoke("SetEventStatusToFalse", INVOKE_DELAY);
-    }
-
-    private void SetEventStatusToFalse()
-    {
-        EventFired = false;
     }
 }
