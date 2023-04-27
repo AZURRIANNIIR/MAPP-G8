@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridList: []
+  snakeMovement: {fileID: 5244110412170537304}
 --- !u!114 &5244110412170537297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,14 +137,20 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
-  noMask:
+  horizontalBridgeEdge:
     serializedVersion: 2
     m_Bits: 0
-  gameController: {fileID: 0}
+  verticalBridgeEdge:
+    serializedVersion: 2
+    m_Bits: 0
+  startPosition: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+  gameController: {fileID: 4219013621393710763, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
-  startPosition: {fileID: 0}
   onTile: 0
+  enteredHorizontally: 0
+  enteredVertically: 0
+  bridgeDisabled: 0
 --- !u!50 &5244110412170537300
 Rigidbody2D:
   serializedVersion: 4
