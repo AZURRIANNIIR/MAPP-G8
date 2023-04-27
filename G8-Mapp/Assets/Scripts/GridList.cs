@@ -6,12 +6,21 @@ using UnityEngine;
 public class GridList : MonoBehaviour
 {
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
+    [SerializeField] SnakeMovement snakeMovement;
+
+    private void Awake()
+    {
+        if (!snakeMovement)
+        {
+            snakeMovement = FindObjectOfType<SnakeMovement>();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile") || collision.gameObject.CompareTag("BridgeTile"))
         {
-            Debug.Log("Lägger till " + collision.gameObject.name + " i listan");
+            Debug.Log("Lï¿½gger till " + collision.gameObject.name + " i listan");
             gridList.Add(collision.gameObject);
         }
     }
@@ -34,8 +43,8 @@ public class GridList : MonoBehaviour
             return;
         }
 
-        Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
-        //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
+        Debug.Log("Nu ska " + tile.name + " tas bort frï¿½n listan.");
+        //ï¿½terstï¿½ll Tilens status, annars blir det problem nï¿½r spelaren gï¿½r tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
         if (tile.CompareTag("GridTile"))
         {
@@ -51,7 +60,7 @@ public class GridList : MonoBehaviour
 
     public void GridListUndoAction()
     {
-        Debug.Log("GridList kände av en knapptryckning från undo-knappen");
+        Debug.Log("GridList kï¿½nde av en knapptryckning frï¿½n undo-knappen");
         DeleteTileFromList(gridList[gridList.Count - 1]);
     }
 
