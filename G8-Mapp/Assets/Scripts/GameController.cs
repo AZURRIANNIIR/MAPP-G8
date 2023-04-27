@@ -64,10 +64,7 @@ public class GameController : MonoBehaviour
             colliderScript.ResetTile();
         }
 
-        if (button != null)
-        {
-            button.resetTiles();
-        }
+        button.resetTiles();
 
         resetNumberOfTilesLeft();
     }
@@ -77,7 +74,7 @@ public class GameController : MonoBehaviour
         gridTilesLeft = numberOfTiles;
     }
 
-    #region Enable/Disable funktioner
+    #region Enable/Disable functions
     private void OnEnable()
     {
         UndoButton.OnClick += tileNotTaken;
