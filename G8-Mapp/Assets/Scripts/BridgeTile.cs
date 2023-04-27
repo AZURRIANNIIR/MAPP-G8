@@ -97,6 +97,12 @@ public class BridgeTile : GridTile
             steppedOn = true;
         }
 
+        if (UndoButton.EventFired)
+        {
+            steppedOn = false;
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         //turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
         //turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
 
