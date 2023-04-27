@@ -291,7 +291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &233967339
 Transform:
   m_ObjectHideFlags: 0
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4bb649f6b564ce4c9c9c4c9c796aece, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 471aafd51e09b7c40b34b4e4a6ae2718, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c79c808157c49d64dba18efee38ca36f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b4f43028fa32f4428f1b719dc5631d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3721,7 +3721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1865204407
 Transform:
   m_ObjectHideFlags: 0
@@ -4690,6 +4690,7 @@ GameObject:
   - component: {fileID: 2102087672}
   - component: {fileID: 2102087671}
   - component: {fileID: 2102087670}
+  - component: {fileID: 2102087673}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -4761,7 +4762,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2102087671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102087673}
+        m_TargetAssemblyTypeName: Continue, Assembly-CSharp
+        m_MethodName: ContinueGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2102087671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4782,7 +4795,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6085f0edf91ea5243ac4daa1ece5c998, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0449a01d8bc7e5340b2b78fd42f05cbc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4800,6 +4813,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102087668}
   m_CullTransparentMesh: 1
+--- !u!114 &2102087673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102087668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7650f8d998b5f2d4e91f80c82367bcd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143996169
 GameObject:
   m_ObjectHideFlags: 0
