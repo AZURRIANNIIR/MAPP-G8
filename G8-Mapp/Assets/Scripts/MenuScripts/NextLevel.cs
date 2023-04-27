@@ -2,39 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
 
 public class NextLevel : MonoBehaviour
 {
-    public GameObject snakePrefab;
-    public GameObject goalPrefab;
     public Button nextLevel;
-    public string nextScene;
-
-    public TextMeshProUGUI text;
+    public string nameLevel;
+    private bool levelCompleted;
 
     private void Start()
     {
-        //ser till att knappen är disabled från början
+        nextLevel.onClick.AddListener(LoadNextLevel);
         nextLevel.interactable = false;
-        text.enabled = false;
-
-        nextLevel.onClick.AddListener(GetToNextLevel);
+    }
+    
+    public void LevelCompleted()
+    {
+        //Om banan är completed kommer man kunna trycka på knappen
+        levelCompleted = true;
+        nextLevel.interactable = true;
+    }
+    void LoadNextLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(nameLevel);
     }
     private void Update()
     {
-        //Kollar om snake har nått goalprefab
-        if(snakePrefab.transform.position == goalPrefab.transform.position)
+        //Om banan inte är completed så kan man inte trycka på knappen?
+        if (!levelCompleted)
         {
-           //Gör att knappen är påslagen när de har nått goalprefab
-            nextLevel.interactable = true;
-            text.enabled = true;
+            nextLevel.interactable = false;
         }
     }
-    private void GetToNextLevel()
-    {
-        //Laddar in nästa scen
-        SceneManager.LoadScene(nextScene);  
-    }
+    //Vet inte om detta är en bra lösning eller om de ens fungerar men kanske??
 }
