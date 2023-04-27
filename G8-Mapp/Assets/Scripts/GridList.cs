@@ -8,19 +8,28 @@ public class GridList : MonoBehaviour
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
     [SerializeField] SnakeMovement snakeMovement;
 
-    private void Awake()
-    {
-        if (!snakeMovement)
-        {
-            snakeMovement = FindObjectOfType<SnakeMovement>();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!gridList.Contains(collision.gameObject) && collision.gameObject.CompareTag("GridTile") || collision.gameObject.CompareTag("BridgeTile"))
+        if (collision.gameObject.CompareTag("GridTile"))
         {
-            Debug.Log("Lï¿½gger till " + collision.gameObject.name + " i listan");
+            if (gridList.Contains(collision.gameObject)) 
+            {
+                return;
+            }
+            //Om den inte finns i listan
+            gridList.Add(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("BridgeTile"))
+        {
+            Debug.Log("Vi gick över en bro");
+            if (collision.TryGetComponent(out BridgeTile bridgeScript))
+            {
+                if (!bridgeScript.GetCrossedOnceStatus())
+                {
+                    Debug.Log("Bron har endast korsats en gång");
+                }
+            }
             gridList.Add(collision.gameObject);
         }
     }
@@ -43,14 +52,10 @@ public class GridList : MonoBehaviour
             return;
         }
 
-        Debug.Log("Nu ska " + tile.name + " tas bort frï¿½n listan.");
-        //ï¿½terstï¿½ll Tilens status, annars blir det problem nï¿½r spelaren gï¿½r tillbaka.
-        tile.GetComponentInParent<ColliderScript>().ResetTile();
-        if (tile.CompareTag("GridTile"))
-        {
-            tile.GetComponent<GridTile>().SetTakenStatus(false);
-        }
+        Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
+        //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
         gridList.Remove(tile);
+        tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
 
     private void ClearList()
@@ -60,17 +65,22 @@ public class GridList : MonoBehaviour
 
     public void GridListUndoAction()
     {
-        Debug.Log("GridList kï¿½nde av en knapptryckning frï¿½n undo-knappen");
+        Debug.Log("GridList kände av en knapptryckning från undo-knappen");
         DeleteTileFromList(gridList[gridList.Count - 1]);
+    }
+
+    public void TrailRendererUndo()
+    {
+        snakeMovement.TrailRendererPositions();
     }
 
     public int GetLength() { return gridList.Count; }
 
     #region Enable/Disable funktioner
-
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;
+        UndoButton.OnClick += TrailRendererUndo;
         ClearButton.OnClick += ClearList;
     }
 

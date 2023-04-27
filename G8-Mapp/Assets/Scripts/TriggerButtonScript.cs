@@ -13,12 +13,6 @@ public class TriggerButtonScript : MonoBehaviour
         resetTiles();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Snake"))
@@ -27,7 +21,6 @@ public class TriggerButtonScript : MonoBehaviour
             {
                 tileList[i].GetComponent<ColliderScript>().ResetTile();
             }
-            UndoButton.OnClick += resetTiles;
         }
     }
 

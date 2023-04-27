@@ -8,7 +8,6 @@ public class GridTile : MonoBehaviour
     [SerializeField] protected ColliderScript tileCollider;
     [SerializeField] protected GameController gameController;
 
-
     protected void Start()
     {
         if (!tileCollider)
@@ -43,7 +42,7 @@ public class GridTile : MonoBehaviour
 
     public bool GetTakenStatus() { return taken; }
 
-    //Kodrepetition, men den ovanstï¿½ende motsvarigheten fungerar inte med ClearButtons event
+    //Kodrepetition, men den ovanstående motsvarigheten fungerar inte med ClearButtons event
     private void SetTakenStatusToFalse() => SetTakenStatus(false);
 
     #region Enable/Disable funktioner
@@ -54,7 +53,7 @@ public class GridTile : MonoBehaviour
 
     protected void OnDisable()
     {
-        ClearButton.OnClick += SetTakenStatusToFalse;
+        ClearButton.OnClick -= SetTakenStatusToFalse;
     }
     #endregion
 }
