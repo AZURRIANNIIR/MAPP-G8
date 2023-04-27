@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5244110412170537300}
   - component: {fileID: 5244110412170537301}
   - component: {fileID: 5244110412170537302}
+  - component: {fileID: 1695401905}
   m_Layer: 6
   m_Name: SnakePrefab
   m_TagString: Snake
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridList: []
+  snakeMovement: {fileID: 0}
 --- !u!114 &5244110412170537297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,19 +133,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementLength: 0
-  maxAllowedDistanceFromMouse: 1
+  maxAllowedDistanceFromMouse: 0.7
   snake: {fileID: 5244110412170537296}
   mask:
     serializedVersion: 2
     m_Bits: 8
-  noMask:
+  horizontalBridgeEdge:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  verticalBridgeEdge:
+    serializedVersion: 2
+    m_Bits: 256
+  startPosition: {fileID: 0}
   gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
-  startPosition: {fileID: 0}
   onTile: 0
+  enteredHorizontally: 0
+  enteredVertically: 0
+  bridgeDisabled: 0
 --- !u!50 &5244110412170537300
 Rigidbody2D:
   serializedVersion: 4
@@ -290,3 +298,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1695401905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5244110412170537296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab9abf531218b2458c1e6e5ac47e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUnlock: 2

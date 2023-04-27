@@ -2066,6 +2066,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: startPosition
+      value: 
+      objectReference: {fileID: 1845377501}
+    - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 460674221}
@@ -3454,6 +3458,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1845377501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+  m_PrefabInstance: {fileID: 1845377497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1849928923
 PrefabInstance:
   m_ObjectHideFlags: 0
