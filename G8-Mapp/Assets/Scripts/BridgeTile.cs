@@ -92,8 +92,10 @@ public class BridgeTile : GridTile
 
     new private void OnTriggerExit2D(Collider2D collision)
     {
-
-        steppedOn = true;
+        if (collision.gameObject.CompareTag("Snake"))
+        {
+            steppedOn = true;
+        }
 
         //turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
         //turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
