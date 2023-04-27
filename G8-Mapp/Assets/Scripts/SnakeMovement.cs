@@ -96,13 +96,10 @@ public class SnakeMovement : MonoBehaviour
             if (!ClearButton.EventFired)
             {
                 GameObject mostRecentTile = gridListScript.GetMostRecentTile();
-                if (mostRecentTile == null)
+                switch (mostRecentTile)
                 {
-                    ResetSnakeToStart();
-                }
-                else
-                {
-                    ResetSnakeToGrid(mostRecentTile.transform);
+                    case null: ResetSnakeToStart(); break;
+                    default: ResetSnakeToGrid(mostRecentTile.transform); break;
                 }
             }
         }

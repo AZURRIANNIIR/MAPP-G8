@@ -76,18 +76,12 @@ public class GridList : MonoBehaviour
         DeleteTileFromList(gridList[gridList.Count - 1]);
     }
 
-    public void TrailRendererUndo()
-    {
-        snakeMovement.TrailRendererPositions();
-    }
-
     public int GetLength() { return gridList.Count; }
 
     #region Enable/Disable funktioner
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;
-        UndoButton.OnClick += TrailRendererUndo;
         ClearButton.OnClick += ClearList;
     }
 

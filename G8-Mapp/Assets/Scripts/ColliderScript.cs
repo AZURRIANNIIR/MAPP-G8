@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ColliderScript : MonoBehaviour
@@ -11,7 +12,7 @@ public class ColliderScript : MonoBehaviour
     [SerializeField] private Color tileStartColor;
     [SerializeField] private Color tileDisabledColor;
     [SerializeField] private Color bridgeTakenOnceColor;
-    private BridgeTile bridgeTile;
+    [SerializeField] private BridgeTile bridgeTile;
     [SerializeField] GameObject childObject;
 
     private SpriteRenderer spriteRenderer;
@@ -95,6 +96,11 @@ public class ColliderScript : MonoBehaviour
             bridgeTile.SetCrossedOnceStatus(false);
             bridgeTile.SetTakenStatus(false);
         }
+    }
+
+    public void SetBridgeColorToStartColor()
+    {
+        spriteRenderer.color = tileStartColor;
     }
 }
 
