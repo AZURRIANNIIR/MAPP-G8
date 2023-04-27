@@ -15,7 +15,7 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private LayerMask verticalBridgeEdge;
     [SerializeField] private Transform startPosition;
     [Header("Components")]
-	[SerializeField] private GameController gameController;
+    [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [Header("States")]
@@ -54,10 +54,18 @@ public class SnakeMovement : MonoBehaviour
         //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
-        transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
+
+        //Tog bort denna för att diagonal rörelse skulle funka, men vågar inte radera kodraden
+        //transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
+
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
-        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
-        transform.position = currentPosition;
+        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
+
+        //Ser till att diagonal rörelse inte sker
+        if (transform.position.x == currentPosition.x || transform.position.y == currentPosition.y)
+        {
+            transform.position = currentPosition;
+        }
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -75,7 +83,7 @@ public class SnakeMovement : MonoBehaviour
         {
             verticalEdge.collider.enabled = false;
             enteredHorizontally = true;
- 
+
         }
     }
 
@@ -110,7 +118,7 @@ public class SnakeMovement : MonoBehaviour
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        
+
     }
     #endregion
 
@@ -150,7 +158,7 @@ public class SnakeMovement : MonoBehaviour
 
         //Skapa en raycast från musens position
         RaycastHit2D outsideTileCheck = Physics2D.Raycast(mousePos, Vector2.zero);
-        
+
         if (onTile)
         {
             if (outsideTileCheck.collider != null)
