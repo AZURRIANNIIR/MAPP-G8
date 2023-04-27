@@ -8,6 +8,13 @@ public class GridList : MonoBehaviour
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
     [SerializeField] SnakeMovement snakeMovement;
 
+    private void Awake()
+    {
+        if (!snakeMovement)
+        {
+            snakeMovement = FindObjectOfType<SnakeMovement>();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
