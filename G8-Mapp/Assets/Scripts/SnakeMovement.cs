@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
@@ -8,20 +7,16 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
+    [SerializeField] private float maxAllowedDistanceFromMouse = 1f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
-    [SerializeField] private LayerMask horizontalBridgeEdge;
-    [SerializeField] private LayerMask verticalBridgeEdge;
-    [SerializeField] private Transform startPosition;
     [Header("Components")]
 	[SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [SerializeField] private GameObject startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
-    public bool enteredHorizontally;
-    public bool enteredVertically;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -32,9 +27,9 @@ public class SnakeMovement : MonoBehaviour
     {
         if (!startPosition)
         {
-            startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+            startPosition = GameObject.Find("StartPositionPrefab");
         }
-        transform.position = startPosition.position;
+        transform.position = startPosition.transform.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
     }
@@ -58,25 +53,6 @@ public class SnakeMovement : MonoBehaviour
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize); 
         transform.position = currentPosition;
-
-        //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
-        Vector3 mousePos = GetMousePosition();
-
-        RaycastHit2D horizontalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, horizontalBridgeEdge);
-        if (horizontalEdge.collider != null)
-        {
-            horizontalEdge.collider.enabled = false;
-            enteredVertically = true;
-
-        }
-
-        RaycastHit2D verticalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, verticalBridgeEdge);
-        if (verticalEdge.collider != null)
-        {
-            verticalEdge.collider.enabled = false;
-            enteredHorizontally = true;
- 
-        }
     }
 
     private void Update()
@@ -98,11 +74,10 @@ public class SnakeMovement : MonoBehaviour
             }
         }
     }
-
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition.position;
+        transform.position = startPosition.transform.position;
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
@@ -110,7 +85,7 @@ public class SnakeMovement : MonoBehaviour
     private void ResetSnakeToGrid(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        
+        ResetTrailRenderer(); 
     }
     #endregion
 
@@ -118,7 +93,7 @@ public class SnakeMovement : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    #region Funktioner som hindrar ormen från att gå om de är true
+
     private bool OnDisabledTile()
     {
         Vector3 mousePos = GetMousePosition();
@@ -164,7 +139,6 @@ public class SnakeMovement : MonoBehaviour
         }
         return false;
     }
-    #endregion
     #region OnTrigger-funktioner
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -176,15 +150,9 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
         {
             onTile = false;
-        }
-
-        if (collision.CompareTag("BridgeTile"))
-        {
-            enteredHorizontally = false;
-            enteredVertically = false;
         }
     }
     #endregion
@@ -192,20 +160,6 @@ public class SnakeMovement : MonoBehaviour
     private void ResetTrailRenderer()
     {
         snakeTrailRenderer.Clear();
-    }
-
-    public void TrailRendererPositions()
-    {
-
-        var positions = new Vector3[snakeTrailRenderer.positionCount];
-        snakeTrailRenderer.GetPositions(positions);
-        var positionsList = positions.ToList();
-
-        positionsList.RemoveAt(snakeTrailRenderer.positionCount - 1);
-
-        snakeTrailRenderer.Clear();
-        snakeTrailRenderer.AddPositions(positionsList.ToArray());
-
     }
 
     #region Enable/Disable funktioner
@@ -219,7 +173,6 @@ public class SnakeMovement : MonoBehaviour
         ClearButton.OnClick -= ResetSnakeToStart;
     }
     #endregion
-
 }
 
 
