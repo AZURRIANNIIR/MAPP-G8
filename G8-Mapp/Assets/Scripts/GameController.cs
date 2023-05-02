@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
     private int numberOfTiles;
+    public bool win = false;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour
     {
         if(gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
+            win = true;
             print("win");
         }
     }

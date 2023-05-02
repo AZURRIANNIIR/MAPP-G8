@@ -11,6 +11,7 @@ public class NextLevel : MonoBehaviour
     public GameObject goalPrefab;
     public Button nextLevel;
     public string nextScene;
+    [SerializeField] GameController gameController;
 
     public TextMeshProUGUI text;
 
@@ -25,7 +26,7 @@ public class NextLevel : MonoBehaviour
     private void Update()
     {
         //Kollar om snake har nått goalprefab
-        if(snakePrefab.transform.position == goalPrefab.transform.position)
+        if(snakePrefab.transform.position == goalPrefab.transform.position && gameController.win == true)
         {
            //Gör att knappen är påslagen när de har nått goalprefab
             nextLevel.interactable = true;
