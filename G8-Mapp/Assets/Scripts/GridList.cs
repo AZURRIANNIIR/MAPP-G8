@@ -82,13 +82,11 @@ public class GridList : MonoBehaviour
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;
-        ClearButton.OnClick += ClearList;
     }
 
     private void OnDisable()
     {
         UndoButton.OnClick -= GridListUndoAction;
-        ClearButton.OnClick -= ClearList;
     }
     #endregion
 }

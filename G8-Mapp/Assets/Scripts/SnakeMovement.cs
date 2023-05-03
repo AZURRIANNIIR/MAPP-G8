@@ -230,13 +230,11 @@ public class SnakeMovement : MonoBehaviour
     #region Enable/Disable funktioner
     private void OnEnable()
     {
-        ClearButton.OnClick += ResetSnakeToStart;
         UndoButton.OnClick += TrailRendererPositions;
     }
 
     private void OnDisable()
     {
-        ClearButton.OnClick -= ResetSnakeToStart;
         UndoButton.OnClick -= TrailRendererPositions;
     }
     #endregion
