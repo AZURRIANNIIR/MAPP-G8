@@ -8,6 +8,13 @@ public class GridList : MonoBehaviour
     [SerializeField] private List<GameObject> gridList = new List<GameObject>();
     [SerializeField] SnakeMovement snakeMovement;
 
+    private void Awake()
+    {
+        if (!snakeMovement)
+        {
+            snakeMovement = FindObjectOfType<SnakeMovement>();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -69,18 +76,12 @@ public class GridList : MonoBehaviour
         DeleteTileFromList(gridList[gridList.Count - 1]);
     }
 
-    public void TrailRendererUndo()
-    {
-        snakeMovement.TrailRendererPositions();
-    }
-
     public int GetLength() { return gridList.Count; }
 
     #region Enable/Disable funktioner
     private void OnEnable()
     {
         UndoButton.OnClick += GridListUndoAction;
-        UndoButton.OnClick += TrailRendererUndo;
         ClearButton.OnClick += ClearList;
     }
 

@@ -110,6 +110,12 @@ public class BridgeTile : GridTile
             steppedOn = true;
         }
 
+        if (UndoButton.EventFired)
+        {
+            steppedOn = false;
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         //turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
         //turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
 
@@ -133,14 +139,23 @@ public class BridgeTile : GridTile
     {
         base.OnEnable();
         ClearButton.OnClick += SetCrossedOnceStatusToFalse;
+        ClearButton.OnClick += ResetBridgeTileCompletely;
     }
 
     new private void OnDisable()
     {
         base.OnDisable();
         ClearButton.OnClick -= SetCrossedOnceStatusToFalse;
+        ClearButton.OnClick -= ResetBridgeTileCompletely;
     }
     #endregion
+
+    private void ResetBridgeTileCompletely()
+    {
+        tileCollider.ChangeBridgeColor();
+        SetCrossedOnceStatus(false);
+        SetTakenStatus(false);
+    }
 
     private void turnOnPath(GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)
     {
