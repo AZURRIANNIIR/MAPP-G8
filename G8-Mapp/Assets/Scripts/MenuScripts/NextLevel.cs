@@ -11,9 +11,16 @@ public class NextLevel : MonoBehaviour
     public GameObject goalPrefab;
     public Button nextLevel;
     public string nextScene;
+    private string currentScene;
     [SerializeField] GameController gameController;
 
     public TextMeshProUGUI text;
+
+    private void Awake()
+    {
+        //Hitta den nuvarande scenens namn
+        currentScene = SceneManager.GetActiveScene().name;
+    }
 
     private void Start()
     {
@@ -21,8 +28,9 @@ public class NextLevel : MonoBehaviour
         nextLevel.interactable = false;
         text.enabled = false;
 
-        nextLevel.onClick.AddListener(GetToNextLevel);
+        nextLevel.onClick.AddListener(GetToNextLevel); 
     }
+
     private void Update()
     {
         //Kollar om snake har nått goalprefab
@@ -38,4 +46,22 @@ public class NextLevel : MonoBehaviour
         //Laddar in nästa scen
         SceneManager.LoadScene(nextScene);  
     }
+
+    private void ReloadScene()
+    {
+        Debug.Log("Laddar om " + currentScene);
+        SceneManager.LoadScene(currentScene);
+    }
+
+    #region Enable/Disable-funktioner
+    private void OnEnable()
+    {
+        ClearButton.OnClick += ReloadScene;
+    }
+
+    private void OnDisable()
+    {
+        ClearButton.OnClick -= ReloadScene;
+    }
+    #endregion
 }

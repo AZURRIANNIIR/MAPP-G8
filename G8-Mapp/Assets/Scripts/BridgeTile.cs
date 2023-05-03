@@ -5,7 +5,7 @@ using UnityEngine;
 //Vi ärver här från GridTile-skriptet
 public class BridgeTile : GridTile
 {
-    [SerializeField] private bool crossedOnce;
+    [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
 
     [SerializeField] private GameObject upperTriggerCollider;
@@ -43,6 +43,7 @@ public class BridgeTile : GridTile
 
         if (steppedOn)
         {
+            //snakeMovement.lastBridgeTile = this;
             if (snakeMovement.bridgeDisabled)
             {
                 temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
@@ -65,6 +66,18 @@ public class BridgeTile : GridTile
             print("ny plats");
             tileCollider.TakeTile();
             gameController.tileTaken();
+            //om ormen kommer från höger eller vänster
+            /*if (snakeMovement.enteredHorizontally)
+            {
+                turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
+            }
+
+            //om ormen kommer upp eller ner ifrån
+            else if (snakeMovement.enteredVertically)
+            {
+                turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
+
+            }*/
             return;
         }
 
@@ -120,22 +133,6 @@ public class BridgeTile : GridTile
 
     //Samma problem som för SetTakenStatus i parent-skriptet, grundimplementationen fungerar inte med våran Event från Clear-Button
     private void SetCrossedOnceStatusToFalse() => SetCrossedOnceStatus(false);
-
-    #region Enable/Disable-funktioner
-    new private void OnEnable()
-    {
-        base.OnEnable();
-        ClearButton.OnClick += SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick += ResetBridgeTileCompletely;
-    }
-
-    new private void OnDisable()
-    {
-        base.OnDisable();
-        ClearButton.OnClick -= SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick -= ResetBridgeTileCompletely;
-    }
-    #endregion
 
     private void ResetBridgeTileCompletely()
     {
