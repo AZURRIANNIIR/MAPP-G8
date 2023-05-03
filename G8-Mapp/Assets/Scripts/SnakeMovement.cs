@@ -22,7 +22,9 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private bool onTile;
     public bool enteredHorizontally;
     public bool enteredVertically;
+    public string lastEnterDirection;
     public bool bridgeDisabled;
+    public BridgeTile lastBridgeTile;
 
     private Vector3 screenPoint;
     private Vector3 scanPos;
@@ -52,21 +54,22 @@ public class SnakeMovement : MonoBehaviour
         {
             return;
         }
+
         //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
 
         //Tog bort denna för att diagonal rörelse skulle funka, men vågar inte radera kodraden
-        //transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
+        transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
 
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
 
         //Ser till att diagonal rörelse inte sker
-        if (transform.position.x == currentPosition.x || transform.position.y == currentPosition.y)
+        /*if (transform.position.x == currentPosition.x || transform.position.y == currentPosition.y)
         {
             transform.position = currentPosition;
-        }
+        }*/
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -76,6 +79,7 @@ public class SnakeMovement : MonoBehaviour
         {
             horizontalEdge.collider.enabled = false;
             enteredVertically = true;
+            lastEnterDirection = "enteredVertically";
 
         }
 
@@ -84,6 +88,7 @@ public class SnakeMovement : MonoBehaviour
         {
             verticalEdge.collider.enabled = false;
             enteredHorizontally = true;
+            lastEnterDirection = "enteredHorizontally";
 
         }
     }
@@ -103,6 +108,36 @@ public class SnakeMovement : MonoBehaviour
                 }
             }
         }
+
+        if (bridgeDisabled)
+        {
+            UndoButton.OnClick += setLastBridgeEnterDirection;
+            UndoButton.OnClick += setBridgeNotTaken;
+        }
+        else
+        {
+            UndoButton.OnClick -= setLastBridgeEnterDirection;
+            UndoButton.OnClick -= setBridgeNotTaken;
+
+        }
+    }
+
+    public void setLastBridgeEnterDirection()
+    {
+        if (lastEnterDirection.Equals("enteredVertically"))
+        {
+            enteredVertically = true;
+        }
+
+        else if (lastEnterDirection.Equals("enteredHorizontally"))
+        {
+            enteredHorizontally = true;
+        }
+    }
+
+    public void setBridgeNotTaken()
+    {
+        lastBridgeTile.crossedOnce = false;
     }
 
     #region Funktioner som återställer ormen
@@ -199,6 +234,8 @@ public class SnakeMovement : MonoBehaviour
             //enteredHorizontally = false;
             //enteredVertically = false;
             bridgeDisabled = true;
+            lastBridgeTile = collision.GetComponent<BridgeTile>();
+
         }
 
         if (collision.CompareTag("GridTile"))
