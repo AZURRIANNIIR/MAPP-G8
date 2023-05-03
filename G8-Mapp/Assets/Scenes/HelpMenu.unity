@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9622642, g: 0.77549154, b: 0.35857958, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9716981, g: 0.40792987, b: 0.40792987, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1652,9 +1652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6fecdb930e14ac47abd6a7d46e3c61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelOne: {fileID: 733579971}
-  panelTwo: {fileID: 469617564}
-  panelThree: {fileID: 1852016612}
+  panelOne: {fileID: 733579973}
+  panelTwo: {fileID: 469617566}
+  panelThree: {fileID: 1852016614}
+  panelChange: -1
+  button: {fileID: 792418848}
 --- !u!1 &1011086580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,9 +1927,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6fecdb930e14ac47abd6a7d46e3c61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelOne: {fileID: 733579971}
-  panelTwo: {fileID: 469617564}
-  panelThree: {fileID: 1852016612}
+  panelOne: {fileID: 733579973}
+  panelTwo: {fileID: 469617566}
+  panelThree: {fileID: 1852016614}
+  panelChange: 1
+  button: {fileID: 1025683283}
 --- !u!1001 &1243378674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2440,7 +2444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.577497, g: 0.5226504, b: 0.764151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
