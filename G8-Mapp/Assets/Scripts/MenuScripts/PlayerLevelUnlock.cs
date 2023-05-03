@@ -12,11 +12,11 @@ public class PlayerLevelUnlock : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Snake"))
         {
-            numberLocked = PlayerPrefs.GetInt("levelIsUnlocked");
+            numberLocked = PlayerPrefs.GetInt("levelsUnlocked");
 
             if(numberLocked <= levelUnlock)
             {
-                PlayerPrefs.SetInt("levelIsUnlocked", numberLocked +1);
+                PlayerPrefs.SetInt("levelsUnlocked", numberLocked +1);
                 
             }
 

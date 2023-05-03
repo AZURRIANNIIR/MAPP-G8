@@ -1209,6 +1209,18 @@ PrefabInstance:
       propertyPath: nextScene
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
+      propertyPath: goalPrefab
+      value: 
+      objectReference: {fileID: 2101703772}
+    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
+      propertyPath: snakePrefab
+      value: 
+      objectReference: {fileID: 1695401904}
+    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 460674221}
     - target: {fileID: 5519480597190975747, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
       propertyPath: m_Name
       value: NextLevelButton
@@ -2948,6 +2960,10 @@ PrefabInstance:
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738050814757173537, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 5697565474725709512, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_Pivot.x

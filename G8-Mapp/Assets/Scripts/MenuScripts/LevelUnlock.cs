@@ -12,11 +12,11 @@ public class LevelUnlock : MonoBehaviour
     
     void Start()
     {
-        if (!PlayerPrefs.HasKey("levelIsUnlocked"))
+        if (!PlayerPrefs.HasKey("levelsUnlocked"))
         {
-            PlayerPrefs.SetInt("levelIsUnlocked", 1);
+            PlayerPrefs.SetInt("levelsUnlocked", 1);
         }
-        unlockedLevel = PlayerPrefs.GetInt("levelIsUnlocked");
+        unlockedLevel = PlayerPrefs.GetInt("levelsUnlocked");
 
         for(int i = 0; i<buttons.Length; i++)
         {
@@ -26,6 +26,8 @@ public class LevelUnlock : MonoBehaviour
 
     void Update()
     {
+        unlockedLevel = PlayerPrefs.GetInt("levelsUnlocked");
+
         for(int i = 0; i<unlockedLevel; i++)
         {
             buttons[i].interactable = true;

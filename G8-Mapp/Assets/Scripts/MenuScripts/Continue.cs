@@ -11,7 +11,7 @@ public class Continue : MonoBehaviour
     {
 
         if (sceneToContinue != 0)
-            SceneManager.LoadScene(sceneToContinue);
+            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
         else
             return;
     }
@@ -25,5 +25,10 @@ public class Continue : MonoBehaviour
         {
             PlayerPrefs.SetInt("SavedScene",SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    public void saveScene()
+    {
+        PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
     }
 }
