@@ -134,22 +134,6 @@ public class BridgeTile : GridTile
     //Samma problem som för SetTakenStatus i parent-skriptet, grundimplementationen fungerar inte med våran Event från Clear-Button
     private void SetCrossedOnceStatusToFalse() => SetCrossedOnceStatus(false);
 
-    #region Enable/Disable-funktioner
-    new private void OnEnable()
-    {
-        base.OnEnable();
-        ClearButton.OnClick += SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick += ResetBridgeTileCompletely;
-    }
-
-    new private void OnDisable()
-    {
-        base.OnDisable();
-        ClearButton.OnClick -= SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick -= ResetBridgeTileCompletely;
-    }
-    #endregion
-
     private void ResetBridgeTileCompletely()
     {
         tileCollider.ChangeBridgeColor();
