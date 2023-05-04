@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GridTile : MonoBehaviour
 {
     [SerializeField] private bool taken = false;
     [SerializeField] protected ColliderScript tileCollider;
     [SerializeField] protected GameController gameController;
+    public UnityEvent OnTakenStatus;
 
     protected void Start()
     {
@@ -24,6 +26,7 @@ public class GridTile : MonoBehaviour
             print("ny plats");
             tileCollider.TakeTile();
             gameController.tileTaken();
+            OnTakenStatus.Invoke();
         }
     }
 
