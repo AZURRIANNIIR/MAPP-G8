@@ -11,6 +11,9 @@ public class HelpPanelScript : MonoBehaviour
     [SerializeField] static int pressAmount;
     [SerializeField] private int panelChange;
     [SerializeField] private Button button;
+    //private Animator panelOneAnimator;
+    //private Animator panelTwoAnimator;
+
 
 
 
@@ -19,13 +22,17 @@ public class HelpPanelScript : MonoBehaviour
     {
         button.onClick.AddListener(TaskOnClick);
         ChangePanel();
+        //panelOneAnimator = panelOne.GetComponent<Animator>();
+        //panelTwoAnimator = panelTwo.GetComponent<Animator>();
+
     }
 
     void TaskOnClick()
     {
         pressAmount += panelChange;
+        //PlayAnimation();
         ChangePanel();
-        checkButtonEnabled();
+        //checkButtonEnabled();
     }
 
 
@@ -64,12 +71,14 @@ public class HelpPanelScript : MonoBehaviour
             panelOne.enabled = true;
             panelTwo.enabled = false;
             panelThree.enabled = false;
-        } else if (pressAmount == 1)
+        }
+        else if (pressAmount == 1)
         {
             panelOne.enabled = false;
             panelTwo.enabled = true;
             panelThree.enabled = false;
-        } else if (pressAmount == 2)
+        }
+        else if (pressAmount == 2)
         {
             panelOne.enabled = false;
             panelTwo.enabled = false;
@@ -77,10 +86,25 @@ public class HelpPanelScript : MonoBehaviour
         }
     }
 
-    private void checkButtonEnabled()
-    {
-
-    }
+    //private void PlayAnimation()
+    //{
+    //    if (pressAmount == 0)
+    //    {
+    //        panelOneAnimator.SetInteger("panelSwitch", 1);
+    //    }
+    //    else if (pressAmount == 1 && panelChange == 1)
+    //    {
+    //        panelOneAnimator.SetInteger("panelSwitch", 2);
+    //    }
+    //    else if (pressAmount == 1 && panelChange == -1)
+    //    {
+    //        panelOneAnimator.SetInteger("panelSwitch", 4);
+    //    }
+    //    else if (pressAmount == 2)
+    //    {
+    //        panelOneAnimator.SetInteger("panelSwitch", 3);
+    //    }
+    //}
 
 
 }
