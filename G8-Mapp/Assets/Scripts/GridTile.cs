@@ -16,6 +16,11 @@ public class GridTile : MonoBehaviour
         {
             tileCollider = GetComponentInParent<ColliderScript>();
         }
+
+        if (!gameController)
+        {
+            gameController = FindObjectOfType<GameController>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

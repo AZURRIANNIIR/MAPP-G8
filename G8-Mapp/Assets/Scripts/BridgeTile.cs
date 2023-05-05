@@ -27,6 +27,12 @@ public class BridgeTile : GridTile
     {
         base.Start();
         crossedOnce = false;
+
+        if (!snakeMovement)
+        {
+            snakeMovement = FindObjectOfType<SnakeMovement>();
+        }
+        
     }
 
     private void Update()
@@ -78,6 +84,7 @@ public class BridgeTile : GridTile
                 turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
 
             }*/
+            OnTakenStatus?.Invoke();
             return;
         }
 
@@ -130,9 +137,6 @@ public class BridgeTile : GridTile
     {
         crossedOnce = state;
     }
-
-    //Samma problem som för SetTakenStatus i parent-skriptet, grundimplementationen fungerar inte med våran Event från Clear-Button
-    private void SetCrossedOnceStatusToFalse() => SetCrossedOnceStatus(false);
 
     private void ResetBridgeTileCompletely()
     {
