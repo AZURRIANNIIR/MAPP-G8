@@ -9,6 +9,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
+    [Range(0.7f, 0.9f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
