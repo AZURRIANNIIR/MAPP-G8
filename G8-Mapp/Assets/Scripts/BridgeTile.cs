@@ -27,6 +27,12 @@ public class BridgeTile : GridTile
     {
         base.Start();
         crossedOnce = false;
+
+        if (!snakeMovement)
+        {
+            snakeMovement = FindObjectOfType<SnakeMovement>();
+        }
+        
     }
 
     private void Update()
@@ -78,6 +84,7 @@ public class BridgeTile : GridTile
                 turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
 
             }*/
+            OnTakenStatus?.Invoke();
             return;
         }
 
@@ -130,25 +137,6 @@ public class BridgeTile : GridTile
     {
         crossedOnce = state;
     }
-
-    //Samma problem som för SetTakenStatus i parent-skriptet, grundimplementationen fungerar inte med våran Event från Clear-Button
-    private void SetCrossedOnceStatusToFalse() => SetCrossedOnceStatus(false);
-
-    #region Enable/Disable-funktioner
-    new private void OnEnable()
-    {
-        base.OnEnable();
-        ClearButton.OnClick += SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick += ResetBridgeTileCompletely;
-    }
-
-    new private void OnDisable()
-    {
-        base.OnDisable();
-        ClearButton.OnClick -= SetCrossedOnceStatusToFalse;
-        ClearButton.OnClick -= ResetBridgeTileCompletely;
-    }
-    #endregion
 
     private void ResetBridgeTileCompletely()
     {
