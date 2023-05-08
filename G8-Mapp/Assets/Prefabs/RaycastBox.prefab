@@ -105,7 +105,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0196079, y: 1.0196079}
     newSize: {x: 10.4, y: 10.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridTile: {fileID: 7264726166774507242}
-  tileTakenColor: {r: 1, g: 0.8235295, b: 0.9058824, a: 0.50980395}
-  tileStartColor: {r: 1, g: 0.8235295, b: 0.9058824, a: 1}
-  tileDisabledColor: {r: 1, g: 0.30588236, b: 0.45882356, a: 1}
-  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
+  tileStartSprite: {fileID: 21300000, guid: fb7ed3d07992e405cb1c51436695ff54, type: 3}
+  tileDisabledSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
+  bridgeTakenOnceSprite: {fileID: 21300000, guid: 1069f8a980c004708b999a94f77aa831, type: 3}
   bridgeTile: {fileID: 0}
   childObject: {fileID: 7264726166774507243}
 --- !u!1 &7264726166774507243
