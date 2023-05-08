@@ -180,7 +180,7 @@ public class SnakeMovement : MonoBehaviour
 
         if (Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse)
         {
-            Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
+            //Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
             return true;
         }
         return false;
