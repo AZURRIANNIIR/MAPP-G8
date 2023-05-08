@@ -4,6 +4,7 @@ using UnityEngine;
 public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
+    private const int DIRECTION_ANGLE = 90;
     private float gridSize = 0f;
 
     [Header("Attributes")]
@@ -50,7 +51,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut())
+        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionMultipleOfDirectionAngle())
         {
             return;
         }
@@ -159,7 +160,7 @@ public class SnakeMovement : MonoBehaviour
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    #region Funktioner som hindrar ormen från att gå om de är true
+    #region Funktioner som hindrar ormen från att gå om de är true (eller falsk för den sista)
     private bool OnDisabledTile()
     {
         Vector3 mousePos = GetMousePosition();
@@ -203,6 +204,23 @@ public class SnakeMovement : MonoBehaviour
             }
             return true;
         }
+        return false;
+    }
+
+    private bool IsDirectionMultipleOfDirectionAngle()
+    {
+        Vector3 mousePos = GetMousePosition();
+
+        Ray2D mouseRay = new Ray2D(transform.position, (mousePos - transform.position).normalized);
+
+        Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
+       
+        //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
+        if (Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0)
+        {
+            return true;
+        }
+        //Om inte, så kan inte ormen röra sig
         return false;
     }
     #endregion
@@ -267,13 +285,11 @@ public class SnakeMovement : MonoBehaviour
     #region Enable/Disable funktioner
     private void OnEnable()
     {
-        ClearButton.OnClick += ResetSnakeToStart;
         UndoButton.OnClick += TrailRendererPositions;
     }
 
     private void OnDisable()
     {
-        ClearButton.OnClick -= ResetSnakeToStart;
         UndoButton.OnClick -= TrailRendererPositions;
     }
     #endregion

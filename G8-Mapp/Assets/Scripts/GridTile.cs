@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GridTile : MonoBehaviour
 {
     [SerializeField] private bool taken = false;
     [SerializeField] protected ColliderScript tileCollider;
     [SerializeField] protected GameController gameController;
+    public UnityEvent OnTakenStatus;
 
     protected void Start()
     {
         if (!tileCollider)
         {
             tileCollider = GetComponentInParent<ColliderScript>();
+        }
+
+        if (!gameController)
+        {
+            gameController = FindObjectOfType<GameController>();
         }
     }
 
@@ -24,6 +31,7 @@ public class GridTile : MonoBehaviour
             print("ny plats");
             tileCollider.TakeTile();
             gameController.tileTaken();
+            OnTakenStatus.Invoke();
         }
     }
 
@@ -41,19 +49,4 @@ public class GridTile : MonoBehaviour
     }
 
     public bool GetTakenStatus() { return taken; }
-
-    //Kodrepetition, men den ovanstående motsvarigheten fungerar inte med ClearButtons event
-    private void SetTakenStatusToFalse() => SetTakenStatus(false);
-
-    #region Enable/Disable funktioner
-    protected void OnEnable()
-    {
-        ClearButton.OnClick += SetTakenStatusToFalse;
-    }
-
-    protected void OnDisable()
-    {
-        ClearButton.OnClick -= SetTakenStatusToFalse;
-    }
-    #endregion
 }
