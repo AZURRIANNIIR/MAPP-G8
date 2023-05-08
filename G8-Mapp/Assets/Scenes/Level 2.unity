@@ -3625,6 +3625,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 9135647198244162099, guid: d45528a58615a4a23a1336f09f5df95a, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 10.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135647198244162099, guid: d45528a58615a4a23a1336f09f5df95a, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 10.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45528a58615a4a23a1336f09f5df95a, type: 3}
 --- !u!1001 &1926442614
@@ -4354,6 +4362,10 @@ PrefabInstance:
       propertyPath: snakePrefab
       value: 
       objectReference: {fileID: 1695401904}
+    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 460674221}
     - target: {fileID: 5519480597190975747, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
       propertyPath: m_Name
       value: NextLevelButton
