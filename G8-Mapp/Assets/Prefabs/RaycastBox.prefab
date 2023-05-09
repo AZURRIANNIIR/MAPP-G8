@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.8254717, b: 0.90468216, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.4, y: 10.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,8 +105,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.029703, y: 1.029703}
+    newSize: {x: 10.4, y: 10.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -148,10 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridTile: {fileID: 7264726166774507242}
-  tileTakenColor: {r: 1, g: 0.8235295, b: 0.9058824, a: 0.50980395}
-  tileStartColor: {r: 1, g: 0.8235295, b: 0.9058824, a: 1}
-  tileDisabledColor: {r: 1, g: 0.30588236, b: 0.45882356, a: 1}
-  bridgeTakenOnceColor: {r: 0, g: 0, b: 0, a: 0}
+  tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
+  tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
+  tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
+  bridgeTakenOnceSprite: {fileID: 21300000, guid: 1069f8a980c004708b999a94f77aa831, type: 3}
+  bridgeTile: {fileID: 0}
   childObject: {fileID: 7264726166774507243}
 --- !u!1 &7264726166774507243
 GameObject:
