@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerLevelUnlock : MonoBehaviour
 {
-    public int levelUnlock;
+    [SerializeField] int levelUnlock = 0;
     int numberLocked;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Snake"))
         {
-            numberLocked = PlayerPrefs.GetInt("levelIsUnlocked");
 
-            if(numberLocked <= levelUnlock)
-            {
-                PlayerPrefs.SetInt("levelIsUnlocked", numberLocked +1);
+            PlayerPrefs.SetInt("levelsUnlocked", levelUnlock);
+           // numberLocked = PlayerPrefs.GetInt("levelsUnlocked");
+
+            //if(numberLocked <= levelUnlock)
+           // {
+             //   PlayerPrefs.SetInt("levelsUnlocked", numberLocked +1);
                 
-            }
+            //}
 
         }
     }
