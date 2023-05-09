@@ -74,18 +74,6 @@ public class BridgeTile : GridTile
                 print("ny plats");
                 tileCollider.TakeTile();
                 gameController.tileTaken();
-                //om ormen kommer från höger eller vänster
-                /*if (snakeMovement.enteredHorizontally)
-                {
-                    turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-                }
-
-                //om ormen kommer upp eller ner ifrån
-                else if (snakeMovement.enteredVertically)
-                {
-                    turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-
-                }*/
                 OnTakenStatus?.Invoke();
                 return;
             }
@@ -106,7 +94,7 @@ public class BridgeTile : GridTile
 
                 }
 
-                tileCollider.ChangeBridgeColor();
+                tileCollider.ChangeBridgeSpriteToTaken();
                 crossedOnce = true;
                 print("bridge taken once");
             }
@@ -144,7 +132,7 @@ public class BridgeTile : GridTile
 
     private void ResetBridgeTileCompletely()
     {
-        tileCollider.ChangeBridgeColor();
+        tileCollider.ChangeBridgeSpriteToTaken();
         SetCrossedOnceStatus(false);
         SetTakenStatus(false);
     }

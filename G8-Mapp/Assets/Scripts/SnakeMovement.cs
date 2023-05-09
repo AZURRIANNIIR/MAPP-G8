@@ -108,13 +108,10 @@ public class SnakeMovement : MonoBehaviour
         if (bridgeDisabled)
         {
             UndoButton.OnClick += setLastBridgeEnterDirection;
-            UndoButton.OnClick += setBridgeNotTaken;
         }
         else
         {
             UndoButton.OnClick -= setLastBridgeEnterDirection;
-            UndoButton.OnClick -= setBridgeNotTaken;
-
         }
     }
 
