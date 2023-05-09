@@ -15,11 +15,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
+    [SerializeField] private ParticleSystemScript particleSystemScript;
     private int numberOfTiles;
     public bool win = false;
 
+    [System.Obsolete]
     private void Start()
     {
+        
+        
         //Lägger till alla tiles i en lista
         raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
         bridgeBoxes = GameObject.FindGameObjectsWithTag("BridgeTile");
@@ -38,10 +42,19 @@ public class GameController : MonoBehaviour
     }
 
     //Kollar om villkoren för vinst är uppfyllda
+    [System.Obsolete]
     private void Update()
     {
-        if(gridTilesLeft == 0 && player.transform.position == goal.transform.position)
+        Win();
+        
+    }
+
+    public void Win()
+    {
+        if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
+            
+            
             win = true;
             print("win");
         }
