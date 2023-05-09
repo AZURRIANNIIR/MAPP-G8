@@ -9,7 +9,10 @@ public class ParticleSystemScript : MonoBehaviour
     [SerializeField] private GameController gameController;
     void Start()
     {
-        
+        if (!gameController)
+        {
+            gameController = FindObjectOfType<GameController>();
+        }
     }
 
     // Update is called once per frame
