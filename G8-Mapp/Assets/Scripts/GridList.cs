@@ -32,7 +32,17 @@ public class GridList : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("BridgeTile"))
             {
-                gridList.Add(collision.gameObject);
+                BridgeTile bridgeTile = collision.gameObject.GetComponent<BridgeTile>();
+                if (!bridgeTile.GetTakenStatus())
+                {
+                    Debug.Log("Lägger till en bro i listan");
+                    gridList.Add(collision.gameObject);
+                }
+                else
+                {
+                    Debug.Log("Lägger till en tagen bro i listan");
+                    gridList.Add(collision.gameObject);
+                }
             }
         }
         
@@ -56,8 +66,28 @@ public class GridList : MonoBehaviour
             return;
         }
 
+        if (tile.CompareTag("GridTile"))
+        {
+            gridList.Remove(tile);
+        }
+
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
-        gridList.Remove(tile);
+        if (tile.CompareTag("BridgeTile"))
+        {
+            if (tile.GetComponent<BridgeTile>().GetTakenStatus())
+            {
+                /* Vänd listans ordning om korsningen är helt tagen                                            *
+                *  Detta förhindrar en bug som gör att ormen annars inte flyttar tillbaka till föregående ruta */
+                gridList.Reverse();
+                gridList.Remove(tile);
+                gridList.Reverse();
+            }
+            else
+            {
+                gridList.Remove(tile);
+            }
+        }
+        
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
     }

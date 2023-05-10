@@ -52,7 +52,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionMultipleOfDirectionAngle())
+        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionStraight())
         {
             return;
         }
@@ -198,7 +198,7 @@ public class SnakeMovement : MonoBehaviour
         return false;
     }
 
-    private bool IsDirectionMultipleOfDirectionAngle()
+    private bool IsDirectionStraight()
     {
         Vector3 mousePos = GetMousePosition();
 
