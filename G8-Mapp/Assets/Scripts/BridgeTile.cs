@@ -91,7 +91,6 @@ public class BridgeTile : GridTile
                 else if (snakeMovement.enteredVertically)
                 {
                     turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-
                 }
 
                 tileCollider.ChangeBridgeSpriteToTaken();
@@ -114,10 +113,6 @@ public class BridgeTile : GridTile
             steppedOn = false;
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
         }
-
-        //turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-        //turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-
     }
 
     public bool GetCrossedOnceStatus()
