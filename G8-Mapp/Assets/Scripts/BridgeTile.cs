@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 //Vi ärver här från GridTile-skriptet
 public class BridgeTile : GridTile
@@ -8,11 +9,13 @@ public class BridgeTile : GridTile
     [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
 
+    [Header("Triggers")]
     [SerializeField] private GameObject upperTriggerCollider;
     [SerializeField] private GameObject lowerTriggerCollider;
     [SerializeField] private GameObject leftTriggerCollider;
     [SerializeField] private GameObject rightTriggerCollider;
 
+    [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
     [SerializeField] private GameObject lowerBoxCollider;
     [SerializeField] private GameObject leftBoxCollider;
@@ -22,6 +25,8 @@ public class BridgeTile : GridTile
 
     private bool collidersEnabled;
     [SerializeField] private bool steppedOn;
+
+    public UnityEvent OnCrossedOnceStatus;
 
     new private void Start()
     {
@@ -95,6 +100,7 @@ public class BridgeTile : GridTile
 
                 tileCollider.ChangeBridgeSpriteToTaken();
                 crossedOnce = true;
+                OnCrossedOnceStatus?.Invoke();
                 print("bridge taken once");
             }
         }
@@ -123,13 +129,6 @@ public class BridgeTile : GridTile
     public void SetCrossedOnceStatus(bool state)
     {
         crossedOnce = state;
-    }
-
-    private void ResetBridgeTileCompletely()
-    {
-        tileCollider.ChangeBridgeSpriteToTaken();
-        SetCrossedOnceStatus(false);
-        SetTakenStatus(false);
     }
 
     private void turnOnPath(GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)
