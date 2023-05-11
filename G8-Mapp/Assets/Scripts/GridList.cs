@@ -87,7 +87,6 @@ public class GridList : MonoBehaviour
                 gridList.Remove(tile);
             }
         }
-        
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
