@@ -65,49 +65,40 @@ public class BridgeTile : GridTile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Om vi redan har korsat bron en gång
-        if (collision.gameObject.CompareTag("Snake") && crossedOnce && !GetTakenStatus())
+        if (!UndoButton.EventFired)
         {
-            SetTakenStatus(true);
-            print("ny plats");
-            tileCollider.TakeTile();
-            gameController.tileTaken();
-            //om ormen kommer från höger eller vänster
-            /*if (snakeMovement.enteredHorizontally)
+            //Om vi redan har korsat bron en gång
+            if (collision.gameObject.CompareTag("Snake") && crossedOnce && !GetTakenStatus())
             {
-                turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
+                SetTakenStatus(true);
+                print("ny plats");
+                tileCollider.TakeTile();
+                gameController.tileTaken();
+                OnTakenStatus?.Invoke();
+                return;
             }
 
-            //om ormen kommer upp eller ner ifrån
-            else if (snakeMovement.enteredVertically)
+            //Om bron korsas för första gången
+            else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !GetTakenStatus())
             {
-                turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
+                //om ormen kommer från höger eller vänster
+                if (snakeMovement.enteredHorizontally)
+                {
+                    turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
+                }
 
-            }*/
-            OnTakenStatus?.Invoke();
-            return;
+                //om ormen kommer upp eller ner ifrån
+                else if (snakeMovement.enteredVertically)
+                {
+                    turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
+                }
+
+                tileCollider.ChangeBridgeSpriteToTaken();
+                crossedOnce = true;
+                print("bridge taken once");
+            }
         }
-
-        //Om bron korsas för första gången
-        else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !GetTakenStatus())
-        {
-            //om ormen kommer från höger eller vänster
-            if (snakeMovement.enteredHorizontally)
-            {
-                turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-            }
-
-            //om ormen kommer upp eller ner ifrån
-            else if (snakeMovement.enteredVertically)
-            {
-                turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-
-            }
-
-            tileCollider.ChangeBridgeColor();
-            crossedOnce = true;
-            print("bridge taken once");
-        }
+        
     }
 
     new private void OnTriggerExit2D(Collider2D collision)
@@ -122,10 +113,6 @@ public class BridgeTile : GridTile
             steppedOn = false;
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
         }
-
-        //turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-        //turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-
     }
 
     public bool GetCrossedOnceStatus()
@@ -140,7 +127,7 @@ public class BridgeTile : GridTile
 
     private void ResetBridgeTileCompletely()
     {
-        tileCollider.ChangeBridgeColor();
+        tileCollider.ChangeBridgeSpriteToTaken();
         SetCrossedOnceStatus(false);
         SetTakenStatus(false);
     }
