@@ -2007,9 +2007,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnakePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ca4baa9c4def4bd5b2ccb2eb8b810e6, type: 3}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2051,6 +2079,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.3333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.3333334
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: startPosition
       value: 
@@ -2059,6 +2103,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 460674221}
+    - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: spriteRotationSpeed
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: maxAllowedDistanceFromMouse
       value: 1
