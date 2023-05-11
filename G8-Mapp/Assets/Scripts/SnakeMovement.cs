@@ -9,7 +9,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [Range(0.7f, 0.9f)]
+    [Range(0.7f, 0.95f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [SerializeField] private LayerMask mask;
@@ -61,11 +61,10 @@ public class SnakeMovement : MonoBehaviour
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
 
-        //Tog bort denna för att diagonal rörelse skulle funka, men vågar inte radera kodraden
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
 
-        currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
-        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
+        currentPosition.x = (Mathf.RoundToInt(currentPosition.x) + gridSize);
+        currentPosition.y = (Mathf.RoundToInt(currentPosition.y) + gridSize);
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -100,7 +99,7 @@ public class SnakeMovement : MonoBehaviour
                 switch (mostRecentTile)
                 {
                     case null: ResetSnakeToStart(); break;
-                    default: ResetSnakeToGrid(mostRecentTile.transform); break;
+                    default: ResetSnakeToTile(mostRecentTile.transform); break;
                 }
             }
         }
@@ -136,15 +135,14 @@ public class SnakeMovement : MonoBehaviour
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition.position;
+        ResetSnakeToTile(startPosition);
         ResetTrailRenderer();
         gameController.ResetTilesOnGrid();
     }
 
-    private void ResetSnakeToGrid(Transform gridLocation)
+    private void ResetSnakeToTile(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-
     }
     #endregion
 
@@ -229,7 +227,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
         {
             onTile = false;
         }

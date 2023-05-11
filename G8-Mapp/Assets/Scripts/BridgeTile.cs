@@ -23,7 +23,6 @@ public class BridgeTile : GridTile
 
     [SerializeField] private GameObject temporaryCollider;
 
-    private bool collidersEnabled;
     [SerializeField] private bool steppedOn;
 
     public UnityEvent OnCrossedOnceStatus;
@@ -54,7 +53,6 @@ public class BridgeTile : GridTile
 
         if (steppedOn)
         {
-            //snakeMovement.lastBridgeTile = this;
             if (snakeMovement.bridgeDisabled)
             {
                 temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
@@ -98,7 +96,12 @@ public class BridgeTile : GridTile
                     turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
                 }
 
-                tileCollider.ChangeBridgeSpriteToTaken();
+                //Typkonvertera för att se till så att vi kan använda korsningsfunktioner
+                if (tileCollider.GetType() == typeof(BridgeColliderScript))
+                {
+                    BridgeColliderScript bridgeCollider = (BridgeColliderScript)tileCollider;
+                    bridgeCollider.ChangeBridgeSpriteToTaken();
+                }
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 print("bridge taken once");

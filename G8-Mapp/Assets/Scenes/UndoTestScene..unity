@@ -2970,6 +2970,10 @@ PrefabInstance:
       value: SnakePrefab
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -3017,13 +3021,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537301, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1438560703}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: timerStartAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: maxAllowedDistanceFromMouse
-      value: 0.9
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 9133270873285807790, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: Snake

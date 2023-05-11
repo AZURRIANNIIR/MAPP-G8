@@ -1,28 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class ColliderScript : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+
+public abstract class ColliderScript : MonoBehaviour
 {
     private const string CHILDOBJECT_NAME = "TriggerBox";
+    protected BoxCollider2D boxCollider;
 
-    private BoxCollider2D boxCollider;
     [Header("Scripts")]
-    [SerializeField] private GridTile gridTile;
+    [SerializeField] protected GridTile gridTile;
+
+    [Header("Gameobjects")]
+    [SerializeField] protected GameObject childObject;
+
     [Header("Sprites")]
     [SerializeField] private Sprite tileTakenSprite;
     [SerializeField] private Sprite tileStartSprite;
     [SerializeField] private Sprite tileDisabledSprite;
-    [SerializeField] private Sprite bridgeTakenOnceSprite;
-    [Header("Gameobjects")]
-    [SerializeField] private GameObject childObject;
 
-    private SpriteRenderer spriteRenderer;
+    #region Properties för Sprites
+    protected Sprite TileTakenSprite
+    {
+        get { return tileTakenSprite; }
+        private set
+        {
+            tileTakenSprite = value;
+        }
+    }
+    protected Sprite TileStartSprite
+    {
+        get { return tileStartSprite; }
+        private set
+        {
+            tileStartSprite = value;
+        }
+    }
+    protected Sprite TileDisabledSprite
+    {
+        get { return tileDisabledSprite; }
+        private set
+        {
+            tileDisabledSprite = value;
+        }
+    }
+    #endregion
+
+    protected SpriteRenderer spriteRenderer;
 
     //Awake is called before the first frame update, similiar to Start
     //Unlike Start, it's called even if the object is disabled
-    void Awake()
+    protected void Awake()
     {
         if (!childObject)
         {
@@ -30,29 +60,24 @@ public class ColliderScript : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-        boxCollider = gameObject.GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        gridTile = GetComponentInChildren<GridTile>();
-        spriteRenderer.sprite = tileStartSprite;
+        spriteRenderer.sprite = TileStartSprite;
+        boxCollider = GetComponent<BoxCollider2D>();
+        gridTile = gameObject.GetComponentInChildren<GridTile>();
+    }
+
+
+    protected void ChangeGridSprite(Sprite sprite)
+    {
+        spriteRenderer.sprite = sprite;
     }
 
     public void TakeTile()
     {
         print("ruta tagen");
-        spriteRenderer.sprite = tileTakenSprite;
-    }
-
-    private void ChangeGridSprite(Sprite sprite)
-    {
-        spriteRenderer.sprite = sprite;
-    }
-
-    public void ChangeBridgeSpriteToTaken()
-    {
-        ChangeGridSprite(bridgeTakenOnceSprite);
+        spriteRenderer.sprite = TileTakenSprite;
     }
 
     public void EnableCollider()
@@ -60,66 +85,15 @@ public class ColliderScript : MonoBehaviour
         boxCollider.enabled = true;
     }
 
-    public void ResetTile()
+    public void DisableCollider()
     {
         boxCollider.enabled = false;
-
-        if (childObject.CompareTag("GridTile"))
-        {
-            ResetGridTile();
-        }
-
-        if (childObject.CompareTag("BridgeTile"))
-        {
-            ResetBridgeTile();
-        }
     }
 
-    #region "Reset tile" funktioner
-    private void ResetGridTile()
-    {
-        gridTile.SetTakenStatus(false);
-        ChangeGridSprite(tileStartSprite);
-    }
+    public abstract void ResetTile();
 
-    private void ResetBridgeTile()
+    public virtual void DisableTile()
     {
-        BridgeTile bridgeTile = (BridgeTile)gridTile;
-        if (bridgeTile.GetTakenStatus())
-        {
-            bridgeTile.SetTakenStatus(false);
-            ChangeGridSprite(bridgeTakenOnceSprite);
-            return;
-        }
-        else
-        {
-            bridgeTile.SetCrossedOnceStatus(false);
-            ChangeGridSprite(tileStartSprite);
-            return;
-        }
-    }
-    #endregion
-
-    public void disableTile()
-    {
-        boxCollider.enabled = true;
-        SetBridgeSpriteToStartSprite();
-        
-        gridTile.SetTakenStatus(false);
-
-        //Är det en bro som är colliderns GridTile?
-        if (gridTile.GetType() == typeof(BridgeTile))
-        {
-            BridgeTile bridgeTile = (BridgeTile)gridTile;
-            bridgeTile.SetCrossedOnceStatus(false);
-        }
-    }
-
-    public void SetBridgeSpriteToStartSprite()
-    {
-        ChangeGridSprite(tileStartSprite);
+        EnableCollider();
     }
 }
-
-
-
