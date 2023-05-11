@@ -52,7 +52,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionMultipleOfDirectionAngle())
+        if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionStraight())
         {
             return;
         }
@@ -66,12 +66,6 @@ public class SnakeMovement : MonoBehaviour
 
         currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
-
-        //Ser till att diagonal rörelse inte sker
-        /*if (transform.position.x == currentPosition.x || transform.position.y == currentPosition.y)
-        {
-            transform.position = currentPosition;
-        }*/
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -100,7 +94,7 @@ public class SnakeMovement : MonoBehaviour
         //Om "Undo"-funktionen körs så återställs ormen till den förra tilen automatiskt här
         if (Input.GetMouseButtonUp(LMB_NUMBER))
         {
-            if (!ClearButton.EventFired)
+            if (UndoButton.EventFired)
             {
                 GameObject mostRecentTile = gridListScript.GetMostRecentTile();
                 switch (mostRecentTile)
@@ -114,13 +108,10 @@ public class SnakeMovement : MonoBehaviour
         if (bridgeDisabled)
         {
             UndoButton.OnClick += setLastBridgeEnterDirection;
-            UndoButton.OnClick += setBridgeNotTaken;
         }
         else
         {
             UndoButton.OnClick -= setLastBridgeEnterDirection;
-            UndoButton.OnClick -= setBridgeNotTaken;
-
         }
     }
 
@@ -169,7 +160,6 @@ public class SnakeMovement : MonoBehaviour
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
         if (tile.collider != null)
         {
-            //print("orm träffad");
             return true;
         }
         return false;
@@ -181,7 +171,7 @@ public class SnakeMovement : MonoBehaviour
 
         if (Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse)
         {
-            Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
+            //Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
             return true;
         }
         return false;
@@ -208,21 +198,17 @@ public class SnakeMovement : MonoBehaviour
         return false;
     }
 
-    private bool IsDirectionMultipleOfDirectionAngle()
+    private bool IsDirectionStraight()
     {
         Vector3 mousePos = GetMousePosition();
 
         Ray2D mouseRay = new Ray2D(transform.position, (mousePos - transform.position).normalized);
 
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
-       
+
         //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
-        if (Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0)
-        {
-            return true;
-        }
-        //Om inte, så kan inte ormen röra sig
-        return false;
+        bool directionIsMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0;
+        return directionIsMultiple;
     }
     #endregion
     #region OnTrigger-funktioner

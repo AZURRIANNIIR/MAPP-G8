@@ -5,23 +5,28 @@ using UnityEngine;
 
 public class ColliderScript : MonoBehaviour
 {
+    private const string CHILDOBJECT_NAME = "TriggerBox";
 
     private BoxCollider2D boxCollider;
+    [Header("Scripts")]
     [SerializeField] private GridTile gridTile;
+    [Header("Sprites")]
     [SerializeField] private Sprite tileTakenSprite;
     [SerializeField] private Sprite tileStartSprite;
     [SerializeField] private Sprite tileDisabledSprite;
     [SerializeField] private Sprite bridgeTakenOnceSprite;
-    [SerializeField] private BridgeTile bridgeTile;
-    [SerializeField] GameObject childObject;
+    [Header("Gameobjects")]
+    [SerializeField] private GameObject childObject;
 
     private SpriteRenderer spriteRenderer;
 
+    //Awake is called before the first frame update, similiar to Start
+    //Unlike Start, it's called even if the object is disabled
     void Awake()
     {
         if (!childObject)
         {
-            childObject = gameObject.transform.Find("TriggerBox").gameObject;
+            childObject = gameObject.transform.Find(CHILDOBJECT_NAME).gameObject;
         }
     }
 
@@ -32,22 +37,22 @@ public class ColliderScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         gridTile = GetComponentInChildren<GridTile>();
         spriteRenderer.sprite = tileStartSprite;
-        if (childObject.CompareTag("BridgeTile"))
-        {
-            bridgeTile = GetComponentInChildren<BridgeTile>();
-        }
     }
 
     public void TakeTile()
     {
-
         print("ruta tagen");
         spriteRenderer.sprite = tileTakenSprite;
     }
 
-    public void ChangeBridgeColor()
+    private void ChangeGridSprite(Sprite sprite)
     {
-        spriteRenderer.sprite = bridgeTakenOnceSprite;
+        spriteRenderer.sprite = sprite;
+    }
+
+    public void ChangeBridgeSpriteToTaken()
+    {
+        ChangeGridSprite(bridgeTakenOnceSprite);
     }
 
     public void EnableCollider()
@@ -61,46 +66,58 @@ public class ColliderScript : MonoBehaviour
 
         if (childObject.CompareTag("GridTile"))
         {
-            gridTile.SetTakenStatus(false);
-            spriteRenderer.sprite = tileStartSprite;
+            ResetGridTile();
         }
 
         if (childObject.CompareTag("BridgeTile"))
         {
-            if (bridgeTile.GetTakenStatus())
-            {
-                bridgeTile.SetTakenStatus(false);
-                spriteRenderer.sprite = bridgeTakenOnceSprite;
-                return;
-            }
-            else
-            {
-                bridgeTile.SetCrossedOnceStatus(false);
-                spriteRenderer.sprite = tileStartSprite;
-            }
+            ResetBridgeTile();
         }
     }
+
+    #region "Reset tile" funktioner
+    private void ResetGridTile()
+    {
+        gridTile.SetTakenStatus(false);
+        ChangeGridSprite(tileStartSprite);
+    }
+
+    private void ResetBridgeTile()
+    {
+        BridgeTile bridgeTile = (BridgeTile)gridTile;
+        if (bridgeTile.GetTakenStatus())
+        {
+            bridgeTile.SetTakenStatus(false);
+            ChangeGridSprite(bridgeTakenOnceSprite);
+            return;
+        }
+        else
+        {
+            bridgeTile.SetCrossedOnceStatus(false);
+            ChangeGridSprite(tileStartSprite);
+            return;
+        }
+    }
+    #endregion
 
     public void disableTile()
     {
         boxCollider.enabled = true;
-        spriteRenderer.sprite = tileDisabledSprite;
+        SetBridgeSpriteToStartSprite();
+        
+        gridTile.SetTakenStatus(false);
 
-        if (childObject.tag == "GridTile")
+        //Är det en bro som är colliderns GridTile?
+        if (gridTile.GetType() == typeof(BridgeTile))
         {
-            gridTile.SetTakenStatus(false);
-        }
-
-        if (childObject.tag == "BridgeTile")
-        {
+            BridgeTile bridgeTile = (BridgeTile)gridTile;
             bridgeTile.SetCrossedOnceStatus(false);
-            bridgeTile.SetTakenStatus(false);
         }
     }
 
-    public void SetBridgeColorToStartColor()
+    public void SetBridgeSpriteToStartSprite()
     {
-        spriteRenderer.sprite= tileStartSprite;
+        ChangeGridSprite(tileStartSprite);
     }
 }
 
