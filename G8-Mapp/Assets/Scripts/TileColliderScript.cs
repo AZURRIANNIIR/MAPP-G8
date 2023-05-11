@@ -8,7 +8,7 @@ public class TileColliderScript : ColliderScript
 {
     public override void ResetTile()
     {
-        EnableCollider();
+        DisableCollider();
         ResetGridTile();
     }
 

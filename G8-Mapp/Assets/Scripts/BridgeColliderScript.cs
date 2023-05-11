@@ -17,6 +17,7 @@ public class BridgeColliderScript : ColliderScript
         //Typkonvertering används här för att försäkra oss om att vi använder korsningsfunktionaliteten
         BridgeTile bridgeTile = (BridgeTile)gridTile;
         bridgeTile.SetCrossedOnceStatus(false);
+        bridgeTile.SetTakenStatus(false);
     }
 
     public override void ResetTile()
