@@ -6,6 +6,11 @@ public class BridgeColliderScript : ColliderScript
 {
     [SerializeField] private Sprite bridgeTakenOnceSprite;
 
+    public void SetBridgeSpriteToStartSprite()
+    {
+        ChangeGridSprite(TileStartSprite);
+    }
+
     public void ChangeBridgeSpriteToTaken()
     {
         ChangeGridSprite(bridgeTakenOnceSprite);
@@ -40,9 +45,5 @@ public class BridgeColliderScript : ColliderScript
             ChangeGridSprite(TileStartSprite);
             return;
         }
-    }
-    public void SetBridgeSpriteToStartSprite()
-    {
-        ChangeGridSprite(TileStartSprite);
     }
 }

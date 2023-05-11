@@ -60,6 +60,7 @@ public abstract class ColliderScript : MonoBehaviour
         }
     }
 
+    //Start is called before the first frame update
     protected void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -67,7 +68,6 @@ public abstract class ColliderScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         gridTile = gameObject.GetComponentInChildren<GridTile>();
     }
-
 
     protected void ChangeGridSprite(Sprite sprite)
     {

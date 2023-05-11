@@ -12,13 +12,11 @@ public class TileColliderScript : ColliderScript
         ResetGridTile();
     }
 
-    #region "Reset tile" funktioner
     private void ResetGridTile()
     {
         gridTile.SetTakenStatus(false);
         ChangeGridSprite(TileStartSprite);
     }
-    #endregion
 
     public override void DisableTile()
     {
