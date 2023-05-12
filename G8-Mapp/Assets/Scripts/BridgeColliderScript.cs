@@ -6,9 +6,8 @@ public class BridgeColliderScript : ColliderScript
 {
     [SerializeField] private Sprite bridgeTakenOnceSprite;
 
-    new private void Start()
+    private void Start()
     {
-        base.Start();
         if (tileScript.GetType() != typeof(BridgeTile))
         {
             Debug.LogWarning("Varning, " + gameObject.name + "'s gridTile är inte av typen BridgeTile. Därmed kommer inte specifik BridgeTile-funktionalitet att fungera.");

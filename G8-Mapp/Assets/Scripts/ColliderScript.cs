@@ -58,15 +58,10 @@ public abstract class ColliderScript : MonoBehaviour
         {
             childObject = gameObject.transform.Find(CHILDOBJECT_NAME).gameObject;
         }
-    }
-
-    //Start is called before the first frame update
-    protected void Start()
-    {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = TileStartSprite;
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         tileScript = gameObject.GetComponentInChildren<GridTile>();
+        spriteRenderer.sprite = TileStartSprite;
     }
 
     protected void ChangeGridSprite(Sprite sprite)
@@ -94,6 +89,7 @@ public abstract class ColliderScript : MonoBehaviour
 
     public virtual void DisableTile()
     {
+        Debug.Log(gameObject.name + " kör sin Disable funktion");
         EnableCollider();
         ChangeGridSprite(TileDisabledSprite);
     }

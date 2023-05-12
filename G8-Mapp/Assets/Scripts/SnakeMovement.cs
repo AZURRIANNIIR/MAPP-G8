@@ -34,6 +34,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
 
+    internal Vector3 CurrentPosition { get { return currentPosition; } }
+
     private void Awake()
     {
         if (!startPosition)
