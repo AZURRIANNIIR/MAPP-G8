@@ -24,6 +24,3 @@ public class TileColliderScript : ColliderScript
         tileScript.SetTakenStatus(false);
     }
 }
-
-
-
