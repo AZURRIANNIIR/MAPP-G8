@@ -347,12 +347,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &26861702
 Rigidbody2D:
   serializedVersion: 4
@@ -452,6 +451,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &66394090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+  m_PrefabInstance: {fileID: 1505858031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff3e2d025239456aaed6b7312c63ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &136976304
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,12 +686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &192060813
 Rigidbody2D:
   serializedVersion: 4
@@ -992,12 +1001,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &536476780
 Rigidbody2D:
   serializedVersion: 4
@@ -1671,12 +1679,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &687719554
 Rigidbody2D:
   serializedVersion: 4
@@ -1829,12 +1836,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &800880331
 Rigidbody2D:
   serializedVersion: 4
@@ -2125,12 +2131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &1124241125
 Rigidbody2D:
   serializedVersion: 4
@@ -2965,9 +2970,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4888553754141693917, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888553754141693917, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888553754141693917, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537296, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_Name
       value: SnakePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_Sprite
@@ -3029,6 +3054,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537302, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: gameController
       value: 
@@ -3040,6 +3069,18 @@ PrefabInstance:
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: maxAllowedDistanceFromMouse
       value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422325320312926868, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: startRotation
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972146322903573384, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.8365386
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972146322903573384, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.8365386
       objectReference: {fileID: 0}
     - target: {fileID: 9133270873285807790, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: Snake
@@ -3054,6 +3095,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1163500667}
     m_Modifications:
+    - target: {fileID: 2800147585353878068, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: gridTile
+      value: 
+      objectReference: {fileID: 7913251}
+    - target: {fileID: 2800147585353878068, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
+      propertyPath: tileScript
+      value: 
+      objectReference: {fileID: 66394090}
     - target: {fileID: 8553892132776217570, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: m_Name
       value: BridgeBoxPrefab
@@ -3256,12 +3305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &1542141824
 Rigidbody2D:
   serializedVersion: 4
@@ -3748,6 +3796,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1234519092186768165, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234519092186768165, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234519092186768165, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234519092186768165, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3973116569632568921, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
       propertyPath: m_Name
       value: StartPositionPrefab
@@ -4036,12 +4100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3308dc35e28d476389b33b231db9ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridTile: {fileID: 0}
+  tileScript: {fileID: 0}
+  childObject: {fileID: 0}
   tileTakenSprite: {fileID: 21300000, guid: 206cce015af694d7f898d18865946d5c, type: 3}
   tileStartSprite: {fileID: 21300000, guid: 603cb9f2593414ff0b3a6ccb4784c203, type: 3}
   tileDisabledSprite: {fileID: 21300000, guid: 4ffe8771bc0374343ba87fead4a35493, type: 3}
-  bridgeTakenOnceSprite: {fileID: 0}
-  childObject: {fileID: 0}
 --- !u!50 &1923163562
 Rigidbody2D:
   serializedVersion: 4

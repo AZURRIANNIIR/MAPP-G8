@@ -12,14 +12,15 @@ public class SnakeMovement : MonoBehaviour
     [Range(0.7f, 0.95f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
+    [Header("Layermasks")]
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
-    [SerializeField] private Transform startPosition;
     [Header("Components")]
     [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [SerializeField] private Transform startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
     public bool enteredHorizontally;
