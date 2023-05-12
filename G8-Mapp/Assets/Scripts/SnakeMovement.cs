@@ -204,6 +204,7 @@ public class SnakeMovement : MonoBehaviour
 
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
 
+        Debug.Log(mouseRay.direction);
         //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
         bool directionIsMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0;
         return directionIsMultiple;
@@ -212,7 +213,7 @@ public class SnakeMovement : MonoBehaviour
     #region OnTrigger-funktioner
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile") || collision.CompareTag(startPosition.tag))
         {
             onTile = true;
         }

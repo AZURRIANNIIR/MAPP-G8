@@ -11,7 +11,7 @@ public abstract class ColliderScript : MonoBehaviour
     protected BoxCollider2D boxCollider;
 
     [Header("Scripts")]
-    [SerializeField] protected GridTile gridTile;
+    [SerializeField] protected GridTile tileScript;
 
     [Header("Gameobjects")]
     [SerializeField] protected GameObject childObject;
@@ -66,7 +66,7 @@ public abstract class ColliderScript : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = TileStartSprite;
         boxCollider = GetComponent<BoxCollider2D>();
-        gridTile = gameObject.GetComponentInChildren<GridTile>();
+        tileScript = gameObject.GetComponentInChildren<GridTile>();
     }
 
     protected void ChangeGridSprite(Sprite sprite)

@@ -14,14 +14,14 @@ public class TileColliderScript : ColliderScript
 
     private void ResetGridTile()
     {
-        gridTile.SetTakenStatus(false);
+        tileScript.SetTakenStatus(false);
         ChangeGridSprite(TileStartSprite);
     }
 
     public override void DisableTile()
     {
         base.DisableTile();
-        gridTile.SetTakenStatus(false);
+        tileScript.SetTakenStatus(false);
     }
 }
 
