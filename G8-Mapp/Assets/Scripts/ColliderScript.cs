@@ -95,5 +95,6 @@ public abstract class ColliderScript : MonoBehaviour
     public virtual void DisableTile()
     {
         EnableCollider();
+        ChangeGridSprite(TileDisabledSprite);
     }
 }
