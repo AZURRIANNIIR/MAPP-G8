@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [Range(0.7f, 0.95f)]
+    [Range(0.7f, 0.97f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
