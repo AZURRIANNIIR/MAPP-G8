@@ -7,19 +7,24 @@ public class Continue : MonoBehaviour
 {
     private int sceneToContinue;
 
+    private void Start()
+    {
+        Debug.Log(sceneToContinue);
+    }
+
     public void ContinueGame()
     {
 
-        if (sceneToContinue != 0)
+        //if (sceneToContinue != 0)
             SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-        else
-            return;
+        //else
+        //    return;
     }
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
         {
-            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+            //SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
         }
         else
         {
