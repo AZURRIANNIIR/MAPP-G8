@@ -7,66 +7,88 @@ using UnityEngine;
 
 public class SnakeHead : MonoBehaviour
 {
-    private enum startRotations { left, right, up, down }
-    [SerializeField] private startRotations startRotation;
-
     private const float ROTATION_VALUE = 90f;
+
+    private enum rotations { left, right, up, down }
+    [SerializeField] private rotations startRotation;
 
     private SnakeMovement movementScript;
 
     [SerializeField] private Vector3 currentPos;
 
+    //Readonly för att förhindra alla former av modifiering. Det skulle annars möjliggöra att spelet slutar fungera som det är tänkt.
+    private readonly Dictionary<rotations, Vector3> rotationList = new Dictionary<rotations, Vector3>
+        {
+            { rotations.left, new Vector3(0f,0f, -ROTATION_VALUE)},
+            { rotations.right, new Vector3(0f, 0f, ROTATION_VALUE)},
+            { rotations.up, new Vector3(0f, 0f, ROTATION_VALUE * 2f)},
+            { rotations.down, Vector3.zero }
+        };
+
     private void Awake()
     {
         movementScript = GetComponentInParent<SnakeMovement>();
+        if (rotationList.Count > 0 ) 
+        {
+            Debug.Log("Dictionaryn kan användas");
+        }
+        
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        switch (startRotation)
-        {
-            case startRotations.left:
-                transform.localRotation = Quaternion.Euler(0f, 0f, -ROTATION_VALUE);
-                break;
-            case startRotations.right:
-                transform.localRotation = Quaternion.Euler(0f, 0f, ROTATION_VALUE);
-                break;
-            case startRotations.up:
-                transform.localRotation = Quaternion.Euler(0f, 0f, ROTATION_VALUE * 2f);
-                break;
-            case startRotations.down:
-                transform.localRotation = Quaternion.Euler(Vector3.zero);
-                break;
-        }
+        SetStartRotation();
     }
 
     private void Update()
     {
-        //Till öst
-        if (currentPos.x < movementScript.CurrentPosition.x)
+        if (!UndoButton.EventFired)
         {
-            transform.localRotation = Quaternion.Euler(0f, 0f, ROTATION_VALUE);
+            //Till höger
+            if (currentPos.x < movementScript.CurrentPosition.x)
+            {
+                transform.localRotation = Quaternion.Euler(rotationList[rotations.right]);
+            }
+            //Till vänster
+            if (currentPos.x > movementScript.CurrentPosition.x)
+            {
+                transform.localRotation = Quaternion.Euler(rotationList[rotations.left]);
+            }
+            //Nedåt
+            if (currentPos.y > movementScript.CurrentPosition.y)
+            {
+                transform.localRotation = Quaternion.Euler(rotationList[rotations.down]);
+            }
+            //Uppåt
+            if (currentPos.y < movementScript.CurrentPosition.y)
+            {
+                transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);
+            }
         }
-        //Till väst
-        if (currentPos.x > movementScript.CurrentPosition.x)
-        {
-            transform.localRotation = Quaternion.Euler(0f, 0f, -ROTATION_VALUE);
-        }
-        //Till söder
-        if (currentPos.y > movementScript.CurrentPosition.y)
-        {
-            transform.localRotation = Quaternion.Euler(Vector3.zero);
-        }
-        //Till norr
-        if (currentPos.y < movementScript.CurrentPosition.y)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, ROTATION_VALUE * 2f);
-        }
+
     }
 
     private void LateUpdate()
     {
         currentPos = transform.position;
     }
+
+    private void SetStartRotation()
+    {
+        Debug.Log("Sätter start-rotation för huvudet");
+        transform.localRotation = Quaternion.Euler(rotationList[startRotation]);
+    }
+
+    #region Enable/Disable-funktioner
+    private void OnEnable()
+    {
+        SnakeMovement.OnReturnToStart += SetStartRotation;
+    }
+
+    private void OnDisable()
+    {
+        SnakeMovement.OnReturnToStart -= SetStartRotation;
+    }
+    #endregion
 }

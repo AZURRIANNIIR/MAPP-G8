@@ -7,6 +7,13 @@ public class TriggerButtonScript : MonoBehaviour
 {
     [SerializeField] private List<GameObject> tileList;
 
+    #region Property för listan
+    internal List<GameObject> TileList
+    {
+        get { return tileList; }
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,5 +48,10 @@ public class TriggerButtonScript : MonoBehaviour
         {
             tileList[i].GetComponent<ColliderScript>().DisableTile();
         }
+    }
+
+    private void OnDisable()
+    {
+        UndoButton.OnClick -= DisableTilesInList;
     }
 }

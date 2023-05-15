@@ -18,7 +18,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
     [Header("Components")]
-    [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [SerializeField] private Transform startPosition;
@@ -36,6 +35,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentScreenPoint;
 
     internal Vector3 CurrentPosition { get { return currentPosition; } }
+
+    public static Action OnReturnToStart;
 
     private void Awake()
     {
@@ -141,7 +142,7 @@ public class SnakeMovement : MonoBehaviour
     {
         ResetSnakeToTile(startPosition);
         ResetTrailRenderer();
-        gameController.ResetTilesOnGrid();
+        OnReturnToStart?.Invoke();
     }
 
     private void ResetSnakeToTile(Transform gridLocation)
