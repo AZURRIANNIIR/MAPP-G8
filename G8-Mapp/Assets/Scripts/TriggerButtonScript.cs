@@ -10,7 +10,7 @@ public class TriggerButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        resetTiles();
+        DisableTilesInList();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,15 +21,16 @@ public class TriggerButtonScript : MonoBehaviour
             {
                 tileList[i].GetComponent<ColliderScript>().ResetTile();
             }
+            UndoButton.OnClick += DisableTilesInList;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        UndoButton.OnClick -= resetTiles;
+        UndoButton.OnClick -= DisableTilesInList;
     }
 
-    public void resetTiles()
+    public void DisableTilesInList()
     {
         if (tileList.Count == 0) 
         {

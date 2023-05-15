@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
 
         if (button != null)
         {
-            button.resetTiles();
+            button.DisableTilesInList();
         }
 
         resetNumberOfTilesLeft();
