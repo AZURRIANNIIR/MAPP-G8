@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ClearButton : MonoBehaviour
 {
-    private const float INVOKE_DELAY = 0.02f;
+    private const float INVOKE_DELAY = 0.01f;
     //Denna event kan andra skript subscriba till och köra egna funktioner på när den körs
     //Det måste dock göras i kod, inte genom inspektorn som det går med UnityEvents
     public static event Action OnClick;

@@ -53,7 +53,8 @@ public class GameController : MonoBehaviour
     {
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
-
+            
+            
             win = true;
             print("win");
         }
@@ -62,7 +63,7 @@ public class GameController : MonoBehaviour
     public void tileTaken()
     {
         gridTilesLeft = gridTilesLeft- 1;
-        //print("Tagen");
+        print("Tagen");
     }
 
     //Metodnamn upp för debatt

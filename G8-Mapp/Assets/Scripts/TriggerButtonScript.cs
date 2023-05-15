@@ -38,7 +38,7 @@ public class TriggerButtonScript : MonoBehaviour
         }
         for (int i = 0; i < tileList.Count; i++)
         {
-            tileList[i].GetComponent<ColliderScript>().DisableTile();
+            tileList[i].GetComponent<ColliderScript>().disableTile();
         }
     }
 }

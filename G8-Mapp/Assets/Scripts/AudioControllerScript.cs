@@ -23,7 +23,7 @@ public class AudioControllerScript : MonoBehaviour
 
     private void Update()
     {
-        //Pitchen för våran AudioSource ska inte bli mindre än standardvärdet (Som bestäms av våran konstant)
+        //Pitchen för vvåran AudioSource ska inte bli mindre än standardvärdet (Som bestäms av våran konstant)
         audioSource.pitch = Mathf.Clamp(audioSource.pitch,PITCH_MIN_VALUE, Mathf.Infinity);
     }
 
