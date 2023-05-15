@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridList : MonoBehaviour
 {
@@ -18,27 +19,24 @@ public class GridList : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("GridTile"))
+        if (!UndoButton.EventFired) 
         {
-            if (gridList.Contains(collision.gameObject)) 
+            if (collision.gameObject.CompareTag("GridTile"))
             {
-                return;
-            }
-            //Om den inte finns i listan
-            gridList.Add(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("BridgeTile"))
-        {
-            Debug.Log("Vi gick över en bro");
-            if (collision.TryGetComponent(out BridgeTile bridgeScript))
-            {
-                if (!bridgeScript.GetCrossedOnceStatus())
+                if (gridList.Contains(collision.gameObject))
                 {
-                    Debug.Log("Bron har endast korsats en gång");
+                    return;
                 }
+                //Om den inte finns i listan
+                gridList.Add(collision.gameObject);
             }
-            gridList.Add(collision.gameObject);
+            else if (collision.gameObject.CompareTag("BridgeTile"))
+            {   
+                //Broar ska alltid läggas till när det går
+                gridList.Add(collision.gameObject);
+            }
         }
+        
     }
 
     public GameObject GetMostRecentTile()
@@ -59,9 +57,28 @@ public class GridList : MonoBehaviour
             return;
         }
 
+        if (tile.CompareTag("GridTile"))
+        {
+            gridList.Remove(tile);
+        }
+
         Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
+        if (tile.CompareTag("BridgeTile"))
+        {
+            if (tile.GetComponent<BridgeTile>().GetTakenStatus())
+            {
+                /* Vänd listans ordning om korsningen är helt tagen                                            *
+                *  Detta förhindrar en bug som gör att ormen annars inte flyttar tillbaka till föregående ruta */
+                gridList.Reverse();
+                gridList.Remove(tile);
+                gridList.Reverse();
+            }
+            else
+            {
+                gridList.Remove(tile);
+            }
+        }
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
-        gridList.Remove(tile);
         tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
 
@@ -73,7 +90,7 @@ public class GridList : MonoBehaviour
     public void GridListUndoAction()
     {
         Debug.Log("GridList kände av en knapptryckning från undo-knappen");
-        DeleteTileFromList(gridList[gridList.Count - 1]);
+        DeleteTileFromList(GetMostRecentTile());
     }
 
     public int GetLength() { return gridList.Count; }

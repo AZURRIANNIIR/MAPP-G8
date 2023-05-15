@@ -25,14 +25,19 @@ public class GridTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Snake") && !taken)
+        if (collision.gameObject.CompareTag("Snake") && !taken && !UndoButton.EventFired)
         {
-            taken = true;
-            print("ny plats");
-            tileCollider.TakeTile();
-            gameController.tileTaken();
-            OnTakenStatus.Invoke();
+            SetTileAsTaken();
         }
+    }
+
+    private void SetTileAsTaken()
+    {
+        taken = true;
+        print("ny plats");
+        tileCollider.TakeTile();
+        gameController.tileTaken();
+        OnTakenStatus.Invoke();
     }
 
     protected void OnTriggerExit2D(Collider2D collision)
