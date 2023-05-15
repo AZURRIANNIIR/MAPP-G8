@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7817083249459897040}
   - component: {fileID: 5012116525540950291}
   - component: {fileID: 7579680042386267263}
+  - component: {fileID: 3821473523373377182}
   m_Layer: 0
   m_Name: GoalPrefab
   m_TagString: Untagged
@@ -4848,7 +4849,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eee8f842c4651a748b14668c65d9dd12, type: 2}
+  - {fileID: 2100000, guid: 3f79643e356c47048bcdf007b8b4f084, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4868,7 +4869,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4928,3 +4929,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUnlock: 0
+--- !u!114 &3821473523373377182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3119218398324478929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d3d02cc0dc50248a93a90229f722eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 0}
+  gameController: {fileID: 0}
