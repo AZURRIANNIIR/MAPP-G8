@@ -233,11 +233,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
-        {
-            onTile = false;
-        }
-
         if (collision.CompareTag("BridgeTile"))
         {
             //enteredHorizontally = false;
