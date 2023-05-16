@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5244110412170537300}
   - component: {fileID: 5244110412170537301}
   - component: {fileID: 5244110412170537302}
-  - component: {fileID: 1695401905}
+  - component: {fileID: 8188955837650016754}
   m_Layer: 6
   m_Name: SnakePrefab
   m_TagString: Snake
@@ -145,7 +145,6 @@ MonoBehaviour:
   verticalBridgeEdge:
     serializedVersion: 2
     m_Bits: 256
-  gameController: {fileID: 0}
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
   startPosition: {fileID: 0}
@@ -301,7 +300,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &1695401905
+--- !u!114 &8188955837650016754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab9abf531218b2458c1e6e5ac47e4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelUnlock: 2
+  levelUnlock: 0
 --- !u!1 &7958389888066188410
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,3 +411,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startRotation: 0
+  currentPos: {x: 0, y: 0, z: 0}

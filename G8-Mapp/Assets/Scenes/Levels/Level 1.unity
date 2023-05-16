@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 388954088}
-  - component: {fileID: 388954087}
+  - component: {fileID: 388954089}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -216,18 +216,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &388954087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388954086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7650f8d998b5f2d4e91f80c82367bcd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &388954088
 Transform:
   m_ObjectHideFlags: 0
@@ -243,6 +231,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388954089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388954086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8c4c3b408f84e42b9fad01d35f16b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &467403386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3973116569632568922, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
@@ -381,8 +381,12 @@ PrefabInstance:
       propertyPath: snakeMovement
       value: 
       objectReference: {fileID: 1031965093}
+    - target: {fileID: 8188955837650016754, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: levelUnlock
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1695401905, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
 --- !u!1 &796652279
 GameObject:
