@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [Range(0.7f, 0.95f)]
+    [Range(0.7f, 0.97f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
@@ -17,7 +18,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
     [Header("Components")]
-    [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [SerializeField] private Transform startPosition;
@@ -34,7 +34,9 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
 
-    internal Vector3 CurrentPosition { get { return currentPosition; } }
+    public static Action OnReturnToStart;
+
+    public static Action<Vector3> OnMovement;
 
     private void Awake()
     {
@@ -63,6 +65,13 @@ public class SnakeMovement : MonoBehaviour
         //Rörelse längst grid
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
+
+        //Kontrollera skillnaden mellan ormens position och där fingret befinner sig
+        if (Vector3Int.RoundToInt(currentPosition) != Vector3Int.RoundToInt(transform.position))
+        {
+            Debug.Log("Borde nu köra OnMovementEvent");
+            OnMovement?.Invoke(currentPosition);
+        }
 
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
 
@@ -140,12 +149,13 @@ public class SnakeMovement : MonoBehaviour
     {
         ResetSnakeToTile(startPosition);
         ResetTrailRenderer();
-        gameController.ResetTilesOnGrid();
+        OnReturnToStart?.Invoke();
     }
 
     private void ResetSnakeToTile(Transform gridLocation)
     {
         transform.position = gridLocation.position;
+        OnMovement?.Invoke(currentPosition);
     }
     #endregion
 
@@ -231,11 +241,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
-        {
-            onTile = false;
-        }
-
         if (collision.CompareTag("BridgeTile"))
         {
             //enteredHorizontally = false;

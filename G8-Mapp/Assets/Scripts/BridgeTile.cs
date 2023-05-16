@@ -23,6 +23,7 @@ public class BridgeTile : GridTile
 
     [SerializeField] private GameObject temporaryCollider;
 
+    [Header("States")]
     [SerializeField] private bool steppedOn;
 
     public UnityEvent OnCrossedOnceStatus;
