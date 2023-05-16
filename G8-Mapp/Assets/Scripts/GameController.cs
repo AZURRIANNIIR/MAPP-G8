@@ -19,17 +19,10 @@ public class GameController : MonoBehaviour
     private int numberOfTiles;
     public bool win = false;
 
-    private void Awake()
-    {
-        if (!button)
-        {
-            button = FindObjectOfType<TriggerButtonScript>();
-        }
-    }
-
     [System.Obsolete]
     private void Start()
     {
+        
         
         //Lägger till alla tiles i en lista
         raycastBoxes = GameObject.FindGameObjectsWithTag("GridTile");
@@ -83,15 +76,12 @@ public class GameController : MonoBehaviour
     {
         foreach(ColliderScript colliderScript in tileColliders)
         {
-            if (!button.TileList.Contains(colliderScript.gameObject))
-            {
-                colliderScript.ResetTile();
-            }
+            colliderScript.ResetTile();
         }
 
         if (button != null)
         {
-            button.DisableTilesInList();
+            button.resetTiles();
         }
 
         resetNumberOfTilesLeft();
@@ -106,13 +96,11 @@ public class GameController : MonoBehaviour
     private void OnEnable()
     {
         UndoButton.OnClick += tileNotTaken;
-        SnakeMovement.OnReturnToStart += ResetTilesOnGrid;
     }
 
     private void OnDisable()
     {
         UndoButton.OnClick -= tileNotTaken;
-        SnakeMovement.OnReturnToStart -= ResetTilesOnGrid;
     }    
     #endregion
 

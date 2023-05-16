@@ -7,17 +7,10 @@ public class TriggerButtonScript : MonoBehaviour
 {
     [SerializeField] private List<GameObject> tileList;
 
-    #region Property för listan
-    internal List<GameObject> TileList
-    {
-        get { return tileList; }
-    }
-    #endregion
-
     // Start is called before the first frame update
     void Start()
     {
-        DisableTilesInList();
+        resetTiles();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,16 +21,15 @@ public class TriggerButtonScript : MonoBehaviour
             {
                 tileList[i].GetComponent<ColliderScript>().ResetTile();
             }
-            UndoButton.OnClick += DisableTilesInList;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        UndoButton.OnClick -= DisableTilesInList;
+        UndoButton.OnClick -= resetTiles;
     }
 
-    public void DisableTilesInList()
+    public void resetTiles()
     {
         if (tileList.Count == 0) 
         {
@@ -48,10 +40,5 @@ public class TriggerButtonScript : MonoBehaviour
         {
             tileList[i].GetComponent<ColliderScript>().disableTile();
         }
-    }
-
-    private void OnDisable()
-    {
-        UndoButton.OnClick -= DisableTilesInList;
     }
 }
