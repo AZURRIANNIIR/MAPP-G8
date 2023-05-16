@@ -20,6 +20,11 @@ public class NextLevel : MonoBehaviour
     {
         //Hitta den nuvarande scenens namn
         currentScene = SceneManager.GetActiveScene().name;
+
+        if (!gameController)
+        {
+            gameController = FindObjectOfType<GameController>();
+        }
     }
 
     private void Start()

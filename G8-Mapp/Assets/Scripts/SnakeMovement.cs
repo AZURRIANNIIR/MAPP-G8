@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,17 +10,17 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [Range(0.7f, 0.9f)]
+    [Range(0.7f, 0.97f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
+    [Header("Layermasks")]
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
-    [SerializeField] private Transform startPosition;
     [Header("Components")]
-    [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
+    [SerializeField] private Transform startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
     public bool enteredHorizontally;
@@ -32,6 +33,10 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+
+    public static Action OnReturnToStart;
+
+    public static Action<Vector3> OnMovement;
 
     private void Awake()
     {
@@ -61,11 +66,17 @@ public class SnakeMovement : MonoBehaviour
         currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         currentPosition = Camera.main.ScreenToWorldPoint(currentScreenPoint);
 
-        //Tog bort denna för att diagonal rörelse skulle funka, men vågar inte radera kodraden
+        //Kontrollera skillnaden mellan ormens position och där fingret befinner sig
+        if (Vector3Int.RoundToInt(currentPosition) != Vector3Int.RoundToInt(transform.position))
+        {
+            Debug.Log("Borde nu köra OnMovementEvent");
+            OnMovement?.Invoke(currentPosition);
+        }
+
         transform.position = new Vector3(Mathf.RoundToInt(currentPosition.x), Mathf.RoundToInt(currentPosition.y), Mathf.RoundToInt(currentPosition.z));
 
-        currentPosition.x = (float)(Mathf.RoundToInt(currentPosition.x) + gridSize);
-        currentPosition.y = (float)(Mathf.RoundToInt(currentPosition.y) + gridSize);
+        currentPosition.x = (Mathf.RoundToInt(currentPosition.x) + gridSize);
+        currentPosition.y = (Mathf.RoundToInt(currentPosition.y) + gridSize);
 
         //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
         Vector3 mousePos = GetMousePosition();
@@ -100,7 +111,7 @@ public class SnakeMovement : MonoBehaviour
                 switch (mostRecentTile)
                 {
                     case null: ResetSnakeToStart(); break;
-                    default: ResetSnakeToGrid(mostRecentTile.transform); break;
+                    default: ResetSnakeToTile(mostRecentTile.transform); break;
                 }
             }
         }
@@ -136,15 +147,15 @@ public class SnakeMovement : MonoBehaviour
     #region Funktioner som återställer ormen
     private void ResetSnakeToStart()
     {
-        transform.position = startPosition.position;
+        ResetSnakeToTile(startPosition);
         ResetTrailRenderer();
-        gameController.ResetTilesOnGrid();
+        OnReturnToStart?.Invoke();
     }
 
-    private void ResetSnakeToGrid(Transform gridLocation)
+    private void ResetSnakeToTile(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-
+        OnMovement?.Invoke(currentPosition);
     }
     #endregion
 
@@ -206,6 +217,7 @@ public class SnakeMovement : MonoBehaviour
 
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
 
+        Debug.Log(mouseRay.direction);
         //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
         bool directionIsMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0;
         return directionIsMultiple;
@@ -214,7 +226,7 @@ public class SnakeMovement : MonoBehaviour
     #region OnTrigger-funktioner
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
+        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile") || collision.CompareTag(startPosition.tag))
         {
             onTile = true;
         }
@@ -229,11 +241,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") && collision.CompareTag("BridgeTile"))
-        {
-            onTile = false;
-        }
-
         if (collision.CompareTag("BridgeTile"))
         {
             //enteredHorizontally = false;

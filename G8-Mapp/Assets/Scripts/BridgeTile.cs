@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 //Vi ärver här från GridTile-skriptet
 public class BridgeTile : GridTile
@@ -8,11 +9,13 @@ public class BridgeTile : GridTile
     [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
 
+    [Header("Triggers")]
     [SerializeField] private GameObject upperTriggerCollider;
     [SerializeField] private GameObject lowerTriggerCollider;
     [SerializeField] private GameObject leftTriggerCollider;
     [SerializeField] private GameObject rightTriggerCollider;
 
+    [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
     [SerializeField] private GameObject lowerBoxCollider;
     [SerializeField] private GameObject leftBoxCollider;
@@ -20,8 +23,10 @@ public class BridgeTile : GridTile
 
     [SerializeField] private GameObject temporaryCollider;
 
-    private bool collidersEnabled;
+    [Header("States")]
     [SerializeField] private bool steppedOn;
+
+    public UnityEvent OnCrossedOnceStatus;
 
     new private void Start()
     {
@@ -49,7 +54,6 @@ public class BridgeTile : GridTile
 
         if (steppedOn)
         {
-            //snakeMovement.lastBridgeTile = this;
             if (snakeMovement.bridgeDisabled)
             {
                 temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
@@ -93,8 +97,14 @@ public class BridgeTile : GridTile
                     turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
                 }
 
-                tileCollider.ChangeBridgeSpriteToTaken();
+                //Typkonvertera för att se till så att vi kan använda korsningsfunktioner
+                if (tileCollider.GetType() == typeof(BridgeColliderScript))
+                {
+                    BridgeColliderScript bridgeCollider = (BridgeColliderScript)tileCollider;
+                    bridgeCollider.ChangeBridgeSpriteToTaken();
+                }
                 crossedOnce = true;
+                OnCrossedOnceStatus?.Invoke();
                 print("bridge taken once");
             }
         }
@@ -123,13 +133,6 @@ public class BridgeTile : GridTile
     public void SetCrossedOnceStatus(bool state)
     {
         crossedOnce = state;
-    }
-
-    private void ResetBridgeTileCompletely()
-    {
-        tileCollider.ChangeBridgeSpriteToTaken();
-        SetCrossedOnceStatus(false);
-        SetTakenStatus(false);
     }
 
     private void turnOnPath(GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)

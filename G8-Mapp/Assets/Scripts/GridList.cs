@@ -31,18 +31,9 @@ public class GridList : MonoBehaviour
                 gridList.Add(collision.gameObject);
             }
             else if (collision.gameObject.CompareTag("BridgeTile"))
-            {
-                BridgeTile bridgeTile = collision.gameObject.GetComponent<BridgeTile>();
-                if (!bridgeTile.GetTakenStatus())
-                {
-                    Debug.Log("Lägger till en bro i listan");
-                    gridList.Add(collision.gameObject);
-                }
-                else
-                {
-                    Debug.Log("Lägger till en tagen bro i listan");
-                    gridList.Add(collision.gameObject);
-                }
+            {   
+                //Broar ska alltid läggas till när det går
+                gridList.Add(collision.gameObject);
             }
         }
         
@@ -87,7 +78,6 @@ public class GridList : MonoBehaviour
                 gridList.Remove(tile);
             }
         }
-        
         //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
