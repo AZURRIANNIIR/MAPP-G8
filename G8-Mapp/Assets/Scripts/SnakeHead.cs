@@ -12,8 +12,6 @@ public class SnakeHead : MonoBehaviour
     private enum rotations { left, right, up, down }
     [SerializeField] private rotations startRotation;
 
-    private SnakeMovement movementScript;
-
     [SerializeField] private Vector3 currentPos;
 
     //Readonly för att förhindra alla former av modifiering. Det skulle annars möjliggöra att spelet slutar fungera som det är tänkt.
@@ -27,11 +25,11 @@ public class SnakeHead : MonoBehaviour
 
     private void Awake()
     {
-        movementScript = GetComponentInParent<SnakeMovement>();
         if (rotationList.Count > 0 ) 
         {
             Debug.Log("Dictionaryn kan användas");
         }
+        Debug.Log(transform.parent.gameObject.name);
     }
 
     // Start is called before the first frame update
@@ -53,6 +51,8 @@ public class SnakeHead : MonoBehaviour
     private void SetRotation(Vector3 vectorToBaseRotationOn)
     {
         Debug.Log("Huvudet ska sätta sin rotation nu");
+        Debug.Log("Current position:" + currentPos);
+        Debug.Log("Vector argument:" + vectorToBaseRotationOn);
         //Till höger
         if (Mathf.RoundToInt(currentPos.x) < Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
