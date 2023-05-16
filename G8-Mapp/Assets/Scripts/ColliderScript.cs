@@ -61,7 +61,7 @@ public abstract class ColliderScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         tileScript = gameObject.GetComponentInChildren<GridTile>();
-        spriteRenderer.sprite = TileStartSprite;
+        ChangeGridSprite(TileStartSprite);
     }
 
     protected void ChangeGridSprite(Sprite sprite)
@@ -72,7 +72,7 @@ public abstract class ColliderScript : MonoBehaviour
     public void TakeTile()
     {
         print("ruta tagen");
-        spriteRenderer.sprite = TileTakenSprite;
+        ChangeGridSprite(TileTakenSprite);
     }
 
     public void EnableCollider()

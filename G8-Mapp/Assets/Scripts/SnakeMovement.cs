@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class SnakeMovement : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private float movementLength;
-    [Range(0.7f, 0.95f)]
+    [Range(0.7f, 0.97f)]
     [SerializeField] private float maxAllowedDistanceFromMouse = 0.7f;
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
@@ -17,7 +18,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private LayerMask horizontalBridgeEdge;
     [SerializeField] private LayerMask verticalBridgeEdge;
     [Header("Components")]
-    [SerializeField] private GameController gameController;
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [SerializeField] private Transform startPosition;
@@ -35,6 +35,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentScreenPoint;
 
     internal Vector3 CurrentPosition { get { return currentPosition; } }
+
+    public static Action OnReturnToStart;
 
     private void Awake()
     {
@@ -140,7 +142,7 @@ public class SnakeMovement : MonoBehaviour
     {
         ResetSnakeToTile(startPosition);
         ResetTrailRenderer();
-        gameController.ResetTilesOnGrid();
+        OnReturnToStart?.Invoke();
     }
 
     private void ResetSnakeToTile(Transform gridLocation)
@@ -231,11 +233,6 @@ public class SnakeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("GridTile") || collision.CompareTag("BridgeTile"))
-        {
-            onTile = false;
-        }
-
         if (collision.CompareTag("BridgeTile"))
         {
             //enteredHorizontally = false;
