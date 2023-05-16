@@ -32,41 +32,12 @@ public class SnakeHead : MonoBehaviour
         {
             Debug.Log("Dictionaryn kan användas");
         }
-        
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         SetStartRotation();
-    }
-
-    private void Update()
-    {
-        if (!UndoButton.EventFired)
-        {
-            //Till höger
-            if (currentPos.x < movementScript.CurrentPosition.x)
-            {
-                transform.localRotation = Quaternion.Euler(rotationList[rotations.right]);
-            }
-            //Till vänster
-            if (currentPos.x > movementScript.CurrentPosition.x)
-            {
-                transform.localRotation = Quaternion.Euler(rotationList[rotations.left]);
-            }
-            //Nedåt
-            if (currentPos.y > movementScript.CurrentPosition.y)
-            {
-                transform.localRotation = Quaternion.Euler(rotationList[rotations.down]);
-            }
-            //Uppåt
-            if (currentPos.y < movementScript.CurrentPosition.y)
-            {
-                transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);
-            }
-        }
-
     }
 
     private void LateUpdate()
@@ -76,19 +47,45 @@ public class SnakeHead : MonoBehaviour
 
     private void SetStartRotation()
     {
-        Debug.Log("Sätter start-rotation för huvudet");
         transform.localRotation = Quaternion.Euler(rotationList[startRotation]);
+    }
+
+    private void SetRotation(Vector3 vectorToBaseRotationOn)
+    {
+        Debug.Log("Huvudet ska sätta sin rotation nu");
+        //Till höger
+        if (Mathf.RoundToInt(currentPos.x) < Mathf.RoundToInt(vectorToBaseRotationOn.x))
+        {
+            transform.localRotation = Quaternion.Euler(rotationList[rotations.right]);
+        }
+        //Till vänster
+        if (Mathf.RoundToInt(currentPos.x) > Mathf.RoundToInt(vectorToBaseRotationOn.x))
+        {
+            transform.localRotation = Quaternion.Euler(rotationList[rotations.left]);
+        }
+        //Nedåt
+        if (Mathf.RoundToInt(currentPos.y) > Mathf.RoundToInt(vectorToBaseRotationOn.y))
+        {
+            transform.localRotation = Quaternion.Euler(rotationList[rotations.down]);
+        }
+        //Uppåt
+        if (Mathf.RoundToInt(currentPos.y) < Mathf.RoundToInt(vectorToBaseRotationOn.y))
+        {
+            transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);
+        }
     }
 
     #region Enable/Disable-funktioner
     private void OnEnable()
     {
         SnakeMovement.OnReturnToStart += SetStartRotation;
+        SnakeMovement.OnMovement += SetRotation;
     }
 
     private void OnDisable()
     {
         SnakeMovement.OnReturnToStart -= SetStartRotation;
+        SnakeMovement.OnMovement -= SetRotation;
     }
     #endregion
 }
