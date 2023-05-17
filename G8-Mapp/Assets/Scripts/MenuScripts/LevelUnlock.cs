@@ -8,6 +8,7 @@ public class LevelUnlock : MonoBehaviour
 
 {
     [SerializeField] Button[] buttons;
+    public int levelAmount = 20;
     
     
     void Start()
@@ -16,7 +17,7 @@ public class LevelUnlock : MonoBehaviour
 
         for(int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].interactable = i < unlockLevel;
+            buttons[i].interactable = i < unlockLevel && i < levelAmount;
         }
         //if (!PlayerPrefs.HasKey("levelsUnlocked"))
        // {
