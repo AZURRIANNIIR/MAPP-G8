@@ -14,7 +14,7 @@ public class SnakeHead : MonoBehaviour
 
     [SerializeField] private Vector3 currentPos;
 
-    //Readonly för att förhindra alla former av modifiering. Det skulle annars möjliggöra att spelet slutar fungera som det är tänkt.
+    //Readonly fï¿½r att fï¿½rhindra alla former av modifiering. Det skulle annars mï¿½jliggï¿½ra att spelet slutar fungera som det ï¿½r tï¿½nkt.
     private readonly Dictionary<rotations, Vector3> rotationList = new Dictionary<rotations, Vector3>
         {
             { rotations.left, new Vector3(0f,0f, -ROTATION_VALUE)},
@@ -27,7 +27,7 @@ public class SnakeHead : MonoBehaviour
     {
         if (rotationList.Count > 0 ) 
         {
-            Debug.Log("Dictionaryn kan användas");
+            Debug.Log("Dictionaryn kan anvï¿½ndas");
         }
         Debug.Log(transform.parent.gameObject.name);
     }
@@ -50,25 +50,25 @@ public class SnakeHead : MonoBehaviour
 
     private void SetRotation(Vector3 vectorToBaseRotationOn)
     {
-        Debug.Log("Huvudet ska sätta sin rotation nu");
+        Debug.Log("Huvudet ska sï¿½tta sin rotation nu");
         Debug.Log("Current position:" + currentPos);
         Debug.Log("Vector argument:" + vectorToBaseRotationOn);
-        //Till höger
+        //Till hï¿½ger
         if (Mathf.RoundToInt(currentPos.x) < Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
             transform.localRotation = Quaternion.Euler(rotationList[rotations.right]);
         }
-        //Till vänster
+        //Till vï¿½nster
         if (Mathf.RoundToInt(currentPos.x) > Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
             transform.localRotation = Quaternion.Euler(rotationList[rotations.left]);
         }
-        //Nedåt
+        //Nedï¿½t
         if (Mathf.RoundToInt(currentPos.y) > Mathf.RoundToInt(vectorToBaseRotationOn.y))
         {
             transform.localRotation = Quaternion.Euler(rotationList[rotations.down]);
         }
-        //Uppåt
+        //Uppï¿½t
         if (Mathf.RoundToInt(currentPos.y) < Mathf.RoundToInt(vectorToBaseRotationOn.y))
         {
             transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);

@@ -10,10 +10,10 @@ public class BridgeTile : GridTile
     [SerializeField] private SnakeMovement snakeMovement;
 
     [Header("Triggers")]
-    [SerializeField] private GameObject upperTriggerCollider;
-    [SerializeField] private GameObject lowerTriggerCollider;
-    [SerializeField] private GameObject leftTriggerCollider;
-    [SerializeField] private GameObject rightTriggerCollider;
+    //[SerializeField] private GameObject upperTriggerCollider;
+    //[SerializeField] private GameObject lowerTriggerCollider;
+    //[SerializeField] private GameObject leftTriggerCollider;
+    //[SerializeField] private GameObject rightTriggerCollider;
 
     [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
@@ -42,15 +42,15 @@ public class BridgeTile : GridTile
 
     private void Update()
     {
-        if (!snakeMovement.enteredHorizontally)
-        {
-            turnOnPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-        }
+        //if (!snakeMovement.enteredHorizontally)
+        //{
+        //    turnOnPath(upperBoxCollider, lowerBoxCollider); /*, upperTriggerCollider, lowerTriggerCollider);*/
+        //}
 
-        if (!snakeMovement.enteredVertically)
-        {
-            turnOnPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-        }
+        //if (!snakeMovement.enteredVertically)
+        //{
+        //    turnOnPath(leftBoxCollider, rightBoxCollider); /*, leftTriggerCollider, rightTriggerCollider);*/
+        //}
 
         if (steppedOn)
         {
@@ -64,7 +64,21 @@ public class BridgeTile : GridTile
                 steppedOn = false;
             }
         }
- 
+
+        ////om ormen kommer från höger eller vänster
+        //if (snakeMovement.enteredHorizontally)
+        //{
+        //    print("riktning läses av");
+        //    turnOffPath("Horizontal"); /*, upperTriggerCollider, lowerTriggerCollider);*/
+        //}
+
+        ////om ormen kommer upp eller ner ifrån
+        //else if (snakeMovement.enteredVertically)
+        //{
+        //    print("riktning läses av");
+        //    turnOffPath("Vertical"); /*, leftTriggerCollider, rightTriggerCollider);*/
+        //}
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,18 +99,6 @@ public class BridgeTile : GridTile
             //Om bron korsas för första gången
             else if (collision.gameObject.CompareTag("Snake") && !crossedOnce && !GetTakenStatus())
             {
-                //om ormen kommer från höger eller vänster
-                if (snakeMovement.enteredHorizontally)
-                {
-                    turnOffPath(upperBoxCollider, lowerBoxCollider, upperTriggerCollider, lowerTriggerCollider);
-                }
-
-                //om ormen kommer upp eller ner ifrån
-                else if (snakeMovement.enteredVertically)
-                {
-                    turnOffPath(leftBoxCollider, rightBoxCollider, leftTriggerCollider, rightTriggerCollider);
-                }
-
                 //Typkonvertera för att se till så att vi kan använda korsningsfunktioner
                 if (tileCollider.GetType() == typeof(BridgeColliderScript))
                 {
@@ -107,6 +109,7 @@ public class BridgeTile : GridTile
                 OnCrossedOnceStatus?.Invoke();
                 print("bridge taken once");
             }
+
         }
         
     }
@@ -116,6 +119,7 @@ public class BridgeTile : GridTile
         if (collision.gameObject.CompareTag("Snake"))
         {
             steppedOn = true;
+            turnOnPath();
         }
 
         if (UndoButton.EventFired)
@@ -135,19 +139,31 @@ public class BridgeTile : GridTile
         crossedOnce = state;
     }
 
-    private void turnOnPath(GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)
+    private void turnOnPath()/*GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)*/
     {
-        colliderA.GetComponent<BoxCollider2D>().enabled = false;
-        colliderB.GetComponent<BoxCollider2D>().enabled = false;
-        triggerA.GetComponent<BoxCollider2D>().enabled = true;
-        triggerB.GetComponent<BoxCollider2D>().enabled = true;
+        print("Colliders borde stängas av");
+        upperBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
+        lowerBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
+        leftBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
+        rightBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
+        //triggerA.GetComponent<BoxCollider2D>().enabled = true;
+        //triggerB.GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    private void turnOffPath(GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)
+    public void turnOffPath(string direction)/*GameObject colliderA, GameObject colliderB, GameObject triggerA, GameObject triggerB)*/
     {
-        colliderA.GetComponent<BoxCollider2D>().enabled = true;
-        colliderB.GetComponent<BoxCollider2D>().enabled = true;
-        triggerA.GetComponent<BoxCollider2D>().enabled = false;
-        triggerB.GetComponent<BoxCollider2D>().enabled = false;
+        print("Colliders borde sättas på");
+        if (direction == "Horizontal"){
+            upperBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+            lowerBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        if (direction == "Vertical")
+        {
+            leftBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+            rightBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        //triggerA.GetComponent<BoxCollider2D>().enabled = false;
+        //triggerB.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
