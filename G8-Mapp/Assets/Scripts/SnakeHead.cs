@@ -27,7 +27,7 @@ public class SnakeHead : MonoBehaviour
     {
         if (rotationList.Count > 0 ) 
         {
-            Debug.Log("Dictionaryn kan anv�ndas");
+            Debug.Log(name + ": Dictionaryn kan anv�ndas");
         }
         Debug.Log(transform.parent.gameObject.name);
     }
