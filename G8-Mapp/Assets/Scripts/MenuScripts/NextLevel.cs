@@ -25,6 +25,16 @@ public class NextLevel : MonoBehaviour
         {
             gameController = FindObjectOfType<GameController>();
         }
+
+        if (!nextLevel)
+        {
+            nextLevel = GetComponent<Button>();
+        }
+
+        if (!text) 
+        { 
+            text = GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
 
     private void Start()
