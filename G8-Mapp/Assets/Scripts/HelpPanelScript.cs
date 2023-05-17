@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class HelpPanelScript : MonoBehaviour
 {
-    [SerializeField] private Image panelOne;
-    [SerializeField] private Image panelTwo;
-    [SerializeField] private Image panelThree;
+    [SerializeField] private GameObject panelOne;
+    [SerializeField] private GameObject panelTwo;
+    [SerializeField] private GameObject panelThree;
     [SerializeField] static int pressAmount;
     [SerializeField] private int panelChange;
     [SerializeField] private Button button;
@@ -68,21 +68,21 @@ public class HelpPanelScript : MonoBehaviour
     {
         if (pressAmount == 0)
         {
-            panelOne.enabled = true;
-            panelTwo.enabled = false;
-            panelThree.enabled = false;
+            panelOne.SetActive(true);
+            panelTwo.SetActive(false);
+            panelThree.SetActive(false);
         }
         else if (pressAmount == 1)
         {
-            panelOne.enabled = false;
-            panelTwo.enabled = true;
-            panelThree.enabled = false;
+            panelOne.SetActive(false);
+            panelTwo.SetActive(true);
+            panelThree.SetActive(false);
         }
         else if (pressAmount == 2)
         {
-            panelOne.enabled = false;
-            panelTwo.enabled = false;
-            panelThree.enabled = true;
+            panelOne.SetActive(false);
+            panelTwo.SetActive(false);
+            panelThree.SetActive(true);
         }
     }
 

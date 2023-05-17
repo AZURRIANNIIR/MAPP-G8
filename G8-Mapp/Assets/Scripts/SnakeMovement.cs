@@ -15,8 +15,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
     [SerializeField] private LayerMask mask;
-    [SerializeField] private LayerMask horizontalBridgeEdge;
-    [SerializeField] private LayerMask verticalBridgeEdge;
     [Header("Components")]
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
@@ -77,27 +75,6 @@ public class SnakeMovement : MonoBehaviour
 
         currentPosition.x = (Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (Mathf.RoundToInt(currentPosition.y) + gridSize);
-
-        //följande kod används för att reglera crossroads, den kollar om man rör specifika colliders på insidan av crossroadtiles
-        Vector3 mousePos = GetMousePosition();
-
-        RaycastHit2D horizontalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, horizontalBridgeEdge);
-        if (horizontalEdge.collider != null)
-        {
-            horizontalEdge.collider.enabled = false;
-            enteredVertically = true;
-            lastEnterDirection = "enteredVertically";
-
-        }
-
-        RaycastHit2D verticalEdge = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, verticalBridgeEdge);
-        if (verticalEdge.collider != null)
-        {
-            verticalEdge.collider.enabled = false;
-            enteredHorizontally = true;
-            lastEnterDirection = "enteredHorizontally";
-
-        }
     }
 
     private void Update()
@@ -235,7 +212,23 @@ public class SnakeMovement : MonoBehaviour
         {
             enteredHorizontally = false;
             enteredVertically = false;
-            //bridgeDisabled = true;
+        }
+
+        if (collision.CompareTag("BridgeTile"))
+        {
+            if (transform.position.x != gridListScript.GetPreviousTile().transform.position.x)
+            {
+                enteredHorizontally = true;
+                lastEnterDirection = "enteredHorizontally";
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Horizontal");
+            }
+            if (transform.position.y != gridListScript.GetPreviousTile().transform.position.y)
+            {
+                enteredVertically = true;
+                lastEnterDirection = "enteredVertically";
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
+
+            }
         }
     }
 
@@ -243,8 +236,6 @@ public class SnakeMovement : MonoBehaviour
     {
         if (collision.CompareTag("BridgeTile"))
         {
-            //enteredHorizontally = false;
-            //enteredVertically = false;
             bridgeDisabled = true;
             lastBridgeTile = collision.GetComponent<BridgeTile>();
 

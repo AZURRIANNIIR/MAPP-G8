@@ -32,7 +32,7 @@ public class GridList : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("BridgeTile"))
             {   
-                //Broar ska alltid läggas till när det går
+                //Broar ska alltid lï¿½ggas till nï¿½r det gï¿½r
                 gridList.Add(collision.gameObject);
             }
         }
@@ -49,6 +49,16 @@ public class GridList : MonoBehaviour
         return gridList[gridList.Count - 1];
     }
 
+    public GameObject GetPreviousTile()
+    {
+        if (gridList.Count < 2)
+        {
+            return null;
+        }
+        //Om det finns en grid i listan
+        return gridList[gridList.Count - 2];
+    }
+
     public void DeleteTileFromList(GameObject tile)
     {
         if (!gridList.Contains(tile))
@@ -62,13 +72,13 @@ public class GridList : MonoBehaviour
             gridList.Remove(tile);
         }
 
-        Debug.Log("Nu ska " + tile.name + " tas bort från listan.");
+        Debug.Log("Nu ska " + tile.name + " tas bort frï¿½n listan.");
         if (tile.CompareTag("BridgeTile"))
         {
             if (tile.GetComponent<BridgeTile>().GetTakenStatus())
             {
-                /* Vänd listans ordning om korsningen är helt tagen                                            *
-                *  Detta förhindrar en bug som gör att ormen annars inte flyttar tillbaka till föregående ruta */
+                /* Vï¿½nd listans ordning om korsningen ï¿½r helt tagen                                            *
+                *  Detta fï¿½rhindrar en bug som gï¿½r att ormen annars inte flyttar tillbaka till fï¿½regï¿½ende ruta */
                 gridList.Reverse();
                 gridList.Remove(tile);
                 gridList.Reverse();
@@ -78,7 +88,7 @@ public class GridList : MonoBehaviour
                 gridList.Remove(tile);
             }
         }
-        //Återställ Tilens status, annars blir det problem när spelaren går tillbaka.
+        //ï¿½terstï¿½ll Tilens status, annars blir det problem nï¿½r spelaren gï¿½r tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
     }
 
@@ -89,7 +99,7 @@ public class GridList : MonoBehaviour
 
     public void GridListUndoAction()
     {
-        Debug.Log("GridList kände av en knapptryckning från undo-knappen");
+        Debug.Log("GridList kï¿½nde av en knapptryckning frï¿½n undo-knappen");
         DeleteTileFromList(GetMostRecentTile());
     }
 
