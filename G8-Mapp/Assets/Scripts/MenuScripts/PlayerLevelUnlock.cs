@@ -12,15 +12,14 @@ public class PlayerLevelUnlock : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Snake"))
         {
-            Debug.Log("Current levelUnlocked: "+ numberLocked);
-            Debug.Log("något pls funka: "+ levelUnlock);
-            if(levelUnlock > PlayerPrefs.GetInt("levelsUnlocked"))
+            numberLocked = PlayerPrefs.GetInt("levelsUnlocked", 0);
+
+            
+            if(levelUnlock > numberLocked)
             {
-                if (levelUnlock > numberLocked)
-                {
-                    PlayerPrefs.SetInt("levelsUnlocked", levelUnlock);
-                }
-            }
+                PlayerPrefs.SetInt("levelsUnlocked", levelUnlock);
+            }      
+
         }
     }
 
