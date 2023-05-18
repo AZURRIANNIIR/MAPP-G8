@@ -76,15 +76,16 @@ public class BridgeTile : GridTile
                 }
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
+                gameController.tileTaken();
+
                 print("bridge taken once");
             }
-
         }
-        
     }
 
     new private void OnTriggerExit2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Snake"))
         {
             steppedOn = true;

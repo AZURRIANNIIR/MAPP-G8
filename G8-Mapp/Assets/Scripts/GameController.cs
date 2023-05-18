@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
 		
         //sparar antalet tiles kvar att ta vid start (dvs alla)
         numberOfTiles = raycastBoxes.Length + bridgeBoxes.Length;
-        gridTilesLeft = numberOfTiles;
+        gridTilesLeft = raycastBoxes.Length + (bridgeBoxes.Length * 2);
 
         tileColliders = FindObjectsOfType<ColliderScript>();
 
