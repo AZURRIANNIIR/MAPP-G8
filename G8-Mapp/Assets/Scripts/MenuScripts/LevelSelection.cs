@@ -6,8 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelection : MonoBehaviour
 {
-  public void LoadLevel(string levelName)
+    private string levelName;
+
+    private IEnumerator WaitForSceneLoad(string LevelName)
     {
-        SceneManager.LoadScene(levelName);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(LevelName);
+    }
+    public void LoadSceneDelay(string levelName)
+    {
+        StartCoroutine(WaitForSceneLoad(levelName));
     }
 }
+
+    

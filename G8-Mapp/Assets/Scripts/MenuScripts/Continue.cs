@@ -12,19 +12,15 @@ public class Continue : MonoBehaviour
         Debug.Log(sceneToContinue);
     }
 
-    public void ContinueGame()
+    public IEnumerator ContinueGame()
     {
-
-        //if (sceneToContinue != 0)
+        yield return new WaitForSeconds(1);
             SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-        //else
-        //    return;
     }
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
         {
-            //SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
         }
         else
         {
