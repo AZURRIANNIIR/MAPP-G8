@@ -12,9 +12,8 @@ public class Continue : MonoBehaviour
         Debug.Log(sceneToContinue);
     }
 
-    public IEnumerator ContinueGame()
+    public void ContinueGame()
     {
-        yield return new WaitForSeconds(1);
             SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
     private void OnApplicationFocus(bool focus)
