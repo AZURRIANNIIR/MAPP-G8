@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameControllerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4219013621393710763, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 1486308188}
+    - target: {fileID: 4219013621393710763, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 659661282}
     - target: {fileID: 4219013621393710772, guid: aed7b0dfcee734832ab9363147824d17, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -503,6 +511,10 @@ PrefabInstance:
       propertyPath: startPosition
       value: 
       objectReference: {fileID: 467403386}
+    - target: {fileID: 5244110412170537305, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: snakeMovement
+      value: 
+      objectReference: {fileID: 659661281}
     - target: {fileID: 8188955837650016754, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: levelUnlock
       value: 7
@@ -663,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 532543488460454915, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038209542576332485, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 687
       objectReference: {fileID: 0}
     - target: {fileID: 1905031309864497816, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: text
@@ -838,6 +854,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2419991144373798350, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: levelUnlock
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_RootOrder
       value: 7

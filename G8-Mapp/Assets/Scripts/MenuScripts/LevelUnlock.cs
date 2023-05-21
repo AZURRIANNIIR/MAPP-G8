@@ -16,7 +16,7 @@ public class LevelUnlock : MonoBehaviour
 
         for(int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].interactable = i < unlockLevel;
+            buttons[i].interactable = + i <= unlockLevel;
         }
         //if (!PlayerPrefs.HasKey("levelsUnlocked"))
        // {
