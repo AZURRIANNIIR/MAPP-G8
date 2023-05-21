@@ -15,9 +15,14 @@ public class SelectLevel : MonoBehaviour
         text.text = level.ToString();
     }
 
-  public void OpenScene()
+    public void SceneOpen()
+    {
+        StartCoroutine(OpenSceneDelay());
+    }
+  public IEnumerator OpenSceneDelay()
     {
         selectedLevel = level;
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Level " + level.ToString());
     }
 }

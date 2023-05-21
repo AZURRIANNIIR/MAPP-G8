@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 7057823341160741169}
   - component: {fileID: 7817083249459897040}
   - component: {fileID: 5012116525540950291}
-  - component: {fileID: 7579680042386267263}
   - component: {fileID: 3821473523373377182}
+  - component: {fileID: -2419991144373798350}
   m_Layer: 0
   m_Name: GoalPrefab
   m_TagString: Untagged
@@ -4916,19 +4916,6 @@ CircleCollider2D:
   m_Offset: {x: 0.005765438, y: 0}
   serializedVersion: 2
   m_Radius: 0.2564683
---- !u!114 &7579680042386267263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3119218398324478929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ab9abf531218b2458c1e6e5ac47e4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelUnlock: 0
 --- !u!114 &3821473523373377182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,3 +4930,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 0}
   gameController: {fileID: 0}
+--- !u!114 &-2419991144373798350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3119218398324478929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab9abf531218b2458c1e6e5ac47e4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUnlock: 0

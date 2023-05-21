@@ -21,9 +21,6 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [Header("States")]
     [SerializeField] private bool onTile;
-    public bool enteredHorizontally;
-    public bool enteredVertically;
-    public string lastEnterDirection;
     public bool bridgeDisabled;
     public BridgeTile lastBridgeTile;
 
@@ -91,28 +88,6 @@ public class SnakeMovement : MonoBehaviour
                     default: ResetSnakeToTile(mostRecentTile.transform); break;
                 }
             }
-        }
-
-        if (bridgeDisabled)
-        {
-            UndoButton.OnClick += setLastBridgeEnterDirection;
-        }
-        else
-        {
-            UndoButton.OnClick -= setLastBridgeEnterDirection;
-        }
-    }
-
-    public void setLastBridgeEnterDirection()
-    {
-        if (lastEnterDirection.Equals("enteredVertically"))
-        {
-            enteredVertically = true;
-        }
-
-        else if (lastEnterDirection.Equals("enteredHorizontally"))
-        {
-            enteredHorizontally = true;
         }
     }
 
@@ -208,24 +183,14 @@ public class SnakeMovement : MonoBehaviour
             onTile = true;
         }
 
-        if (collision.CompareTag("GridTile"))
-        {
-            enteredHorizontally = false;
-            enteredVertically = false;
-        }
-
         if (collision.CompareTag("BridgeTile"))
         {
             if (transform.position.x != gridListScript.GetPreviousTile().transform.position.x)
             {
-                enteredHorizontally = true;
-                lastEnterDirection = "enteredHorizontally";
                 gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Horizontal");
             }
             if (transform.position.y != gridListScript.GetPreviousTile().transform.position.y)
             {
-                enteredVertically = true;
-                lastEnterDirection = "enteredVertically";
                 gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
 
             }
