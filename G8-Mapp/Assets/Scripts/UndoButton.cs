@@ -25,7 +25,7 @@ public class UndoButton : MonoBehaviour
 
     private void Update()
     {
-        undoButton.interactable = gridListScript.GetLength() > 0;
+        undoButton.interactable = !gridListScript.IsListEmpty();
     }
 
     public void ClickAction()
