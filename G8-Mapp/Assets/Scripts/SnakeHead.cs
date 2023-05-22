@@ -14,10 +14,12 @@ public class SnakeHead : MonoBehaviour
 
     [SerializeField] private Vector3 currentPos;
 
+    [SerializeField] private List<Quaternion> levelRotations;
+
     //Readonly f�r att f�rhindra alla former av modifiering. Det skulle annars m�jligg�ra att spelet slutar fungera som det �r t�nkt.
     private readonly Dictionary<rotations, Vector3> rotationList = new Dictionary<rotations, Vector3>
         {
-            { rotations.left, new Vector3(0f,0f, -ROTATION_VALUE)},
+            { rotations.left, new Vector3(0f,0f, ROTATION_VALUE * 3f)},
             { rotations.right, new Vector3(0f, 0f, ROTATION_VALUE)},
             { rotations.up, new Vector3(0f, 0f, ROTATION_VALUE * 2f)},
             { rotations.down, Vector3.zero }
@@ -73,6 +75,26 @@ public class SnakeHead : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);
         }
+        if (!UndoButton.EventFired)
+        {
+            levelRotations.Add(transform.localRotation);
+        }  
+    }
+
+    private void UndoRotationAction()
+    {
+        //Steg 1
+        levelRotations.RemoveAt(levelRotations.Count -1);
+
+        //Steg 2; titta om listan är tom innan vi försöker att rotera ormen;
+        if (levelRotations.Count < 1)
+        {
+            Debug.Log(this.GetType().Name + ": Det finns inga sparade rotationer");
+            return;
+        }
+
+        //Steg 3: Applicera i så fall rotationen.
+        transform.localRotation = levelRotations[levelRotations.Count - 1];
     }
 
     #region Enable/Disable-funktioner
@@ -80,12 +102,14 @@ public class SnakeHead : MonoBehaviour
     {
         SnakeMovement.OnReturnToStart += SetStartRotation;
         SnakeMovement.OnMovement += SetRotation;
+        UndoButton.OnClick += UndoRotationAction;
     }
 
     private void OnDisable()
     {
         SnakeMovement.OnReturnToStart -= SetStartRotation;
         SnakeMovement.OnMovement -= SetRotation;
+        UndoButton.OnClick -= UndoRotationAction;
     }
     #endregion
 }

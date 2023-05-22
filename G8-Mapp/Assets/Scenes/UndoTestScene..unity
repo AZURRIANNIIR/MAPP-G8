@@ -176,7 +176,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -190,7 +190,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -600,7 +600,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -614,7 +614,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -875,11 +875,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &335184006 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1666350266006601804, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
-  m_PrefabInstance: {fileID: 1666350265781518538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &335184007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1666350266006601805, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
@@ -1342,6 +1337,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &568524443 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1891967781739140604, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
+  m_PrefabInstance: {fileID: 1666350265781518538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586985545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -1409,7 +1409,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -1770,7 +1770,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -2868,7 +2868,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3111,7 +3111,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3125,7 +3125,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3371,7 +3371,7 @@ PrefabInstance:
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 335184006}
+      objectReference: {fileID: 568524443}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3398,12 +3398,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncreasePitch
+      value: IncreasePitchForSFX
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 335184006}
+      objectReference: {fileID: 568524443}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3422,7 +3422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncreasePitch
+      value: IncreasePitchForSFX
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3679,7 +3679,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3693,7 +3693,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3867,7 +3867,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3881,7 +3881,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4043,7 +4043,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -4057,7 +4057,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4737,7 +4737,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -4751,7 +4751,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
