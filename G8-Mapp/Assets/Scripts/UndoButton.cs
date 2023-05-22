@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UndoButton : MonoBehaviour
 {
-    private const float INVOKE_DELAY = 0.04f;
+    private const float INVOKE_DELAY = 0.035f;
 
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
