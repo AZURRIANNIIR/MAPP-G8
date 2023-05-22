@@ -120,11 +120,7 @@ public class SnakeMovement : MonoBehaviour
         Vector3 mousePos = GetMousePosition();
 
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
-        if (tile.collider != null)
-        {
-            return true;
-        }
-        return false;
+        return tile.collider != null;
     }
 
     private bool IsMouseDistanceTooLong()
