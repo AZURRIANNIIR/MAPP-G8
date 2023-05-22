@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
     {
         foreach(ColliderScript colliderScript in tileColliders)
         {
-            if (!button.TileList.Contains(colliderScript.gameObject))
+            if (!button.TileList.Contains(colliderScript.gameObject)) //Jag får error här ifrån /Emma
             {
                 colliderScript.ResetTile();
             }

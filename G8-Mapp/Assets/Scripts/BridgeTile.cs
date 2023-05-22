@@ -8,7 +8,7 @@ public class BridgeTile : GridTile
 {
     [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
-    [SerializeField] private GridList gridList;
+    [SerializeField] private GameObject snake;
 
     [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
@@ -19,10 +19,7 @@ public class BridgeTile : GridTile
     [SerializeField] private GameObject temporaryCollider;
 
     [Header("States")]
-    [SerializeField] private bool steppedOn;
-
-    [SerializeField] private int tileNumber;
-
+    [SerializeField] string enterDirection;
 
     public UnityEvent OnCrossedOnceStatus;
 
@@ -40,23 +37,15 @@ public class BridgeTile : GridTile
 
     private void Update()
     {
-/*        if (steppedOn)
-        {
-            if (snakeMovement.bridgeDisabled)
-            {
-                temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
-            }
-            else if (!snakeMovement.bridgeDisabled)
-            {
-                temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
-                steppedOn = false;
-            }
-        }*/
-
-        if (steppedOn && gridList.GetLength() == tileNumber + 2)
+        if (snake.transform.position.x == transform.position.x && (snake.transform.position.y == transform.position.y+1 || snake.transform.position.y == transform.position.y-1) && enterDirection.Equals("Vertical") && crossedOnce)
         {
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
-        } else
+        }
+        else if (snake.transform.position.y == transform.position.y && (snake.transform.position.x == transform.position.x + 1 || snake.transform.position.x == transform.position.x - 1) && enterDirection.Equals("Horizontal") && crossedOnce)
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else 
         {
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
         }
@@ -73,7 +62,6 @@ public class BridgeTile : GridTile
                 print("ny plats");
                 tileCollider.TakeTile();
                 gameController.tileTaken();
-                //tileNumber = gridList.GetLength();
                 OnTakenStatus?.Invoke();
                 return;
             }
@@ -90,7 +78,6 @@ public class BridgeTile : GridTile
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 gameController.tileTaken();
-                tileNumber = gridList.GetLength();
             }
         }
     }
@@ -100,14 +87,17 @@ public class BridgeTile : GridTile
 
         if (collision.gameObject.CompareTag("Snake"))
         {
-            steppedOn = true;
             turnOnPath();
         }
 
-        if (UndoButton.EventFired && !crossedOnce && !GetTakenStatus())
+        if (collision.gameObject.CompareTag("Snake") && GetTakenStatus())
         {
-            steppedOn = false;
-            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+            tileCollider.EnableCollider();
+        }
+
+        if (collision.gameObject.CompareTag("Snake") && UndoButton.EventFired)
+        {
+            tileCollider.DisableCollider();
         }
     }
 
@@ -141,6 +131,11 @@ public class BridgeTile : GridTile
         {
             leftBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
             rightBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        if (!GetTakenStatus())
+        {
+            enterDirection = direction;
         }
     }
 }

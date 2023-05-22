@@ -203,7 +203,7 @@ public class SnakeMovement : MonoBehaviour
         {
             bridgeDisabled = true;
             lastBridgeTile = collision.GetComponent<BridgeTile>();
-
+            //print("Min plats: " + transform.position);
         }
 
         if (collision.CompareTag("GridTile"))
