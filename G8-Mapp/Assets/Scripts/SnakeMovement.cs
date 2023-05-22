@@ -107,7 +107,6 @@ public class SnakeMovement : MonoBehaviour
     private void ResetSnakeToTile(Transform gridLocation)
     {
         transform.position = gridLocation.position;
-        OnMovement?.Invoke(currentPosition);
     }
     #endregion
 

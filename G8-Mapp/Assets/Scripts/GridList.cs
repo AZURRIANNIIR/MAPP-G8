@@ -39,14 +39,15 @@ public class GridList : MonoBehaviour
         
     }
 
+    public bool IsListEmpty()
+    {
+        return gridList.Count == 0;
+    }
+
     public GameObject GetMostRecentTile()
     {
-        if (gridList.Count == 0)
-        {
-            return null;
-        }
         //Om det finns en grid i listan
-        return gridList[gridList.Count - 1];
+        return IsListEmpty() ? null : gridList[gridList.Count - 1];
     }
 
     public GameObject GetPreviousTile()
