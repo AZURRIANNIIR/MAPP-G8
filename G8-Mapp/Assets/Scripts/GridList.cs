@@ -36,17 +36,17 @@ public class GridList : MonoBehaviour
                 gridList.Add(collision.gameObject);
             }
         }
-        
+    }
+
+    public bool IsListEmpty()
+    {
+        return gridList.Count == 0;
     }
 
     public GameObject GetMostRecentTile()
     {
-        if (gridList.Count == 0)
-        {
-            return null;
-        }
         //Om det finns en grid i listan
-        return gridList[gridList.Count - 1];
+        return IsListEmpty() ? null : gridList[gridList.Count - 1];
     }
 
     public GameObject GetPreviousTile()
@@ -77,11 +77,7 @@ public class GridList : MonoBehaviour
         {
             if (tile.GetComponent<BridgeTile>().GetTakenStatus())
             {
-                /* V�nd listans ordning om korsningen �r helt tagen                                            *
-                *  Detta f�rhindrar en bug som g�r att ormen annars inte flyttar tillbaka till f�reg�ende ruta */
-                gridList.Reverse();
-                gridList.Remove(tile);
-                gridList.Reverse();
+                RemoveTakenBridge(tile);
             }
             else
             {
@@ -90,6 +86,15 @@ public class GridList : MonoBehaviour
         }
         //�terst�ll Tilens status, annars blir det problem n�r spelaren g�r tillbaka.
         tile.GetComponentInParent<ColliderScript>().ResetTile();
+    }
+
+    private void RemoveTakenBridge(GameObject bridgeTile)
+    {
+        /* V�nd listans ordning om korsningen �r helt tagen                                            *
+        *  Detta f�rhindrar en bug som g�r att ormen annars inte flyttar tillbaka till f�reg�ende ruta */
+        gridList.Reverse();
+        gridList.Remove(bridgeTile);
+        gridList.Reverse();
     }
 
     private void ClearList()

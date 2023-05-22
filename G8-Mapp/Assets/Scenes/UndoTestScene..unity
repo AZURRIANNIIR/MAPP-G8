@@ -176,7 +176,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -190,7 +190,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -469,9 +469,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4888553754141693917, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537296, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_Name
       value: SnakePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537298, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537299, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: m_RootOrder
@@ -525,13 +533,17 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5244110412170537302, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1438560703}
     - target: {fileID: 5244110412170537304, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
       propertyPath: maxAllowedDistanceFromMouse
-      value: 0.95
+      value: 0.97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f01b0c112dcf4587956787f9a032a6b, type: 3}
@@ -588,7 +600,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -602,7 +614,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -863,11 +875,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &335184006 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1666350266006601804, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
-  m_PrefabInstance: {fileID: 1666350265781518538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &335184007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1666350266006601805, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
@@ -1330,6 +1337,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &568524443 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1891967781739140604, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
+  m_PrefabInstance: {fileID: 1666350265781518538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &586985545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,7 +1395,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -1397,7 +1409,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1625,6 +1637,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1038209542576332485, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905031309864497816, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: goalPrefab
+      value: 
+      objectReference: {fileID: 1879175373}
+    - target: {fileID: 1905031309864497816, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: snakePrefab
+      value: 
+      objectReference: {fileID: 1964715323}
     - target: {fileID: 5697565474725709512, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1732,7 +1756,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -1746,7 +1770,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2160,120 +2184,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!224 &828138427 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 532543487775978601, guid: 517a5411caaaea645997657a3a274de5, type: 3}
-  m_PrefabInstance: {fileID: 594052562}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &882374248
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 828138427}
-    m_Modifications:
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 222.9013
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 127.8462
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -3.4945
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 521.0219
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975744, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: goalPrefab
-      value: 
-      objectReference: {fileID: 1879175373}
-    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: snakePrefab
-      value: 
-      objectReference: {fileID: 1964715323}
-    - target: {fileID: 5519480597190975745, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 1438560703}
-    - target: {fileID: 5519480597190975747, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
-      propertyPath: m_Name
-      value: NextLevelButton
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5bb3ac6ec6ae7664c8a3df57ea14f448, type: 3}
 --- !u!1 &1124241122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2944,7 +2854,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -2958,7 +2868,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3201,7 +3111,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3215,7 +3125,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3461,7 +3371,7 @@ PrefabInstance:
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 335184006}
+      objectReference: {fileID: 568524443}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3488,12 +3398,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncreasePitch
+      value: IncreasePitchForSFX
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 335184006}
+      objectReference: {fileID: 568524443}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3512,7 +3422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnCrossedOnceStatus.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncreasePitch
+      value: IncreasePitchForSFX
       objectReference: {fileID: 0}
     - target: {fileID: 8553892133717021009, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
       propertyPath: OnTakenStatus.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3769,7 +3679,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3783,7 +3693,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3957,7 +3867,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -3971,7 +3881,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4133,7 +4043,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -4147,7 +4057,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4724,6 +4634,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 687719552}
     m_Modifications:
+    - target: {fileID: 3119218397570399909, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119218397570399909, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119218397570399909, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119218397570399909, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3119218397570399909, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4746,15 +4676,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3119218398324478928, guid: 68be7d6a1ac704da8a125826b2182c12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4827,7 +4757,7 @@ MonoBehaviour:
   OnTakenStatus:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335184006}
+      - m_Target: {fileID: 568524443}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
         m_Mode: 2
@@ -4841,7 +4771,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 335184008}
         m_TargetAssemblyTypeName: AudioControllerScript, Assembly-CSharp
-        m_MethodName: IncreasePitch
+        m_MethodName: IncreasePitchForSFX
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
