@@ -8,6 +8,7 @@ public class BridgeTile : GridTile
 {
     [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
+    [SerializeField] private GridList gridList;
 
     [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
@@ -19,6 +20,9 @@ public class BridgeTile : GridTile
 
     [Header("States")]
     [SerializeField] private bool steppedOn;
+
+    [SerializeField] private int tileNumber;
+
 
     public UnityEvent OnCrossedOnceStatus;
 
@@ -36,7 +40,7 @@ public class BridgeTile : GridTile
 
     private void Update()
     {
-        if (steppedOn)
+/*        if (steppedOn)
         {
             if (snakeMovement.bridgeDisabled)
             {
@@ -47,6 +51,14 @@ public class BridgeTile : GridTile
                 temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
                 steppedOn = false;
             }
+        }*/
+
+        if (steppedOn && gridList.GetLength() == tileNumber + 2)
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
+        } else
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -61,6 +73,7 @@ public class BridgeTile : GridTile
                 print("ny plats");
                 tileCollider.TakeTile();
                 gameController.tileTaken();
+                //tileNumber = gridList.GetLength();
                 OnTakenStatus?.Invoke();
                 return;
             }
@@ -77,8 +90,7 @@ public class BridgeTile : GridTile
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 gameController.tileTaken();
-
-                print("bridge taken once");
+                tileNumber = gridList.GetLength();
             }
         }
     }
@@ -92,7 +104,7 @@ public class BridgeTile : GridTile
             turnOnPath();
         }
 
-        if (UndoButton.EventFired)
+        if (UndoButton.EventFired && !crossedOnce && !GetTakenStatus())
         {
             steppedOn = false;
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
