@@ -120,11 +120,7 @@ public class SnakeMovement : MonoBehaviour
         Vector3 mousePos = GetMousePosition();
 
         RaycastHit2D tile = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
-        if (tile.collider != null)
-        {
-            return true;
-        }
-        return false;
+        return tile.collider != null;
     }
 
     private bool IsMouseDistanceTooLong()
@@ -168,7 +164,7 @@ public class SnakeMovement : MonoBehaviour
 
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
 
-        Debug.Log(mouseRay.direction);
+        Debug.Log(this.GetType().Name + ": Riktningen mellan musen och ormen: " + mouseRay.direction);
         //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
         bool directionIsMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0;
         return directionIsMultiple;
@@ -191,7 +187,6 @@ public class SnakeMovement : MonoBehaviour
             if (transform.position.y != gridListScript.GetPreviousTile().transform.position.y)
             {
                 gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
-
             }
         }
     }
