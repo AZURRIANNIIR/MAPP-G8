@@ -10,6 +10,7 @@ public class UndoButton : MonoBehaviour
 
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
+    private GameController gameController;
 
     public static bool EventFired { get; private set; }
 
@@ -21,11 +22,12 @@ public class UndoButton : MonoBehaviour
     {
         undoButton = GetComponentInChildren<Button>();
         gridListScript = FindObjectOfType<GridList>();
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Update()
     {
-        undoButton.interactable = !gridListScript.IsListEmpty();
+        undoButton.interactable = !gridListScript.IsListEmpty() && !gameController.GameWon;
     }
 
     public void ClickAction()
