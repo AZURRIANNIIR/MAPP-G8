@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
-    [SerializeField] private ParticleSystemScript particleSystemScript;
     private int numberOfTiles;
     [field:SerializeField] public bool GameWon { get; private set; }
 
@@ -60,9 +59,8 @@ public class GameController : MonoBehaviour
     {
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
-
             GameWon = true;
-            print("win");
+            
         }
     }
 
