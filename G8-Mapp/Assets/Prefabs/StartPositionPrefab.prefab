@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3973116569632568922}
   - component: {fileID: 1845377500}
   - component: {fileID: 1234519092186768165}
+  - component: {fileID: 6467771277216884629}
   m_Layer: 0
   m_Name: StartPositionPrefab
   m_TagString: StartPosition
@@ -111,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.029703, y: 1.029703}
   m_EdgeRadius: 0
+--- !u!114 &6467771277216884629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973116569632568921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8c4c3b408f84e42b9fad01d35f16b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
