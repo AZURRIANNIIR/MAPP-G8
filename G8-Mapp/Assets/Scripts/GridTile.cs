@@ -10,6 +10,10 @@ public class GridTile : MonoBehaviour
     [SerializeField] protected GameController gameController;
     public UnityEvent OnTakenStatus;
 
+    readonly protected float PitchIncreaseValue = 0.02f;
+
+   // private AudioClip tileTakenSound;
+
     protected void Start()
     {
         if (!tileCollider)
@@ -22,6 +26,29 @@ public class GridTile : MonoBehaviour
             gameController = FindObjectOfType<GameController>();
         }
     }
+
+#if UNITY_EDITOR
+    protected void Reset()
+    {
+        AudioClip tileTakenSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Sounds/tile_taken_sound.wav", typeof(AudioClip));
+        if (!tileTakenSound)
+        {
+            Debug.LogError(transform.parent.gameObject.name +": Kunde inte hitta det ljudklipp som är specifierat i skript-filen");
+            return;
+        }
+
+        UnityAction<AudioClip> playSound = new UnityAction<AudioClip>(GameObject.Find("SFX_Object").GetComponent<AudioSource>().PlayOneShot);
+        if (playSound == null)
+        {
+            Debug.LogError(transform.parent.name + ": Kunde inte hitta ett AudioControlller-objekt. Finns det i scenen?");
+            return;
+        }
+        UnityEditor.Events.UnityEventTools.AddObjectPersistentListener(OnTakenStatus, playSound, tileTakenSound);
+
+        UnityAction<float> increasePitch = new UnityAction<float>(GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>().IncreasePitchForSFX);
+        UnityEditor.Events.UnityEventTools.AddFloatPersistentListener(OnTakenStatus, increasePitch, PitchIncreaseValue);
+    }
+#endif
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
