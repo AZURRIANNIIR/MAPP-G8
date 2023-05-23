@@ -21,9 +21,21 @@ public class NextLevel : MonoBehaviour
         //Hitta den nuvarande scenens namn
         currentScene = SceneManager.GetActiveScene().name;
 
+        #region Kod för att hitta komponenter om de inte är inställda
+
         if (!gameController)
         {
             gameController = FindObjectOfType<GameController>();
+        }
+
+        if (!snakePrefab)
+        {
+            snakePrefab = GameObject.FindGameObjectWithTag("Snake");
+        }
+
+        if (!goalPrefab)
+        {
+            goalPrefab = GameObject.FindGameObjectWithTag("Goal");
         }
 
         if (!nextLevel)
@@ -35,6 +47,8 @@ public class NextLevel : MonoBehaviour
         { 
             text = GetComponentInChildren<TextMeshProUGUI>();
         }
+
+        #endregion
     }
 
     private void Start()

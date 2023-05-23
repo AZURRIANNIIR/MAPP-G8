@@ -34,6 +34,20 @@ public class AudioControllerScript : MonoBehaviour
     {
         sfxSource.pitch -= pitchValue;    
     }
+
+    public void PlaySFXWithTempPitch(float pitchValue)
+    {
+        float tempPitch = sfxSource.pitch;
+        sfxSource.pitch = pitchValue;
+        sfxSource.PlayOneShot(sfxSource.clip);
+        StartCoroutine(ResetPitch(tempPitch));
+    }
     #endregion
+
+    private IEnumerator ResetPitch(float pitch)
+    {
+        yield return new WaitForSeconds(sfxSource.clip.length);
+        sfxSource.pitch = pitch;
+    }
 
 }
