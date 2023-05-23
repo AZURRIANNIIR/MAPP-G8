@@ -725,7 +725,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -742,7 +742,7 @@ PrefabInstance:
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 6235061541026525695}
+      objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -971,15 +971,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6235061541026525695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7174013244163879247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8c4c3b408f84e42b9fad01d35f16b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

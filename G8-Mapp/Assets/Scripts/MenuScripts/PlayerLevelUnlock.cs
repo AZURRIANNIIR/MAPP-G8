@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class PlayerLevelUnlock : MonoBehaviour
 {
     [SerializeField] int levelUnlock = 0;
+    [SerializeField] bool reset = true;
     int numberLocked;
+   
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,8 +16,12 @@ public class PlayerLevelUnlock : MonoBehaviour
         {
             numberLocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
 
-            
-            if(levelUnlock > numberLocked)
+            if (reset)
+            {
+                PlayerPrefs.DeleteAll();
+            }
+
+            if (levelUnlock > numberLocked)
             {
                 PlayerPrefs.SetInt("levelsUnlocked", levelUnlock);
                 numberLocked = levelUnlock;
@@ -23,6 +29,7 @@ public class PlayerLevelUnlock : MonoBehaviour
             Debug.Log("Upplåst: " + numberLocked + "levelUnlock: " + levelUnlock);
 
         }
+        
     }
 
 }
