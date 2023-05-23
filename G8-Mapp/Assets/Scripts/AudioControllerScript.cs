@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class AudioControllerScript : MonoBehaviour
 {
-
     private const float PITCH_CHANGE_VALUE = 0.02f;
     private const float PITCH_MIN_VALUE = 1.0f;
 
@@ -40,6 +39,7 @@ public class AudioControllerScript : MonoBehaviour
         float tempPitch = sfxSource.pitch;
         sfxSource.pitch = pitchValue;
         sfxSource.PlayOneShot(sfxSource.clip);
+        //Coroutinen möjliggör en fördröjning
         StartCoroutine(ResetPitch(tempPitch));
     }
     #endregion

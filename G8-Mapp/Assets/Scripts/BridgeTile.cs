@@ -31,8 +31,32 @@ public class BridgeTile : GridTile
         {
             snakeMovement = FindObjectOfType<SnakeMovement>();
         }
-        
     }
+
+#if UNITY_EDITOR
+    new private void Reset()
+    {
+        base.Reset();
+
+        AudioClip crossedOnceSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Sounds/crossroad_crossed_once_sound.wav", typeof(AudioClip));
+        if (!crossedOnceSound)
+        {
+            Debug.LogError(transform.parent.gameObject.name +": Kunde inte hitta det ljudklipp som är specifierat för första korsningen i skript-filen.");
+            return;
+        }
+
+        UnityAction<AudioClip> playCrossedOnceSound = new UnityAction<AudioClip>(GameObject.Find("SFX_Object").GetComponent<AudioSource>().PlayOneShot);
+        if (playCrossedOnceSound == null)
+        {
+            Debug.LogError(transform.parent.gameObject.name = ": Kunde inte hitta ett AudioController-objekt. Finns det ett i scenen?");
+            return;
+        }
+        UnityEditor.Events.UnityEventTools.AddObjectPersistentListener(OnCrossedOnceStatus, playCrossedOnceSound, crossedOnceSound);
+
+        UnityAction<float> increasePitch = new UnityAction<float>(GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>().IncreasePitchForSFX);
+        UnityEditor.Events.UnityEventTools.AddFloatPersistentListener(OnCrossedOnceStatus, increasePitch, PitchIncreaseValue);
+    }
+#endif
 
     private void Update()
     {
