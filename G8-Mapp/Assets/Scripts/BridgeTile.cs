@@ -147,7 +147,7 @@ public class BridgeTile : GridTile
             rightBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 
-        if (!GetTakenStatus())
+        if (!crossedOnce)
         {
             enterDirection = direction;
         }
