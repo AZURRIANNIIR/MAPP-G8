@@ -11,13 +11,14 @@ public class Continue : MonoBehaviour
     {
         //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
             StartCoroutine(LoadSceneDelay());
-            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+          //  SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
     private IEnumerator LoadSceneDelay()
     {
         //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+        Debug.Log(PlayerPrefs.GetInt("SavedScene"));
 
     }
     private void OnApplicationFocus(bool focus)
@@ -32,7 +33,7 @@ public class Continue : MonoBehaviour
         }
     }
 
-    public void saveScene()
+    public void SaveScene()
     {
         //Denna metod sparar den nuvarande scenen
         PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
