@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Continue : MonoBehaviour
 {
-    private int continueScene;
 
     public void ContinueGame()
     {
         //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
             StartCoroutine(LoadSceneDelay());
-          //  SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
+          //SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
     private IEnumerator LoadSceneDelay()
     {
@@ -25,11 +24,23 @@ public class Continue : MonoBehaviour
     {
         //Om spelaren går ut ur spelet osv sparas det nuvarande buildIndex med playerPrefs, vilket gör att nuvarande scen sparas var spelaren lämnade det
         if (focus)
-        {
-        }
+        { }
         else
         {
             PlayerPrefs.SetInt("SavedScene",SceneManager.GetActiveScene().buildIndex);
+            Debug.Log(PlayerPrefs.GetInt("SavedScene"));
+
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        if (Application.isPlaying) {
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+            Debug.Log(PlayerPrefs.GetInt("SavedScene"));
+
         }
     }
 
@@ -37,5 +48,7 @@ public class Continue : MonoBehaviour
     {
         //Denna metod sparar den nuvarande scenen
         PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+        Debug.Log(PlayerPrefs.GetInt("SavedScene"));
+
     }
 }

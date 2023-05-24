@@ -219,11 +219,42 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2030546970}
+    - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 24156623}
+    - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SaveScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: goBacktoMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Continue, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 738815941702667846, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GoToMainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+--- !u!114 &24156623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4891210484773064658, guid: ad83241b7fd9dd048b8dbdf043bf147a, type: 3}
+  m_PrefabInstance: {fileID: 24156622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab1fa10404adb24e97321cca10cbf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &383961665
 PrefabInstance:
   m_ObjectHideFlags: 0
