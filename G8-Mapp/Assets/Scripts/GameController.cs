@@ -24,6 +24,10 @@ public class GameController : MonoBehaviour
         {
             button = FindObjectOfType<TriggerButtonScript>();
         }
+        if (!goal)
+        {
+            goal = GameObject.FindGameObjectWithTag("Goal");
+        }
     }
 
     [System.Obsolete]

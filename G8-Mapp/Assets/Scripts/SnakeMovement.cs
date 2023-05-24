@@ -26,10 +26,12 @@ public class SnakeMovement : MonoBehaviour
     public bool bridgeDisabled;
     public BridgeTile lastBridgeTile;
 
+    #region Vectors
     private Vector3 screenPoint;
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+    #endregion
 
     public static Action OnReturnToStart;
     public static Action<Vector3> OnMovement;
@@ -199,6 +201,8 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
+
+    #region Funktioner för att sätta en tile som är efter en bro
     private void CheckForGridTile(Collider2D collision)
     {
         int rotation = Mathf.RoundToInt(snakeHead.GetZRotation());
@@ -257,6 +261,7 @@ public class SnakeMovement : MonoBehaviour
 
         return direction;
     }
+    #endregion
 
     private void OnTriggerExit2D(Collider2D collision)
     {
