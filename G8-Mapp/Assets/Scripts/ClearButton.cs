@@ -2,27 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClearButton : MonoBehaviour
 {
-    private const float INVOKE_DELAY = 0.02f;
     //Denna event kan andra skript subscriba till och köra egna funktioner på när den körs
     //Det måste dock göras i kod, inte genom inspektorn som det går med UnityEvents
     public static event Action OnClick;
 
-    public static bool EventFired {  get; private set; }
+    private Button button;
+    private GameController gameController;
+
+    private void Awake()
+    {
+        button = GetComponentInChildren<Button>();
+        gameController = FindObjectOfType<GameController>();
+    }
+
+    public void Update()
+    {
+        button.interactable = !gameController.GameWon;
+    }
 
     public void ClickAction()
     {
-        OnClick?.Invoke();
+        StartCoroutine(ClearEvent());
         Debug.Log("Spelaren klickade just på ClearKnappen");
-        EventFired = true;
-        //Kör nedanstående funktion en kort tid efter att vi kört våran Event
-        Invoke("SetEventStatusToFalse", INVOKE_DELAY);
     }
 
-    private void SetEventStatusToFalse()
+    private IEnumerator ClearEvent()
     {
-        EventFired = false;
+        yield return new WaitForSeconds(1);
+        OnClick?.Invoke();
     }
 }

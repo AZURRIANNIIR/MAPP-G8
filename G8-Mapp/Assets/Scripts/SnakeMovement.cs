@@ -30,7 +30,6 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentScreenPoint;
 
     public static Action OnReturnToStart;
-
     public static Action<Vector3> OnMovement;
 
     private void Awake()

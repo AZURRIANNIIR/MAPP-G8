@@ -28,7 +28,7 @@ public class ParticleSystemScript : MonoBehaviour
         var em = ps.emission;
         em.enabled = false;
 
-        if (gameController.win == true)
+        if (gameController.GameWon == true)
         {
             em.enabled = true;
         }

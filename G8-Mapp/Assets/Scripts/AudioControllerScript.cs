@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class AudioControllerScript : MonoBehaviour
 {
-
     private const float PITCH_CHANGE_VALUE = 0.02f;
     private const float PITCH_MIN_VALUE = 1.0f;
 
@@ -15,6 +14,11 @@ public class AudioControllerScript : MonoBehaviour
     {
         //Subscriba till Undo-knappens event automatiskt, så slipper vi göra det manuellt för varje scen.
         FindObjectOfType<UndoButton>().GetComponent<Button>().onClick.AddListener(() => DecreasePitchForSFX(PITCH_CHANGE_VALUE));
+        AudioSource[] sources = { sfxSource, musicSource };
+        foreach(AudioSource source in sources)
+        {
+            source.volume = AudioListener.volume;
+        }
     }
 
     private void Update()
@@ -34,6 +38,20 @@ public class AudioControllerScript : MonoBehaviour
     {
         sfxSource.pitch -= pitchValue;    
     }
+
+    public void PlaySFXWithTempPitch(float pitchValue)
+    {
+        float tempPitch = sfxSource.pitch;
+        sfxSource.pitch = pitchValue;
+        sfxSource.PlayOneShot(sfxSource.clip);
+        //Coroutinen möjliggör en fördröjning
+        StartCoroutine(ResetPitch(tempPitch));
+    }
     #endregion
 
+    private IEnumerator ResetPitch(float pitch)
+    {
+        yield return new WaitForSeconds(sfxSource.clip.length);
+        sfxSource.pitch = pitch;
+    }
 }

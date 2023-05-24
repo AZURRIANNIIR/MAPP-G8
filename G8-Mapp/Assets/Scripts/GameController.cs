@@ -15,9 +15,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
-    [SerializeField] private ParticleSystemScript particleSystemScript;
     private int numberOfTiles;
-    public bool win = false;
+    [field:SerializeField] public bool GameWon { get; private set; }
 
     private void Awake()
     {
@@ -60,9 +59,8 @@ public class GameController : MonoBehaviour
     {
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
-
-            win = true;
-            print("win");
+            GameWon = true;
+            
         }
     }
 
@@ -82,7 +80,8 @@ public class GameController : MonoBehaviour
     {
         foreach(ColliderScript colliderScript in tileColliders)
         {
-            if (!button.TileList.Contains(colliderScript.gameObject)) //Jag får error här ifrån /Emma
+            //Knapppen får själv ta hand om de tiles som finns i dess lista
+            if (!button.TileList.Contains(colliderScript.gameObject))
             {
                 colliderScript.ResetTile();
             }

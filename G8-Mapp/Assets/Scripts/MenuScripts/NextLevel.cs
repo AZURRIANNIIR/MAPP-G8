@@ -21,9 +21,20 @@ public class NextLevel : MonoBehaviour
         //Hitta den nuvarande scenens namn
         currentScene = SceneManager.GetActiveScene().name;
 
+        #region Kod för att hitta komponenter om de inte är inställda
         if (!gameController)
         {
             gameController = FindObjectOfType<GameController>();
+        }
+
+        if (!snakePrefab)
+        {
+            snakePrefab = GameObject.FindGameObjectWithTag("Snake");
+        }
+
+        if (!goalPrefab)
+        {
+            goalPrefab = GameObject.FindGameObjectWithTag("Goal");
         }
 
         if (!nextLevel)
@@ -35,6 +46,7 @@ public class NextLevel : MonoBehaviour
         { 
             text = GetComponentInChildren<TextMeshProUGUI>();
         }
+        #endregion
     }
 
     private void Start()
@@ -49,7 +61,7 @@ public class NextLevel : MonoBehaviour
     private void Update()
     {
         //Kollar om snake har nått goalprefab
-        if(snakePrefab.transform.position == goalPrefab.transform.position && gameController.win == true)
+        if(snakePrefab.transform.position == goalPrefab.transform.position && gameController.GameWon == true)
         {
            //Gör att knappen är påslagen när de har nått goalprefab
             nextLevel.interactable = true;
