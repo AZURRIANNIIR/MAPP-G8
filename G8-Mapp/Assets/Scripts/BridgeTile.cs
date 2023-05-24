@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class BridgeTile : GridTile
 {
-    [SerializeField] public bool crossedOnce;
+    [SerializeField] private bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
     [SerializeField] private GameObject snake;
 
@@ -186,7 +186,12 @@ public class BridgeTile : GridTile
 
     private void OnDisable()
     {
-        afterGrid.SnakeOnTile -= SetTemporaryColliderStatus;
+        if (afterGrid)
+        {
+            afterGrid.SnakeOnTile -= SetTemporaryColliderStatus;
+        }
         SnakeMovement.OnReturnToStart -= ClearTileAfterBridge;
+
+
     }
 }

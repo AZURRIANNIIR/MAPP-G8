@@ -93,9 +93,9 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
-    public void setBridgeNotTaken()
+    public void SetBridgeNotTaken()
     {
-        lastBridgeTile.crossedOnce = false;
+        lastBridgeTile.SetCrossedOnceStatus(false);
     }
 
     #region Funktioner som återställer ormen
