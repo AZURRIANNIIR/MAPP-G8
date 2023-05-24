@@ -8,6 +8,7 @@ public class BridgeTile : GridTile
 {
     [SerializeField] public bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
+    [SerializeField] private GameObject snake;
 
     [Header("Colliders")]
     [SerializeField] private GameObject upperBoxCollider;
@@ -18,7 +19,7 @@ public class BridgeTile : GridTile
     [SerializeField] private GameObject temporaryCollider;
 
     [Header("States")]
-    [SerializeField] private bool steppedOn;
+    [SerializeField] string enterDirection;
 
     public UnityEvent OnCrossedOnceStatus;
 
@@ -39,18 +40,8 @@ public class BridgeTile : GridTile
         base.Reset();
 
         AudioClip crossedOnceSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Sounds/crossroad_crossed_once_sound.wav", typeof(AudioClip));
-        if (!crossedOnceSound)
-        {
-            Debug.LogError(transform.parent.gameObject.name +": Kunde inte hitta det ljudklipp som är specifierat för första korsningen i skript-filen.");
-            return;
-        }
 
         UnityAction<AudioClip> playCrossedOnceSound = new UnityAction<AudioClip>(GameObject.Find("SFX_Object").GetComponent<AudioSource>().PlayOneShot);
-        if (playCrossedOnceSound == null)
-        {
-            Debug.LogError(transform.parent.gameObject.name = ": Kunde inte hitta ett AudioController-objekt. Finns det ett i scenen?");
-            return;
-        }
         UnityEditor.Events.UnityEventTools.AddObjectPersistentListener(OnCrossedOnceStatus, playCrossedOnceSound, crossedOnceSound);
 
         UnityAction<float> increasePitch = new UnityAction<float>(GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>().IncreasePitchForSFX);
@@ -60,17 +51,17 @@ public class BridgeTile : GridTile
 
     private void Update()
     {
-        if (steppedOn)
+        if (snake.transform.position.x == transform.position.x && (snake.transform.position.y == transform.position.y+1 || snake.transform.position.y == transform.position.y-1) && enterDirection.Equals("Vertical") && crossedOnce)
         {
-            if (snakeMovement.bridgeDisabled)
-            {
-                temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
-            }
-            else if (!snakeMovement.bridgeDisabled)
-            {
-                temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
-                steppedOn = false;
-            }
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if (snake.transform.position.y == transform.position.y && (snake.transform.position.x == transform.position.x + 1 || snake.transform.position.x == transform.position.x - 1) && enterDirection.Equals("Horizontal") && crossedOnce)
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else 
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -101,8 +92,6 @@ public class BridgeTile : GridTile
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 gameController.tileTaken();
-
-                print("bridge taken once");
             }
         }
     }
@@ -112,14 +101,17 @@ public class BridgeTile : GridTile
 
         if (collision.gameObject.CompareTag("Snake"))
         {
-            steppedOn = true;
             turnOnPath();
         }
 
-        if (UndoButton.EventFired)
+        if (collision.gameObject.CompareTag("Snake") && GetTakenStatus())
         {
-            steppedOn = false;
-            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+            tileCollider.EnableCollider();
+        }
+
+        if (collision.gameObject.CompareTag("Snake") && UndoButton.EventFired)
+        {
+            tileCollider.DisableCollider();
         }
     }
 
@@ -153,6 +145,11 @@ public class BridgeTile : GridTile
         {
             leftBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
             rightBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        if (!GetTakenStatus())
+        {
+            enterDirection = direction;
         }
     }
 }

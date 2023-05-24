@@ -14,6 +14,11 @@ public class AudioControllerScript : MonoBehaviour
     {
         //Subscriba till Undo-knappens event automatiskt, så slipper vi göra det manuellt för varje scen.
         FindObjectOfType<UndoButton>().GetComponent<Button>().onClick.AddListener(() => DecreasePitchForSFX(PITCH_CHANGE_VALUE));
+        AudioSource[] sources = { sfxSource, musicSource };
+        foreach(AudioSource source in sources)
+        {
+            source.volume = AudioListener.volume;
+        }
     }
 
     private void Update()
@@ -49,5 +54,4 @@ public class AudioControllerScript : MonoBehaviour
         yield return new WaitForSeconds(sfxSource.clip.length);
         sfxSource.pitch = pitch;
     }
-
 }

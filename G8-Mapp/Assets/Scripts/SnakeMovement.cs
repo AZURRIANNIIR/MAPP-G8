@@ -30,7 +30,6 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentScreenPoint;
 
     public static Action OnReturnToStart;
-
     public static Action<Vector3> OnMovement;
 
     private void Awake()
@@ -197,7 +196,7 @@ public class SnakeMovement : MonoBehaviour
         {
             bridgeDisabled = true;
             lastBridgeTile = collision.GetComponent<BridgeTile>();
-
+            //print("Min plats: " + transform.position);
         }
 
         if (collision.CompareTag("GridTile"))
