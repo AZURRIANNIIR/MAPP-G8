@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//Vi ärver här från GridTile-skriptet
 public class BridgeTile : GridTile
 {
     [SerializeField] public bool crossedOnce;
@@ -23,6 +22,8 @@ public class BridgeTile : GridTile
 
     public UnityEvent OnCrossedOnceStatus;
 
+    private GridTile afterGrid;
+
     new private void Start()
     {
         base.Start();
@@ -32,8 +33,12 @@ public class BridgeTile : GridTile
         {
             snakeMovement = FindObjectOfType<SnakeMovement>();
         }
-    }
 
+        if (!snake)
+        {
+            snake = GameObject.FindGameObjectWithTag("Snake");
+        }
+    }
 #if UNITY_EDITOR
     new private void Reset()
     {
@@ -125,6 +130,27 @@ public class BridgeTile : GridTile
         crossedOnce = state;
     }
 
+    public void SetTileAfterBridge(GridTile tileScript)
+    {
+        if (tileScript == null)
+        {
+            return;
+        }
+
+        afterGrid = tileScript;
+        afterGrid.SnakeOnTile += SetTemporaryColliderStatus;
+    }
+
+    private void ClearTileAfterBridge()
+    {
+        afterGrid = null;
+    }
+
+    private void SetTemporaryColliderStatus(bool state)
+    {
+        temporaryCollider.GetComponent<Collider2D>().enabled = state;
+    }
+
     private void turnOnPath()
     {
         print("Colliders borde stängas av");
@@ -151,5 +177,16 @@ public class BridgeTile : GridTile
         {
             enterDirection = direction;
         }
+    }
+
+    private void OnEnable()
+    {
+        SnakeMovement.OnReturnToStart += ClearTileAfterBridge;
+    }
+
+    private void OnDisable()
+    {
+        afterGrid.SnakeOnTile -= SetTemporaryColliderStatus;
+        SnakeMovement.OnReturnToStart -= ClearTileAfterBridge;
     }
 }

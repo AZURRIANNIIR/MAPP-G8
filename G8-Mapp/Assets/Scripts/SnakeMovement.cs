@@ -15,10 +15,12 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask tileMask;
     [Header("Components")]
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [SerializeField] private Transform startPosition;
+    private SnakeHead snakeHead;
     [Header("States")]
     [SerializeField] private bool onTile;
     public bool bridgeDisabled;
@@ -41,6 +43,7 @@ public class SnakeMovement : MonoBehaviour
         transform.position = startPosition.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
+        snakeHead = GetComponentInChildren<SnakeHead>();
     }
 
     private void OnMouseDown()
@@ -187,7 +190,72 @@ public class SnakeMovement : MonoBehaviour
             {
                 gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
             }
+            if (!UndoButton.EventFired && !collision.GetComponent<BridgeTile>().GetTakenStatus())
+            {
+                Debug.LogWarning("Försöker hitta en gridTile");
+                Debug.LogWarning(Mathf.RoundToInt(snakeHead.GetZRotation()));
+                CheckForGridTile(collision);
+            }
         }
+    }
+
+    private void CheckForGridTile(Collider2D collision)
+    {
+        int rotation = Mathf.RoundToInt(snakeHead.GetZRotation());
+        Vector2 direction = DecideVectorDirection(rotation);
+
+        float raycastDistance = 1f;
+        RaycastHit2D tileCheck = Physics2D.Raycast(transform.position, direction, raycastDistance, tileMask);
+
+        //Visualisera från ormens position vart linjen når ut
+        Debug.DrawLine(transform.position, (direction.normalized * raycastDistance) + (Vector2)transform.position, Color.cyan, 1f);
+
+        if (tileCheck.collider != null)
+        {
+            if (tileCheck.collider.gameObject.CompareTag("GridTile"))
+            {
+                Debug.LogWarning("Hittade en GridTile");
+                AddGridTileToBridge(collision, tileCheck);
+            }
+        }
+    }
+
+    private void AddGridTileToBridge(Collider2D collision, RaycastHit2D tileCheck)
+    {
+        GridTile tileScript = tileCheck.collider.GetComponent<GridTile>();
+        Debug.LogWarning(tileScript != null);
+        collision.GetComponent<BridgeTile>().SetTileAfterBridge(tileScript);
+    }
+
+    private Vector2 DecideVectorDirection(int rotation)
+    {
+        //0 = Nedåt
+        //180 = Uppåt
+        //270 = Vänster
+        //90 = Höger
+        Vector2 direction = Vector2.zero;
+        if (rotation == 270)
+        {
+            Debug.LogWarning("Ormen är vänd åt vänster");
+            direction = Vector2.left;
+        }
+        if (rotation == 90)
+        {
+            Debug.LogWarning("Ormen är vänd åt höger");
+            direction = Vector2.right;
+        }
+        if (rotation == 180)
+        {
+            Debug.LogWarning("Ormen är vänd åt uppåt");
+            direction = Vector2.up;
+        }
+        if (rotation == 0)
+        {
+            Debug.LogWarning("Ormen är vänd åt nedåt");
+            direction = Vector2.down;
+        }
+
+        return direction;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

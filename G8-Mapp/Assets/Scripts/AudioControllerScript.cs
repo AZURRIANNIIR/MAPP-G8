@@ -10,20 +10,26 @@ public class AudioControllerScript : MonoBehaviour
 
     [SerializeField] private AudioSource sfxSource, musicSource;
 
+    [SerializeField] private bool respectUserSoundSettings;
+
     private void Awake()
     {
         //Subscriba till Undo-knappens event automatiskt, så slipper vi göra det manuellt för varje scen.
         FindObjectOfType<UndoButton>().GetComponent<Button>().onClick.AddListener(() => DecreasePitchForSFX(PITCH_CHANGE_VALUE));
         AudioSource[] sources = { sfxSource, musicSource };
-        foreach(AudioSource source in sources)
+
+        if (respectUserSoundSettings) 
         {
-            source.volume = AudioListener.volume;
+            foreach (AudioSource source in sources)
+            {
+                source.volume = AudioListener.volume;
+            }
         }
     }
 
     private void Update()
     {
-        //Pitchen för våran AudioSource ska inte bli mindre än standardvärdet (Som bestäms av våran konstant)
+        //Pitchen för våra AudioSources ska inte bli mindre än standardvärdet (Som bestäms av våran konstant)
         sfxSource.pitch = Mathf.Clamp(sfxSource.pitch,PITCH_MIN_VALUE, Mathf.Infinity);
         musicSource.pitch = Mathf.Clamp(musicSource.pitch,PITCH_MIN_VALUE, Mathf.Infinity);
     }

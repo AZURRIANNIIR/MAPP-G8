@@ -97,6 +97,11 @@ public class SnakeHead : MonoBehaviour
         transform.localRotation = levelRotations[levelRotations.Count - 1];
     }
 
+    public float GetZRotation()
+    {
+        return transform.localRotation.eulerAngles.z;
+    }
+
     #region Enable/Disable-funktioner
     private void OnEnable()
     {
