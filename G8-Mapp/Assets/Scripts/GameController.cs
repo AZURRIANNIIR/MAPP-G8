@@ -59,7 +59,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         Win();
-        if (player.transform.position == goal.transform.position && gridTilesLeft > 0)
+        //Om checken är sätt till 0, så buggar meddelandet ut och visas även när spelaren har vunnit nivån.
+        if (player.transform.position == goal.transform.position && gridTilesLeft > 1)
         {
             Debug.Log("Spelaren gick till målet utan att ha tagit alla tiles");
             SnakeOnGoalEarly?.Invoke();
@@ -71,7 +72,6 @@ public class GameController : MonoBehaviour
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
             GameWon = true;
-            
         }
     }
 
