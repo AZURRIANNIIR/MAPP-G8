@@ -602,6 +602,22 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 383961666}
+    - target: {fileID: 7174013244163879242, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174013244163879242, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 933460536}
+    - target: {fileID: 7174013244163879242, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174013244163879242, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7174013244163879245, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: nextScene
       value: Level 3
@@ -620,6 +636,11 @@ PrefabInstance:
       objectReference: {fileID: 383961666}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+--- !u!82 &933460536 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2285368722213426554, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+  m_PrefabInstance: {fileID: 933460535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1008089052
 PrefabInstance:
   m_ObjectHideFlags: 0
