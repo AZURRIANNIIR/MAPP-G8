@@ -64,10 +64,6 @@ public class BridgeTile : GridTile
         {
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
-        else 
-        {
-            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -103,7 +99,6 @@ public class BridgeTile : GridTile
 
     new private void OnTriggerExit2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag("Snake"))
         {
             TurnOnPath();
@@ -117,6 +112,7 @@ public class BridgeTile : GridTile
         if (collision.gameObject.CompareTag("Snake") && UndoButton.EventFired)
         {
             tileCollider.DisableCollider();
+            SetTemporaryColliderStatus(false);
         }
     }
 
