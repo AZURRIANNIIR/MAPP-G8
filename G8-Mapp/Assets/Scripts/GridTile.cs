@@ -14,8 +14,6 @@ public class GridTile : MonoBehaviour
 
     readonly protected float PitchIncreaseValue = 0.02f;
 
-   // private AudioClip tileTakenSound;
-
     protected void Start()
     {
         if (!tileCollider)
