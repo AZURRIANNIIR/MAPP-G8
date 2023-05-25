@@ -6,6 +6,7 @@ public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
     private const int DIRECTION_ANGLE = 180;
+    private const int DIRECTION_LEEWAY = 5;
     private float gridSize = 0f;
 
     [Header("Attributes")]
@@ -169,9 +170,11 @@ public class SnakeMovement : MonoBehaviour
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
 
         Debug.Log(this.GetType().Name + ": Riktningen mellan musen och ormen: " + mouseRay.direction);
-        //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? (det vill säga en rät linje)
-        bool directionIsMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 || Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0;
-        return directionIsMultiple;
+        //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? En viss avvikelse är godkänd.
+        //&&-operatörn behövs för att förhindra att ormen kan röra sig diagonalt på korsningar (det händer om ||-operatorn används)
+        bool xDirectionisMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 && Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE <= DIRECTION_LEEWAY;
+        bool yDirectionisMultiple = Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE == 0 && Mathf.RoundToInt(mouseRay.direction.y) % DIRECTION_ANGLE <= DIRECTION_LEEWAY;
+        return xDirectionisMultiple || yDirectionisMultiple;
     }
     #endregion
     #region OnTrigger-funktioner
