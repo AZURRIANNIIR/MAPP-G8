@@ -6,7 +6,7 @@ public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
     private const int DIRECTION_ANGLE = 180;
-    private const int DIRECTION_LEEWAY = 5;
+    private const int DIRECTION_LEEWAY = 4;
     private float gridSize = 0f;
 
     [Header("Attributes")]
