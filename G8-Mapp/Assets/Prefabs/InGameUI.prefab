@@ -725,7 +725,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2285368722213426554}
+      objectReference: {fileID: 1816323019383628483}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -753,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
+      value: SaveScene
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -761,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
+      value: Continue, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9208253338623093227, guid: 1111f355c8024da41a29512594735848, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -971,7 +971,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6096323956463496624
+--- !u!114 &1816323019383628483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
