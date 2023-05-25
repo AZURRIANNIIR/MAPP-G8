@@ -80,7 +80,7 @@ public class BridgeTile : GridTile
                 SetTakenStatus(true);
                 print("ny plats");
                 tileCollider.TakeTile();
-                gameController.tileTaken();
+                gameController.TileTaken();
                 OnTakenStatus?.Invoke();
                 return;
             }
@@ -96,7 +96,7 @@ public class BridgeTile : GridTile
                 }
                 crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
-                gameController.tileTaken();
+                gameController.TileTaken();
             }
         }
     }

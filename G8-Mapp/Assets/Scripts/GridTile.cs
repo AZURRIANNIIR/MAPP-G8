@@ -61,7 +61,7 @@ public class GridTile : MonoBehaviour
         taken = true;
         print("ny plats");
         tileCollider.TakeTile();
-        gameController.tileTaken();
+        gameController.TileTaken();
         OnTakenStatus.Invoke();
     }
 
