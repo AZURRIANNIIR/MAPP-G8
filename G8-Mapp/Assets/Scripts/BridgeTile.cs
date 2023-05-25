@@ -89,7 +89,6 @@ public class BridgeTile : GridTile
                     BridgeColliderScript bridgeCollider = (BridgeColliderScript)tileCollider;
                     bridgeCollider.ChangeBridgeSpriteToTaken();
                 }
-                crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 gameController.tileTaken();
             }
@@ -112,6 +111,11 @@ public class BridgeTile : GridTile
         if (collision.gameObject.CompareTag("Snake") && UndoButton.EventFired)
         {
             tileCollider.DisableCollider();
+        }
+
+        if (collision.gameObject.CompareTag("Snake") && !UndoButton.EventFired && !crossedOnce)
+        {
+            crossedOnce = true;
         }
     }
 
