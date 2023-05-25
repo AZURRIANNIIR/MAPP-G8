@@ -9,20 +9,20 @@ public class SnakeHead : MonoBehaviour
 {
     private const float ROTATION_VALUE = 90f;
 
-    private enum rotations { left, right, up, down }
-    [SerializeField] private rotations startRotation;
+    private enum Rotations { left, right, up, down }
+    [SerializeField] private Rotations startRotation;
 
     [SerializeField] private Vector3 currentPos;
 
     [SerializeField] private List<Quaternion> levelRotations;
 
     //Readonly f�r att f�rhindra alla former av modifiering. Det skulle annars m�jligg�ra att spelet slutar fungera som det �r t�nkt.
-    private readonly Dictionary<rotations, Vector3> rotationList = new Dictionary<rotations, Vector3>
+    private readonly Dictionary<Rotations, Vector3> rotationList = new Dictionary<Rotations, Vector3>
         {
-            { rotations.left, new Vector3(0f,0f, ROTATION_VALUE * 3f)},
-            { rotations.right, new Vector3(0f, 0f, ROTATION_VALUE)},
-            { rotations.up, new Vector3(0f, 0f, ROTATION_VALUE * 2f)},
-            { rotations.down, Vector3.zero }
+            { Rotations.left, new Vector3(0f,0f, ROTATION_VALUE * 3f)},
+            { Rotations.right, new Vector3(0f, 0f, ROTATION_VALUE)},
+            { Rotations.up, new Vector3(0f, 0f, ROTATION_VALUE * 2f)},
+            { Rotations.down, Vector3.zero }
         };
 
     private void Awake()
@@ -58,22 +58,22 @@ public class SnakeHead : MonoBehaviour
         //Till h�ger
         if (Mathf.RoundToInt(currentPos.x) < Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
-            transform.localRotation = Quaternion.Euler(rotationList[rotations.right]);
+            transform.localRotation = Quaternion.Euler(rotationList[Rotations.right]);
         }
         //Till v�nster
         if (Mathf.RoundToInt(currentPos.x) > Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
-            transform.localRotation = Quaternion.Euler(rotationList[rotations.left]);
+            transform.localRotation = Quaternion.Euler(rotationList[Rotations.left]);
         }
         //Ned�t
         if (Mathf.RoundToInt(currentPos.y) > Mathf.RoundToInt(vectorToBaseRotationOn.y))
         {
-            transform.localRotation = Quaternion.Euler(rotationList[rotations.down]);
+            transform.localRotation = Quaternion.Euler(rotationList[Rotations.down]);
         }
         //Upp�t
         if (Mathf.RoundToInt(currentPos.y) < Mathf.RoundToInt(vectorToBaseRotationOn.y))
         {
-            transform.localRotation = Quaternion.Euler(rotationList[rotations.up]);
+            transform.localRotation = Quaternion.Euler(rotationList[Rotations.up]);
         }
         if (!UndoButton.EventFired)
         {
@@ -95,6 +95,11 @@ public class SnakeHead : MonoBehaviour
 
         //Steg 3: Applicera i så fall rotationen.
         transform.localRotation = levelRotations[levelRotations.Count - 1];
+    }
+
+    public float GetZRotation()
+    {
+        return transform.localRotation.eulerAngles.z;
     }
 
     #region Enable/Disable-funktioner

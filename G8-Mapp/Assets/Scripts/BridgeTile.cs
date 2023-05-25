@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//Vi ärver här från GridTile-skriptet
 public class BridgeTile : GridTile
 {
-    [SerializeField] public bool crossedOnce;
+    [SerializeField] private bool crossedOnce;
     [SerializeField] private SnakeMovement snakeMovement;
     [SerializeField] private GameObject snake;
 
@@ -23,6 +22,8 @@ public class BridgeTile : GridTile
 
     public UnityEvent OnCrossedOnceStatus;
 
+    private GridTile afterGrid;
+
     new private void Start()
     {
         base.Start();
@@ -32,8 +33,12 @@ public class BridgeTile : GridTile
         {
             snakeMovement = FindObjectOfType<SnakeMovement>();
         }
-    }
 
+        if (!snake)
+        {
+            snake = GameObject.FindGameObjectWithTag("Snake");
+        }
+    }
 #if UNITY_EDITOR
     new private void Reset()
     {
@@ -75,7 +80,7 @@ public class BridgeTile : GridTile
                 SetTakenStatus(true);
                 print("ny plats");
                 tileCollider.TakeTile();
-                gameController.tileTaken();
+                gameController.TileTaken();
                 OnTakenStatus?.Invoke();
                 return;
             }
@@ -90,7 +95,7 @@ public class BridgeTile : GridTile
                     bridgeCollider.ChangeBridgeSpriteToTaken();
                 }
                 OnCrossedOnceStatus?.Invoke();
-                gameController.tileTaken();
+                gameController.TileTaken();
             }
         }
     }
@@ -100,7 +105,7 @@ public class BridgeTile : GridTile
 
         if (collision.gameObject.CompareTag("Snake"))
         {
-            turnOnPath();
+            TurnOnPath();
         }
 
         if (collision.gameObject.CompareTag("Snake") && GetTakenStatus())
@@ -129,7 +134,28 @@ public class BridgeTile : GridTile
         crossedOnce = state;
     }
 
-    private void turnOnPath()
+    public void SetTileAfterBridge(GridTile tileScript)
+    {
+        if (tileScript == null)
+        {
+            return;
+        }
+
+        afterGrid = tileScript;
+        afterGrid.SnakeOnTile += SetTemporaryColliderStatus;
+    }
+
+    private void ClearTileAfterBridge()
+    {
+        afterGrid = null;
+    }
+
+    private void SetTemporaryColliderStatus(bool state)
+    {
+        temporaryCollider.GetComponent<Collider2D>().enabled = state;
+    }
+
+    private void TurnOnPath()
     {
         print("Colliders borde stängas av");
         upperBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
@@ -138,7 +164,7 @@ public class BridgeTile : GridTile
         rightBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    public void turnOffPath(string direction)
+    public void TurnOffPath(string direction)
     {
         print("Colliders borde sättas på");
         if (direction == "Horizontal"){
@@ -155,5 +181,21 @@ public class BridgeTile : GridTile
         {
             enterDirection = direction;
         }
+    }
+
+    private void OnEnable()
+    {
+        SnakeMovement.OnReturnToStart += ClearTileAfterBridge;
+    }
+
+    private void OnDisable()
+    {
+        if (afterGrid)
+        {
+            afterGrid.SnakeOnTile -= SetTemporaryColliderStatus;
+        }
+        SnakeMovement.OnReturnToStart -= ClearTileAfterBridge;
+
+
     }
 }
