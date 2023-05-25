@@ -8,45 +8,28 @@ public class Continue : MonoBehaviour
 
     public void ContinueGame()
     {
-        //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
-            StartCoroutine(LoadSceneDelay());
-          //SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-    }
-    private IEnumerator LoadSceneDelay()
-    {
-        //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
-        yield return new WaitForSeconds(1);
-        int savedScene = PlayerPrefs.GetInt("SavedScene");
+        int savedScene = PlayerPrefs.GetInt("levelsUnlocked");
         if(savedScene > 0)
         {
-            SceneManager.LoadScene(savedScene);
+            StartCoroutine(LoadSceneDelay(savedScene));
         }
         else
         {
             SceneManager.LoadScene("Level 1");
         }
-
-       // SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-        Debug.Log(PlayerPrefs.GetInt("SavedScene"));
-
+        //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
+           
     }
-    private void OnApplicationFocus(bool focus)
+    private IEnumerator LoadSceneDelay(int scene)
     {
-        //Om spelaren går ut ur spelet osv sparas det nuvarande buildIndex med playerPrefs, vilket gör att nuvarande scen sparas var spelaren lämnade det
-        if (!focus)
-        {
-            PlayerPrefs.SetInt("SavedScene",SceneManager.GetActiveScene().buildIndex);
-            Debug.Log(PlayerPrefs.GetInt("SavedScene"));
-
-        }
-    }
- 
-
-    public void SaveScene()
-    {
-        //Denna metod sparar den nuvarande scenen
-        PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(PlayerPrefs.GetInt("SavedScene"));
+        //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(scene);
+        Debug.Log(PlayerPrefs.GetInt("levelsUnlocked"));
 
     }
 }
+
+
+
+
