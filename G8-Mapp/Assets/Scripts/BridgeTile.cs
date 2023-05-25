@@ -64,6 +64,10 @@ public class BridgeTile : GridTile
         {
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
+        else
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
