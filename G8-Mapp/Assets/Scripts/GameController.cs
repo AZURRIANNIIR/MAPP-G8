@@ -24,6 +24,10 @@ public class GameController : MonoBehaviour
         {
             button = FindObjectOfType<TriggerButtonScript>();
         }
+        if (!goal)
+        {
+            goal = GameObject.FindGameObjectWithTag("Goal");
+        }
     }
 
     [System.Obsolete]
@@ -64,16 +68,16 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void tileTaken()
+    public void TileTaken()
     {
-        gridTilesLeft = gridTilesLeft- 1;
+        gridTilesLeft--;
         //print("Tagen");
     }
 
     //Metodnamn upp för debatt
-    public void tileNotTaken()
+    public void TileNotTaken()
     {
-        gridTilesLeft += 1;
+        gridTilesLeft++;
     }
 	
     public void ResetTilesOnGrid()
@@ -92,10 +96,14 @@ public class GameController : MonoBehaviour
             button.DisableTilesInList();
         }
 
-        resetNumberOfTilesLeft();
+        if (!UndoButton.EventFired) 
+        {
+            ResetNumberOfTilesLeft();
+        }
+        
     }
 
-    private void resetNumberOfTilesLeft()
+    private void ResetNumberOfTilesLeft()
     {
         gridTilesLeft = numberOfTiles;
     }
@@ -103,13 +111,13 @@ public class GameController : MonoBehaviour
     #region Enable/Disable funktioner
     private void OnEnable()
     {
-        UndoButton.OnClick += tileNotTaken;
+        UndoButton.OnClick += TileNotTaken;
         SnakeMovement.OnReturnToStart += ResetTilesOnGrid;
     }
 
     private void OnDisable()
     {
-        UndoButton.OnClick -= tileNotTaken;
+        UndoButton.OnClick -= TileNotTaken;
         SnakeMovement.OnReturnToStart -= ResetTilesOnGrid;
     }    
     #endregion

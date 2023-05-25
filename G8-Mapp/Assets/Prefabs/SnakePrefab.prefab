@@ -138,6 +138,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+  tileMask:
+    serializedVersion: 2
+    m_Bits: 512
   snakeTrailRenderer: {fileID: 5244110412170537302}
   gridListScript: {fileID: 5244110412170537305}
   startPosition: {fileID: 0}
@@ -281,8 +284,8 @@ TrailRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 90
+    numCapVertices: 90
     alignment: 0
     textureMode: 0
     shadowBias: 0.5

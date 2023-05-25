@@ -5,7 +5,7 @@ using UnityEngine;
 public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
-    private const int DIRECTION_ANGLE = 90;
+    private const int DIRECTION_ANGLE = 180;
     private float gridSize = 0f;
 
     [Header("Attributes")]
@@ -15,19 +15,23 @@ public class SnakeMovement : MonoBehaviour
     [SerializeField] private GameObject snake;
     [Header("Layermasks")]
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask tileMask;
     [Header("Components")]
     [SerializeField] private TrailRenderer snakeTrailRenderer;
     [SerializeField] private GridList gridListScript;
     [SerializeField] private Transform startPosition;
+    private SnakeHead snakeHead;
     [Header("States")]
     [SerializeField] private bool onTile;
     public bool bridgeDisabled;
     public BridgeTile lastBridgeTile;
 
+    #region Vectors
     private Vector3 screenPoint;
     private Vector3 scanPos;
     private Vector3 currentPosition;
     private Vector3 currentScreenPoint;
+    #endregion
 
     public static Action OnReturnToStart;
     public static Action<Vector3> OnMovement;
@@ -41,6 +45,7 @@ public class SnakeMovement : MonoBehaviour
         transform.position = startPosition.position;
         snakeTrailRenderer = GetComponent<TrailRenderer>();
         gridListScript = GetComponent<GridList>();
+        snakeHead = GetComponentInChildren<SnakeHead>();
     }
 
     private void OnMouseDown()
@@ -90,9 +95,9 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
-    public void setBridgeNotTaken()
+    public void SetBridgeNotTaken()
     {
-        lastBridgeTile.crossedOnce = false;
+        lastBridgeTile.SetCrossedOnceStatus(false);
     }
 
     #region Funktioner som återställer ormen
@@ -181,14 +186,81 @@ public class SnakeMovement : MonoBehaviour
         {
             if (transform.position.x != gridListScript.GetPreviousTile().transform.position.x)
             {
-                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Horizontal");
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().TurnOffPath("Horizontal");
             }
             if (transform.position.y != gridListScript.GetPreviousTile().transform.position.y)
             {
-                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().TurnOffPath("Vertical");
+            }
+            if (!UndoButton.EventFired && !collision.GetComponent<BridgeTile>().GetTakenStatus())
+            {
+                Debug.LogWarning("Försöker hitta en gridTile");
+                Debug.LogWarning(Mathf.RoundToInt(snakeHead.GetZRotation()));
+                CheckForGridTile(collision);
             }
         }
     }
+
+    #region Funktioner för att sätta en tile som är efter en bro
+    private void CheckForGridTile(Collider2D collision)
+    {
+        int rotation = Mathf.RoundToInt(snakeHead.GetZRotation());
+        Vector2 direction = DecideVectorDirection(rotation);
+
+        float raycastDistance = 1f;
+        RaycastHit2D tileCheck = Physics2D.Raycast(transform.position, direction, raycastDistance, tileMask);
+
+        //Visualisera från ormens position vart linjen når ut
+        Debug.DrawLine(transform.position, (direction.normalized * raycastDistance) + (Vector2)transform.position, Color.cyan, 1f);
+
+        if (tileCheck.collider != null)
+        {
+            if (tileCheck.collider.gameObject.CompareTag("GridTile"))
+            {
+                Debug.LogWarning("Hittade en GridTile");
+                AddGridTileToBridge(collision, tileCheck);
+            }
+        }
+    }
+
+    private void AddGridTileToBridge(Collider2D collision, RaycastHit2D tileCheck)
+    {
+        GridTile tileScript = tileCheck.collider.GetComponent<GridTile>();
+        Debug.LogWarning(this.GetType().Name + "Gitlig GridTile hittad? " + tileScript != null);
+        collision.GetComponent<BridgeTile>().SetTileAfterBridge(tileScript);
+    }
+
+    private Vector2 DecideVectorDirection(int rotation)
+    {
+        //0 = Nedåt
+        //180 = Uppåt
+        //270 = Vänster
+        //90 = Höger
+        Vector2 direction = Vector2.zero;
+        if (rotation == 270)
+        {
+            Debug.LogWarning("Ormen är vänd åt vänster");
+            direction = Vector2.left;
+        }
+        if (rotation == 90)
+        {
+            Debug.LogWarning("Ormen är vänd åt höger");
+            direction = Vector2.right;
+        }
+        if (rotation == 180)
+        {
+            Debug.LogWarning("Ormen är vänd åt uppåt");
+            direction = Vector2.up;
+        }
+        if (rotation == 0)
+        {
+            Debug.LogWarning("Ormen är vänd åt nedåt");
+            direction = Vector2.down;
+        }
+
+        return direction;
+    }
+    #endregion
 
     private void OnTriggerExit2D(Collider2D collision)
     {
