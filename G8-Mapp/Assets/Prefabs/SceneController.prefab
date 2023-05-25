@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4219013621393710762
+--- !u!1 &7299456920184102747
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4219013621393710772}
-  - component: {fileID: 4219013621393710763}
+  - component: {fileID: 7182265416028645943}
+  - component: {fileID: 3940775039785864783}
   m_Layer: 0
-  m_Name: GameControllerPrefab
+  m_Name: SceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4219013621393710772
+--- !u!4 &7182265416028645943
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4219013621393710762}
+  m_GameObject: {fileID: 7299456920184102747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -31.43777, y: 2985.84, z: -10.559626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4219013621393710763
+--- !u!114 &3940775039785864783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4219013621393710762}
+  m_GameObject: {fileID: 7299456920184102747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c1893bb359094d7e8934f06d7cc4dd5, type: 3}
+  m_Script: {fileID: 11500000, guid: bc8c4c3b408f84e42b9fad01d35f16b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileColliders: []
-  button: {fileID: 0}
-  raycastBoxPrefab: {fileID: 7264726165556391294, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
-  raycastBoxes: []
-  bridgeBoxPrefab: {fileID: 8553892132776217570, guid: 1d7c2d606e5c2482ca6db51b6f0711dd, type: 3}
-  bridgeBoxes: []
-  player: {fileID: 0}
-  goal: {fileID: 0}
-  gridTilesLeft: 0
-  <GameWon>k__BackingField: 0
