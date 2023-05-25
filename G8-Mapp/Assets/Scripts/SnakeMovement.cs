@@ -5,7 +5,7 @@ using UnityEngine;
 public class SnakeMovement : MonoBehaviour
 {
     private const int LMB_NUMBER = 0;
-    private const int DIRECTION_ANGLE = 90;
+    private const int DIRECTION_ANGLE = 180;
     private float gridSize = 0f;
 
     [Header("Attributes")]
