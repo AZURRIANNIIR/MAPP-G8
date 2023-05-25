@@ -186,11 +186,11 @@ public class SnakeMovement : MonoBehaviour
         {
             if (transform.position.x != gridListScript.GetPreviousTile().transform.position.x)
             {
-                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Horizontal");
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().TurnOffPath("Horizontal");
             }
             if (transform.position.y != gridListScript.GetPreviousTile().transform.position.y)
             {
-                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().turnOffPath("Vertical");
+                gridListScript.GetMostRecentTile().GetComponent<BridgeTile>().TurnOffPath("Vertical");
             }
             if (!UndoButton.EventFired && !collision.GetComponent<BridgeTile>().GetTakenStatus())
             {
@@ -200,7 +200,6 @@ public class SnakeMovement : MonoBehaviour
             }
         }
     }
-
 
     #region Funktioner för att sätta en tile som är efter en bro
     private void CheckForGridTile(Collider2D collision)
@@ -227,7 +226,7 @@ public class SnakeMovement : MonoBehaviour
     private void AddGridTileToBridge(Collider2D collision, RaycastHit2D tileCheck)
     {
         GridTile tileScript = tileCheck.collider.GetComponent<GridTile>();
-        Debug.LogWarning(tileScript != null);
+        Debug.LogWarning(this.GetType().Name + "Gitlig GridTile hittad? " + tileScript != null);
         collision.GetComponent<BridgeTile>().SetTileAfterBridge(tileScript);
     }
 

@@ -34,7 +34,7 @@ public class UndoButton : MonoBehaviour
     {
         OnClick?.Invoke();
         EventFired = true;
-        Invoke("SetEventStatusToFalse", INVOKE_DELAY);
+        Invoke(nameof(SetEventStatusToFalse), INVOKE_DELAY);
     }
 
     private void SetEventStatusToFalse()
