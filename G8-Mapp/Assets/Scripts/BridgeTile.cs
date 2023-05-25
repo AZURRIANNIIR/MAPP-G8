@@ -22,7 +22,7 @@ public class BridgeTile : GridTile
 
     public UnityEvent OnCrossedOnceStatus;
 
-    private GridTile afterGrid;
+    [SerializeField] private GridTile afterGrid;
 
     new private void Start()
     {
