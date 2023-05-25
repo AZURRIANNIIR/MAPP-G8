@@ -32,17 +32,6 @@ public class Continue : MonoBehaviour
 
         }
     }
-    private void OnApplicationQuit()
-    {
-        if (Application.isPlaying) {
-        }
-        else
-        {
-            PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
-            Debug.Log(PlayerPrefs.GetInt("SavedScene"));
-
-        }
-    }
 
     public void SaveScene()
     {
