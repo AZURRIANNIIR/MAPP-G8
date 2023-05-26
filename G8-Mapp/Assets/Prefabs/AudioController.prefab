@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666350266006601805}
   - component: {fileID: 1666350266006601794}
+  - component: {fileID: 7712564517480446726}
   m_Layer: 0
   m_Name: AudioController
   m_TagString: AudioController
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666350266006601807}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.074829936, y: -0.36960837, z: 10.020925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,6 +49,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1891967781739140604}
   musicSource: {fileID: 3751096575325111460}
+  respectUserSoundSettings: 0
+--- !u!114 &7712564517480446726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666350266006601807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3433544145aefa44a828ef7d1859b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicAudioGameObject: {fileID: 5319095709536651235}
+  musicToggleGameObject: {fileID: 0}
+  soundEffectToggleGameObject: {fileID: 0}
+  audioToggleGameObject: {fileID: 0}
 --- !u!1 &5319095709536651235
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +78,7 @@ GameObject:
   - component: {fileID: 3751096575325111460}
   m_Layer: 0
   m_Name: Music_Object
-  m_TagString: Untagged
+  m_TagString: MusicSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +108,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fb6279e3cbf4a4641b9eaac3bdeef3bf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 811d25e59e8aa4aeda4d6c35dc7670a0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
