@@ -85,6 +85,11 @@ public class GameController : MonoBehaviour
     {
         gridTilesLeft++;
     }
+
+    public int getTilesLeft()
+    {
+        return gridTilesLeft;
+    }
 	
     public void ResetTilesOnGrid()
     {

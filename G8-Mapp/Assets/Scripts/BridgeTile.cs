@@ -64,6 +64,10 @@ public class BridgeTile : GridTile
         {
             temporaryCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
+        else
+        {
+            temporaryCollider.GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -90,7 +94,6 @@ public class BridgeTile : GridTile
                     BridgeColliderScript bridgeCollider = (BridgeColliderScript)tileCollider;
                     bridgeCollider.ChangeBridgeSpriteToTaken();
                 }
-                crossedOnce = true;
                 OnCrossedOnceStatus?.Invoke();
                 gameController.TileTaken();
             }
@@ -113,6 +116,11 @@ public class BridgeTile : GridTile
         {
             tileCollider.DisableCollider();
             SetTemporaryColliderStatus(false);
+        }
+
+        if (collision.gameObject.CompareTag("Snake") && !UndoButton.EventFired && !crossedOnce)
+        {
+            crossedOnce = true;
         }
     }
 
