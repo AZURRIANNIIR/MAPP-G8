@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelection : MonoBehaviour
 {
-    private string levelName;
-
     private IEnumerator WaitForSceneLoad(string LevelName)
     {
+        //laddar in en scen med en sekunds delay genom att ta en string 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(LevelName);
     }

@@ -11,6 +11,7 @@ public class PlayerLevelUnlock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Kollar om de har kollidat med tagen snake och om den har det så låser den upp leveln
         if (other.gameObject.CompareTag("Snake"))
         {
             numberLocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
