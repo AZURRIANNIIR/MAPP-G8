@@ -6,7 +6,7 @@ public class ParticleSystemScript : MonoBehaviour
 {
 
     [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private GameController gameController;
+    [SerializeField] public GameController gameController;
     void Start()
     {
         if (!gameController)

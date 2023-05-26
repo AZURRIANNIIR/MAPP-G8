@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,9 @@ public class GridTile : MonoBehaviour
     [SerializeField] protected ColliderScript tileCollider;
     [SerializeField] protected GameController gameController;
     public UnityEvent OnTakenStatus;
+    public event Action<bool> SnakeOnTile;
 
     readonly protected float PitchIncreaseValue = 0.02f;
-
-   // private AudioClip tileTakenSound;
 
     protected void Start()
     {
@@ -43,6 +43,11 @@ public class GridTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Snake"))
+        {
+            Debug.Log("Denna gridtile ska köra sin SnakeOnTile event nu");
+            SnakeOnTile?.Invoke(true);
+        }
         if (collision.gameObject.CompareTag("Snake") && !taken && !UndoButton.EventFired)
         {
             SetTileAsTaken();
@@ -54,7 +59,7 @@ public class GridTile : MonoBehaviour
         taken = true;
         print("ny plats");
         tileCollider.TakeTile();
-        gameController.tileTaken();
+        gameController.TileTaken();
         OnTakenStatus.Invoke();
     }
 
@@ -63,6 +68,7 @@ public class GridTile : MonoBehaviour
         if (collision.gameObject.CompareTag("Snake") && taken)
         {
             tileCollider.EnableCollider();
+            SnakeOnTile?.Invoke(false);
         }
     }
 

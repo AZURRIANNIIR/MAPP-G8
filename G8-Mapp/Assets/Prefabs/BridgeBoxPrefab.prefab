@@ -393,7 +393,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -580,12 +580,13 @@ MonoBehaviour:
       m_Calls: []
   crossedOnce: 0
   snakeMovement: {fileID: 0}
+  snake: {fileID: 0}
   upperBoxCollider: {fileID: 579904977}
   lowerBoxCollider: {fileID: 1300132417}
   leftBoxCollider: {fileID: 1650672558}
   rightBoxCollider: {fileID: 1533684334}
   temporaryCollider: {fileID: 1148193787859518503}
-  steppedOn: 0
+  enterDirection: 
   OnCrossedOnceStatus:
     m_PersistentCalls:
       m_Calls: []

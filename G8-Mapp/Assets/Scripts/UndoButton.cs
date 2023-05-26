@@ -10,6 +10,8 @@ public class UndoButton : MonoBehaviour
 
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
+    [SerializeField] GameObject startPosition;
+    
     private GameController gameController;
 
     public static bool EventFired { get; private set; }
@@ -23,18 +25,29 @@ public class UndoButton : MonoBehaviour
         undoButton = GetComponentInChildren<Button>();
         gridListScript = FindObjectOfType<GridList>();
         gameController = FindObjectOfType<GameController>();
+        if (!startPosition)
+        {
+            startPosition = GameObject.FindGameObjectWithTag("StartPosition");
+        }
     }
 
     private void Update()
     {
-        undoButton.interactable = !gridListScript.IsListEmpty() && !gameController.GameWon;
+        if (!gridListScript.IsListEmpty() && (gridListScript.GetMostRecentTile().transform.position == startPosition.transform.position))
+        {
+            undoButton.interactable = false;
+        }
+        else
+        {
+            undoButton.interactable = !gridListScript.IsListEmpty() && !gameController.GameWon;
+        }
     }
 
     public void ClickAction()
     {
         OnClick?.Invoke();
         EventFired = true;
-        Invoke("SetEventStatusToFalse", INVOKE_DELAY);
+        Invoke(nameof(SetEventStatusToFalse), INVOKE_DELAY);
     }
 
     private void SetEventStatusToFalse()

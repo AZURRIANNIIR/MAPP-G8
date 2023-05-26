@@ -6,20 +6,15 @@ using UnityEngine.UI;
 public class PlayerLevelUnlock : MonoBehaviour
 {
     [SerializeField] int levelUnlock = 0;
-    [SerializeField] bool reset = true;
     int numberLocked;
    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Kollar om de har kollidat med tagen snake och om den har det så låser den upp leveln
         if (other.gameObject.CompareTag("Snake"))
         {
             numberLocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
-
-            if (reset)
-            {
-                PlayerPrefs.DeleteAll();
-            }
 
             if (levelUnlock > numberLocked)
             {

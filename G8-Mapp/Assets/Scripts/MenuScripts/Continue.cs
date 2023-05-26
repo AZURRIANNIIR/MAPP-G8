@@ -5,36 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class Continue : MonoBehaviour
 {
-    private int continueScene;
 
     public void ContinueGame()
     {
-        //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
-            StartCoroutine(LoadSceneDelay());
-            SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-    }
-    private IEnumerator LoadSceneDelay()
-    {
-        //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(PlayerPrefs.GetInt("SavedScene"));
-
-    }
-    private void OnApplicationFocus(bool focus)
-    {
-        //Om spelaren går ut ur spelet osv sparas det nuvarande buildIndex med playerPrefs, vilket gör att nuvarande scen sparas var spelaren lämnade det
-        if (focus)
+        //använder sig av playerprefs som finns i unlocklevel för att kolla om en level är upplåst och laddar in den senast upplåsta leveln på continue knappen
+        int savedScene = PlayerPrefs.GetInt("levelsUnlocked");
+        if(savedScene > 0)
         {
+            StartCoroutine(LoadSceneDelay(savedScene));
         }
         else
         {
-            PlayerPrefs.SetInt("SavedScene",SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("Level 1");
         }
+        //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
+           
     }
-
-    public void saveScene()
+    private IEnumerator LoadSceneDelay(int scene)
     {
-        //Denna metod sparar den nuvarande scenen
-        PlayerPrefs.SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
+        //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(scene);
+        Debug.Log(PlayerPrefs.GetInt("levelsUnlocked"));
+
     }
 }
+
+
+
+
