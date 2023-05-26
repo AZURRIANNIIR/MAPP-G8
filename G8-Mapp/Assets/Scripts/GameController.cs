@@ -19,8 +19,6 @@ public class GameController : MonoBehaviour
     private int numberOfTiles;
     [field:SerializeField] public bool GameWon { get; private set; }
 
-    public static event Action SnakeOnGoalEarly;
-
     private void Awake()
     {
         if (!button)
@@ -59,12 +57,6 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         Win();
-        //Om checken är sätt till 0, så buggar meddelandet ut och visas även när spelaren har vunnit nivån.
-        if (player.transform.position == goal.transform.position && gridTilesLeft > 1)
-        {
-            Debug.Log("Spelaren gick till målet utan att ha tagit alla tiles");
-            SnakeOnGoalEarly?.Invoke();
-        }
     }
 
     public void Win()
