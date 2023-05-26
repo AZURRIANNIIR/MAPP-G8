@@ -17,11 +17,13 @@ public class MuteAudio : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
         musicAudioSource = musicAudioGameObject.GetComponent<AudioSource>();
         audioSourcesInScene = new List<AudioSource>();
         audioSourcesInScene.AddRange(FindObjectsOfType<AudioSource>());
+        muteSoundEffectsToggle(PlayerPrefs.GetInt("SOUNDFX_MUTED") == 1);
+        muteMusicToggle(PlayerPrefs.GetInt("MUSIC_MUTED") == 1);
     }
 
     public void muteSoundEffectsToggle(bool muted)
@@ -40,8 +42,7 @@ public class MuteAudio : MonoBehaviour
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = true;
             }
-
-
+            PlayerPrefs.SetInt("SOUNDFX_MUTED", 1);
         }
         else
         {
@@ -56,6 +57,7 @@ public class MuteAudio : MonoBehaviour
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = false;
             }
+            PlayerPrefs.SetInt("SOUNDFX_MUTED", 0);
         }
 
     }
@@ -91,6 +93,7 @@ public class MuteAudio : MonoBehaviour
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = true;
             }
+            PlayerPrefs.SetInt("MUSIC_MUTED", 1);
         }
         else
         {
@@ -99,6 +102,8 @@ public class MuteAudio : MonoBehaviour
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = false;
             }
+            PlayerPrefs.SetInt("MUSIC_MUTED", 0);
+
         }
     }
 }
