@@ -4653,6 +4653,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2115953311805136306, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953311805136306, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49411768
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953311805136306, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.g
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953311805136306, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.r
+      value: 0.82745105
+      objectReference: {fileID: 0}
     - target: {fileID: 2115953312047573979, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4667,19 +4683,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115953312397079796, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2115953312397079799, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ab6e63c9b34a39743be0172854cf54f8, type: 3}
+    - target: {fileID: 2115953312484001589, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953312484001591, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.b
+      value: 0.38501248
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953312484001591, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953312484001591, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Color.r
+      value: 0.45009163
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953312484001591, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2115953312834908313, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -37.99997
       objectReference: {fileID: 0}
     - target: {fileID: 2115953312834908516, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2115953312834908519, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_Sprite
@@ -4754,12 +4790,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6962737893647062072, guid: 31b0098a5cbf0c949a39779fc7d49eaf, type: 2}
     - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_hasFontAssetChanged
