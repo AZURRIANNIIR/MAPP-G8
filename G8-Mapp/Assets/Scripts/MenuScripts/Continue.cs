@@ -8,6 +8,7 @@ public class Continue : MonoBehaviour
 
     public void ContinueGame()
     {
+        //använder sig av playerprefs som finns i unlocklevel för att kolla om en level är upplåst och laddar in den senast upplåsta leveln på continue knappen
         int savedScene = PlayerPrefs.GetInt("levelsUnlocked");
         if(savedScene > 0)
         {

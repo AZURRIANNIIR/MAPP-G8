@@ -25,6 +25,10 @@ public class UndoButton : MonoBehaviour
         undoButton = GetComponentInChildren<Button>();
         gridListScript = FindObjectOfType<GridList>();
         gameController = FindObjectOfType<GameController>();
+        if (!startPosition)
+        {
+            startPosition = GameObject.FindGameObjectWithTag("StartPosition");
+        }
     }
 
     private void Update()
