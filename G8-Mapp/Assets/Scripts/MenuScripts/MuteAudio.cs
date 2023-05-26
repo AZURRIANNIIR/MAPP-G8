@@ -38,6 +38,8 @@ public class MuteAudio : MonoBehaviour
                 }
             }
 
+            soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = true;
+
             if (musicToggleGameObject.GetComponent<Toggle>().isOn == true)
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = true;
@@ -53,9 +55,13 @@ public class MuteAudio : MonoBehaviour
                     audioSource.mute = false;
                 }
             }
-            if (musicToggleGameObject.GetComponent<Toggle>().isOn == false)
+
+            soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = false;
+
+            if (musicToggleGameObject.GetComponent<Toggle>().isOn == true)
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = false;
+                musicToggleGameObject.GetComponent<Toggle>().isOn = true;
             }
             PlayerPrefs.SetInt("SOUNDFX_MUTED", 0);
         }
@@ -89,6 +95,8 @@ public class MuteAudio : MonoBehaviour
         if (muted == true)
         {
             musicAudioSource.Stop();
+            musicToggleGameObject.GetComponent<Toggle>().isOn = true;
+
             if (soundEffectsToggleGameObject.GetComponent<Toggle>().isOn == true)
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = true;
@@ -98,9 +106,12 @@ public class MuteAudio : MonoBehaviour
         else
         {
             musicAudioSource.Play();
-            if (soundEffectsToggleGameObject.GetComponent<Toggle>().isOn == false)
+            musicToggleGameObject.GetComponent<Toggle>().isOn = false;
+
+            if (soundEffectsToggleGameObject.GetComponent<Toggle>().isOn == true)
             {
                 audioToggleGameObject.GetComponent<Toggle>().isOn = false;
+                soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = true;
             }
             PlayerPrefs.SetInt("MUSIC_MUTED", 0);
 
