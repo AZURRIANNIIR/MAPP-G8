@@ -11,7 +11,7 @@ public class GoalColliderScript : MonoBehaviour
     void Start()
     {
         collider = GetComponent<BoxCollider2D>();
-        gameController = GetComponent<ParticleSystemScript>().gameController;
+        gameController = FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
