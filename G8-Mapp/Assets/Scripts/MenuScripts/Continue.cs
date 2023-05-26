@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Continue : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Continue : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene("1");
         }
         //Anropas när spelaren klickar på continue-knappen, courontine gör att de kan bli en paus innan scenen laddas
            
