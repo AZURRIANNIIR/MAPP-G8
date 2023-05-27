@@ -71,7 +71,7 @@ public abstract class ColliderScript : MonoBehaviour
 
     public void TakeTile()
     {
-        print("ruta tagen");
+        
         ChangeGridSprite(TileTakenSprite);
     }
 
@@ -89,7 +89,7 @@ public abstract class ColliderScript : MonoBehaviour
 
     public virtual void DisableTile()
     {
-        Debug.Log(gameObject.name + " kör sin Disable funktion");
+        
         EnableCollider();
         ChangeGridSprite(TileDisabledSprite);
     }

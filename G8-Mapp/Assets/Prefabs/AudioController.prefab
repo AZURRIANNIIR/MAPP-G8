@@ -50,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1891967781739140604}
   musicSource: {fileID: 3751096575325111460}
+  winSound: {fileID: 0}
+  gameController: {fileID: 0}
   respectUserSoundSettings: 0
 --- !u!114 &7712564517480446726
 MonoBehaviour:
@@ -79,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ea97d32e2afbc4fb4b561942af39fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winSound: {fileID: 0}
 --- !u!1 &5319095709536651235
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class AudioScript : MonoBehaviour
 {
 
     private static AudioScript instance;
+    
 
 
      void Awake()
@@ -13,11 +14,13 @@ public class AudioScript : MonoBehaviour
         if(instance != null)
         {
             Destroy(gameObject);
+           
         }
         else
         {
             instance = this;
             DontDestroyOnLoad(transform.gameObject);
+            
         }
         
     }
