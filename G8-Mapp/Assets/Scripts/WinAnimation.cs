@@ -1,42 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinAnimation : MonoBehaviour
 {
-    
- [SerializeField] private GameController gameController;
-    private SpriteRenderer snakeSprite;
+    [SerializeField] private GameController gameController;
+    private Image snakeSprite;
     [SerializeField] private Animator panelAnimator;
 
-
-
-    // Start is called before the first frame update
-    
-    
-        
-    
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // if(snakePrefab.transform.position == goalPrefab.transform.position && gameController.GameWon == true){
-            //trigga animationen
-            //animator.SetTrigger(SnakeWinAnimation);
-            if(gameController.GameWon == true){
-                snakeSprite.enabled = true;
-                panelAnimator.SetTrigger("StartAnimation");
-            }
+        if (gameController.GameWon == true)
+        {
+            snakeSprite.enabled = true;
+            panelAnimator.SetTrigger("StartAnimation");
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        snakeSprite = GetComponent<SpriteRenderer>();
-        snakeSprite.enabled = false;
-        
+        snakeSprite = GetComponent<Image>();
+        if (snakeSprite == null)
+        {
+            Debug.LogError("Image component not found on the same game object as WinAnimation script.");
+        }
+        else
+        {
+            snakeSprite.enabled = false;
+        }
     }
-
-    // Update is called once per frame
-
 }
