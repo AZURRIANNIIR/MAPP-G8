@@ -8,10 +8,7 @@ public class AudioControllerScript : MonoBehaviour
     private const float PITCH_CHANGE_VALUE = 0.02f;
     private const float PITCH_MIN_VALUE = 1.0f;
 
-
-
     [SerializeField] private AudioSource sfxSource, musicSource;
-    public GameController gameController;
 
     [SerializeField] private bool respectUserSoundSettings;
 
@@ -28,9 +25,6 @@ public class AudioControllerScript : MonoBehaviour
                 source.volume = AudioListener.volume;
             }
         }
-
-       
- 
     }
 
     private void Update()
@@ -38,9 +32,6 @@ public class AudioControllerScript : MonoBehaviour
         //Pitchen för våra AudioSources ska inte bli mindre än standardvärdet (Som bestäms av våran konstant)
         sfxSource.pitch = Mathf.Clamp(sfxSource.pitch,PITCH_MIN_VALUE, Mathf.Infinity);
         musicSource.pitch = Mathf.Clamp(musicSource.pitch,PITCH_MIN_VALUE, Mathf.Infinity);
-
-       
-        
     }
 
     #region Funktioner för pitchen (endast för ljudeffekter)

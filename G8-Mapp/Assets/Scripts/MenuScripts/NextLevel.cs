@@ -7,21 +7,30 @@ using TMPro;
 
 public class NextLevel : MonoBehaviour
 {
+    public Animator Animator;
     public GameObject snakePrefab;
     public GameObject goalPrefab;
     public Button nextLevel;
     public string nextScene;
     private string currentScene;
     [SerializeField] GameController gameController;
+    [SerializeField] GameObject panelObject;
+    [SerializeField] Animator panelAnimator;
+    private TextMeshProUGUI text;
+    
 
-    public TextMeshProUGUI text;
 
     private void Awake()
     {
+
+        panelAnimator = panelObject.GetComponent<Animator>();
+        
+        
+
         //Hitta den nuvarande scenens namn
         currentScene = SceneManager.GetActiveScene().name;
 
-        #region Kod för att hitta komponenter om de inte är inställda
+        #region Kod fï¿½r att hitta komponenter om de inte ï¿½r instï¿½llda
         if (!gameController)
         {
             gameController = FindObjectOfType<GameController>();
@@ -51,7 +60,11 @@ public class NextLevel : MonoBehaviour
 
     private void Start()
     {
-        //ser till att knappen är disabled från början
+
+    
+
+
+        //ser till att knappen ï¿½r disabled frï¿½n bï¿½rjan
         nextLevel.interactable = false;
         text.enabled = false;
 
@@ -60,17 +73,17 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
-        //Kollar om snake har nått goalprefab
+        //Kollar om snake har nï¿½tt goalprefab
         if(snakePrefab.transform.position == goalPrefab.transform.position && gameController.GameWon == true)
         {
-           //Gör att knappen är påslagen när de har nått goalprefab
+           //Gï¿½r att knappen ï¿½r pï¿½slagen nï¿½r de har nï¿½tt goalprefab
             nextLevel.interactable = true;
             text.enabled = true;
         }
     }
     private void GetToNextLevel()
     {
-        //Laddar in nästa scen
+        //Laddar in nï¿½sta scen
         SceneManager.LoadScene(nextScene);  
     }
 

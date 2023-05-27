@@ -53,14 +53,14 @@ public class SnakeMovement : MonoBehaviour
     {
         scanPos = gameObject.transform.position;
         screenPoint = Camera.main.WorldToScreenPoint(scanPos);
-       
+        print("orm klickad");
     }
 
     private void OnMouseDrag()
     {
         if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionStraight())
         {
-            
+            print("jag vill ej röra mig");
             return;
         }
 
@@ -71,7 +71,7 @@ public class SnakeMovement : MonoBehaviour
         //Kontrollera skillnaden mellan ormens position och där fingret befinner sig
         if (Vector3Int.RoundToInt(currentPosition) != Vector3Int.RoundToInt(transform.position))
         {
-            
+            Debug.Log("Borde nu köra OnMovementEvent");
             OnMovement?.Invoke(currentPosition);
         }
 
@@ -79,7 +79,7 @@ public class SnakeMovement : MonoBehaviour
 
         currentPosition.x = (Mathf.RoundToInt(currentPosition.x) + gridSize);
         currentPosition.y = (Mathf.RoundToInt(currentPosition.y) + gridSize);
-        
+        print("jag borde röra mig");
     }
 
     private void Update()
