@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinAnimation : MonoBehaviour
 {
     
- [SerializeField] private GameController gameController;
-    private SpriteRenderer snakeSprite;
+    [SerializeField] private GameController gameController;
+   // [SerializeField] SpriteRenderer snakeSprite;
+    [SerializeField] Image snakeSprite;
     [SerializeField] private Animator panelAnimator;
 
 
@@ -25,6 +27,7 @@ public class WinAnimation : MonoBehaviour
             //animator.SetTrigger(SnakeWinAnimation);
             if(gameController.GameWon == true){
                 snakeSprite.enabled = true;
+                print("SPela");
                 panelAnimator.SetTrigger("StartAnimation");
             }
     }
@@ -32,7 +35,8 @@ public class WinAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        snakeSprite = GetComponent<SpriteRenderer>();
+        snakeSprite = GetComponent<Image>();
+        //snakeSprite = GetComponent<SpriteRenderer>();
         snakeSprite.enabled = false;
         
     }
