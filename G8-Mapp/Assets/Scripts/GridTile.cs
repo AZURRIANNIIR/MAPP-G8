@@ -25,12 +25,15 @@ public class GridTile : MonoBehaviour
         {
             gameController = FindObjectOfType<GameController>();
         }
+
+        
+        
     }
+
 
 #if UNITY_EDITOR
     protected void Reset()
     {
-        Debug.Log(gameObject.name + " kör Reset nu.");
         AudioClip tileTakenSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Sounds/tile_taken_sound.wav", typeof(AudioClip));
 
         UnityAction<AudioClip> playSound = new UnityAction<AudioClip>(GameObject.Find("SFX_Object").GetComponent<AudioSource>().PlayOneShot);
@@ -45,7 +48,6 @@ public class GridTile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Snake"))
         {
-            Debug.Log("Denna gridtile ska köra sin SnakeOnTile event nu");
             SnakeOnTile?.Invoke(true);
         }
         if (collision.gameObject.CompareTag("Snake") && !taken && !UndoButton.EventFired)
@@ -57,7 +59,6 @@ public class GridTile : MonoBehaviour
     private void SetTileAsTaken()
     {
         taken = true;
-        print("ny plats");
         tileCollider.TakeTile();
         gameController.TileTaken();
         OnTakenStatus.Invoke();

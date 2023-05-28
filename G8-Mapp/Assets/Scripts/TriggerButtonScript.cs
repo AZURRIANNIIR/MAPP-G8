@@ -41,7 +41,7 @@ public class TriggerButtonScript : MonoBehaviour
     {
         if (tileList.Count == 0) 
         {
-            Debug.LogError("Det finns inga tiles i TriggerButtonScripts lista.");
+            
             return;
         }
         for (int i = 0; i < tileList.Count; i++)

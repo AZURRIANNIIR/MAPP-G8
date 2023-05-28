@@ -10,7 +10,7 @@ public class BridgeColliderScript : ColliderScript
     {
         if (tileScript.GetType() != typeof(BridgeTile))
         {
-            Debug.LogWarning("Varning, " + gameObject.name + "'s gridTile är inte av typen BridgeTile. Därmed kommer inte specifik BridgeTile-funktionalitet att fungera.");
+            
         }
     }
 

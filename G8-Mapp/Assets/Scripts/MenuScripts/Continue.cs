@@ -27,7 +27,7 @@ public class Continue : MonoBehaviour
         //korutinmetod som gör att scenen laddas med 1 sekunds delay(för att vi vill ha knappljudet vid tryckning) Efter fördröjningen kan scenen laddas in med nästa rad
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scene);
-        Debug.Log(PlayerPrefs.GetInt("levelsUnlocked"));
+        
 
     }
 }
