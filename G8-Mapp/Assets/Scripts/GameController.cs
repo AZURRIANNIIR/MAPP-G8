@@ -16,10 +16,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject goal;
     [SerializeField] private int gridTilesLeft;
+    
+   
+    
     private int numberOfTiles;
     [field:SerializeField] public bool GameWon { get; private set; }
-
-    public static event Action SnakeOnGoalEarly;
 
     private void Awake()
     {
@@ -59,12 +60,6 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         Win();
-        //Om checken är sätt till 0, så buggar meddelandet ut och visas även när spelaren har vunnit nivån.
-        if (player.transform.position == goal.transform.position && gridTilesLeft > 1)
-        {
-            Debug.Log("Spelaren gick till målet utan att ha tagit alla tiles");
-            SnakeOnGoalEarly?.Invoke();
-        }
     }
 
     public void Win()
@@ -72,6 +67,7 @@ public class GameController : MonoBehaviour
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
             GameWon = true;
+            
         }
     }
 
