@@ -51,6 +51,12 @@ public class BridgeTile : GridTile
 
         UnityAction<float> increasePitch = new UnityAction<float>(GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioControllerScript>().IncreasePitchForSFX);
         UnityEditor.Events.UnityEventTools.AddFloatPersistentListener(OnCrossedOnceStatus, increasePitch, PitchIncreaseValue);
+
+        upperBoxCollider = transform.parent.gameObject.transform.Find("upperCollider").gameObject;
+        lowerBoxCollider = transform.parent.gameObject.transform.Find("lowerCollider").gameObject;
+        leftBoxCollider = transform.parent.gameObject.transform.Find("leftCollider").gameObject;
+        rightBoxCollider = transform.parent.gameObject.transform.Find("rightCollider").gameObject;
+        temporaryCollider = transform.parent.gameObject.transform.Find("temporaryCollider").gameObject;
     }
 #endif
 
