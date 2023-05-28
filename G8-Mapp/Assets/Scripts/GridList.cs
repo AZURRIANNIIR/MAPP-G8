@@ -63,7 +63,7 @@ public class GridList : MonoBehaviour
     {
         if (!gridList.Contains(tile))
         {
-            Debug.Log(tile.name + " finns inte i listan.");
+            
             return;
         }
 
@@ -72,7 +72,7 @@ public class GridList : MonoBehaviour
             gridList.Remove(tile);
         }
 
-        Debug.Log("Nu ska " + tile.name + " tas bort fr�n listan.");
+       
         if (tile.CompareTag("BridgeTile"))
         {
             if (tile.GetComponent<BridgeTile>().GetTakenStatus())
@@ -104,7 +104,7 @@ public class GridList : MonoBehaviour
 
     public void GridListUndoAction()
     {
-        Debug.Log("GridList k�nde av en knapptryckning fr�n undo-knappen");
+        
         DeleteTileFromList(GetMostRecentTile());
     }
 

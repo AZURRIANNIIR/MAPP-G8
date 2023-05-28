@@ -27,7 +27,7 @@ public class WinAnimation : MonoBehaviour
         // här nere kollar jag om ormen har image på sig
         if (snakeSprite == null)
         {
-            Debug.LogError("Image komponenten hittas inte på samma game object som WinAnimation script.");
+            
         }
         else // om den finns kan disabla den så att den inte syns förens spelaren vunnit
         {

@@ -45,7 +45,7 @@ public class TouchControls : MonoBehaviour
         if (Input.GetMouseButton(LMB_NUMBER) && RaycastIsHitting(mousePos))
         {
             snakeCaught = true;
-            print("mus ner");
+            
         }
 
         if (Input.GetMouseButtonUp(LMB_NUMBER) && snakeCaught)
@@ -67,7 +67,7 @@ public class TouchControls : MonoBehaviour
         RaycastHit2D orm = Physics2D.Raycast(mousePos, Vector2.left, 0.05f, mask);
         if (orm.collider != null)
         {
-            print("orm träffad");
+            
             return true;
         }
         return false;

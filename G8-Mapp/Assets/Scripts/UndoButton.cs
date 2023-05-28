@@ -58,7 +58,7 @@ public class UndoButton : MonoBehaviour
 
     private void SetEventStatusToFalse()
     {
-        Debug.Log("Nu är inte eventen på UndoButton längre aktiv");
+        
         EventFired = false;
     }
 }
