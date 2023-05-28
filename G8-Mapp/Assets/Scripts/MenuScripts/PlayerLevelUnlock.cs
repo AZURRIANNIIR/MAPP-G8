@@ -21,7 +21,7 @@ public class PlayerLevelUnlock : MonoBehaviour
                 PlayerPrefs.SetInt("levelsUnlocked", levelUnlock);
                 numberLocked = levelUnlock;
             }      
-            Debug.Log("Upplåst: " + numberLocked + "levelUnlock: " + levelUnlock);
+            
 
         }
         

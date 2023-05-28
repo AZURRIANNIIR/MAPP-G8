@@ -8,9 +8,11 @@ public class HelpPanelScript : MonoBehaviour
     [SerializeField] private GameObject panelOne;
     [SerializeField] private GameObject panelTwo;
     [SerializeField] private GameObject panelThree;
-    [SerializeField] static int pressAmount;
+    static int pressAmount;
     [SerializeField] private int panelChange;
     [SerializeField] private Button button;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
     //private Animator panelOneAnimator;
     //private Animator panelTwoAnimator;
 
@@ -30,9 +32,14 @@ public class HelpPanelScript : MonoBehaviour
     void TaskOnClick()
     {
         pressAmount += panelChange;
+        print(pressAmount);
         //PlayAnimation();
         ChangePanel();
         //checkButtonEnabled();
+        if (PlayerPrefs.GetInt("SOUNDFX_MUTED") == 0) {
+            audioSource.PlayOneShot(audioClip);
+        }
+
     }
 
 
