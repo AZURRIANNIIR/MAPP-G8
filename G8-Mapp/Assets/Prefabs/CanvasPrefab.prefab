@@ -741,7 +741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "       Crossroads\n               must \n                  be \n\n"
+  m_text: "       Crossroads\n               must \n                  be "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31b0098a5cbf0c949a39779fc7d49eaf, type: 2}
   m_sharedMaterial: {fileID: -6962737893647062072, guid: 31b0098a5cbf0c949a39779fc7d49eaf, type: 2}
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -162.09744, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1783800954
@@ -4725,9 +4725,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 310.9999
       objectReference: {fileID: 0}
+    - target: {fileID: 2115953312905681029, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115953312905681029, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_TagString
+      value: AudioController
+      objectReference: {fileID: 0}
     - target: {fileID: 2115953312905681030, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2115953312905681030, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4766,12 +4774,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 190643329}
     - target: {fileID: 2115953312905681031, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e34df52d17da7444d8f66b6884c00b0d, type: 3}
+    - target: {fileID: 2115953312905681031, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: panelThree
       value: 
       objectReference: {fileID: 1697921297}
+    - target: {fileID: 2115953312905681031, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1797335509}
     - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_text
-      value: 'HUR MAN SPELAR:'
+      value: 'HOW TO PLAY:'
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313371910126, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_margin.x
@@ -4821,37 +4837,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -421.00015
       objectReference: {fileID: 0}
+    - target: {fileID: 2115953313406423291, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: m_TagString
+      value: AudioController
+      objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 800065982}
+      objectReference: {fileID: 695180574}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayOneShot
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8300000, guid: e34df52d17da7444d8f66b6884c00b0d, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423292, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.AudioClip, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2115953313406423293, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: panelOne
@@ -4862,9 +4882,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 190643329}
     - target: {fileID: 2115953313406423293, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e34df52d17da7444d8f66b6884c00b0d, type: 3}
+    - target: {fileID: 2115953313406423293, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: panelThree
       value: 
       objectReference: {fileID: 1697921297}
+    - target: {fileID: 2115953313406423293, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 800065982}
     - target: {fileID: 2115953313590365963, guid: ecabb59bda8f0a84b88ad3b0ec19a197, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
