@@ -1270,7 +1270,7 @@ PrefabInstance:
     - target: {fileID: 532543488360161692, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: startPosition
       value: 
-      objectReference: {fileID: 844134906}
+      objectReference: {fileID: 0}
     - target: {fileID: 532543488460454914, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -2050,11 +2050,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
---- !u!1 &844134906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3973116569632568921, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
-  m_PrefabInstance: {fileID: 844134905}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1107750216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2254,7 +2249,7 @@ GameObject:
   - component: {fileID: 1165490068}
   m_Layer: 0
   m_Name: WinSound
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

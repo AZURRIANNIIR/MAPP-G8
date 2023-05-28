@@ -1357,7 +1357,7 @@ GameObject:
   - component: {fileID: 811160497}
   m_Layer: 0
   m_Name: WinSound
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3662,6 +3662,10 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1540309970}
+    - target: {fileID: 4477431641861854478, guid: 517a5411caaaea645997657a3a274de5, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5697565474725709512, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 86.98413

@@ -922,11 +922,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
---- !u!1 &337812113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3973116569632568921, guid: 01833e0b8177443409ac05872d0261bf, type: 3}
-  m_PrefabInstance: {fileID: 337812112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &341648144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7264726165556391269, guid: 1a8d9860c4fa548e2a3c4cbb8e81f2d6, type: 3}
@@ -1357,7 +1352,7 @@ GameObject:
   - component: {fileID: 637924854}
   m_Layer: 0
   m_Name: WinSound
-  m_TagString: Untagged
+  m_TagString: AudioController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 532543488360161692, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: startPosition
       value: 
-      objectReference: {fileID: 337812113}
+      objectReference: {fileID: 0}
     - target: {fileID: 532543488360161695, guid: 517a5411caaaea645997657a3a274de5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 99.549805
