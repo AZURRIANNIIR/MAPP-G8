@@ -1287,11 +1287,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6504183207995822192, guid: af96e4bf30704664aa15c55c9b3029a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 2.42
       objectReference: {fileID: 0}
     - target: {fileID: 6504183207995822192, guid: af96e4bf30704664aa15c55c9b3029a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 6504183207995822192, guid: af96e4bf30704664aa15c55c9b3029a3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2129,7 +2129,8 @@ PrefabInstance:
       propertyPath: soundEffectsToggleGameObject
       value: 
       objectReference: {fileID: 24156624}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7585250654816471108, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1642968afeabbe843a329ffcf9bb67b1, type: 3}
 --- !u!114 &1954450174 stripped
 MonoBehaviour:

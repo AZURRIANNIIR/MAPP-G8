@@ -25,7 +25,11 @@ public class GridTile : MonoBehaviour
         {
             gameController = FindObjectOfType<GameController>();
         }
+
+        
+        
     }
+
 
 #if UNITY_EDITOR
     protected void Reset()
@@ -57,7 +61,6 @@ public class GridTile : MonoBehaviour
     private void SetTileAsTaken()
     {
         taken = true;
-        print("ny plats");
         tileCollider.TakeTile();
         gameController.TileTaken();
         OnTakenStatus.Invoke();
