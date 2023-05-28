@@ -73,19 +73,19 @@ public class MuteAudio : MonoBehaviour
     {
         if (muted)
         {
-            //muteMusicToggle(true);
-            //muteSoundEffectsToggle(true);
-            musicToggleGameObject.GetComponent<Toggle>().isOn = true;
-            soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = true;
+            muteMusicToggle(true);
+            muteSoundEffectsToggle(true);
+            //musicToggleGameObject.GetComponent<Toggle>().isOn = true;
+            //soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = true;
 
 
         }
         else
         {
-            //muteMusicToggle(false);
-            //muteSoundEffectsToggle(false);
-            musicToggleGameObject.GetComponent<Toggle>().isOn = false;
-            soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = false;
+            muteMusicToggle(false);
+            muteSoundEffectsToggle(false);
+            //musicToggleGameObject.GetComponent<Toggle>().isOn = false;
+            //soundEffectsToggleGameObject.GetComponent<Toggle>().isOn = false;
         }
 
     }
