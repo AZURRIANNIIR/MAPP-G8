@@ -12,24 +12,24 @@ public class AudioScript : MonoBehaviour
 
      void Awake()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (currentSceneName != "MainMenu")
+        if(SceneManager.GetActiveScene().name != "MainMenu")
         {
-            if (instance != null)
             {
-                Destroy(gameObject);
+                if (instance != null)
+                {
+                    Destroy(gameObject);
 
-            }
-            else
-            {
-                instance = this;
-                DontDestroyOnLoad(transform.gameObject);
+                }
+                else
+                {
+                    instance = this;
+                    DontDestroyOnLoad(transform.gameObject);
 
+                }
             }
         }
-        
-        
+
         
     }
 }
