@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioScript : MonoBehaviour
 {
@@ -11,17 +12,24 @@ public class AudioScript : MonoBehaviour
 
      void Awake()
     {
-        if(instance != null)
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName != "MainMenu")
         {
-            Destroy(gameObject);
-           
+            if (instance != null)
+            {
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(transform.gameObject);
+
+            }
         }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(transform.gameObject);
-            
-        }
+        
+        
         
     }
 }
