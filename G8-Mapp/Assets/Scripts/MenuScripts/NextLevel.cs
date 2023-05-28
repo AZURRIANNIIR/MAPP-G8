@@ -76,7 +76,7 @@ public class NextLevel : MonoBehaviour
 
     private void ReloadScene()
     {
-        Debug.Log("Laddar om " + currentScene);
+        
         SceneManager.LoadScene(currentScene);
     }
 

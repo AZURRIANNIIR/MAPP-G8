@@ -17,6 +17,6 @@ public class GoToLevelSelect : MonoBehaviour
     public void ClickToLevel()
     {
         SceneManager.LoadScene("SelectLevel");
-        Console.WriteLine("Funkar!");
+        
     }
 }
