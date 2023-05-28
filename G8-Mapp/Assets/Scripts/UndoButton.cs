@@ -11,6 +11,7 @@ public class UndoButton : MonoBehaviour
     [SerializeField] Button undoButton;
     [SerializeField] GridList gridListScript;
     [SerializeField] GameObject startPosition;
+    [SerializeField] AudioSource buttonSound;
     
     private GameController gameController;
 
@@ -40,6 +41,11 @@ public class UndoButton : MonoBehaviour
         else
         {
             undoButton.interactable = !gridListScript.IsListEmpty() && !gameController.GameWon;
+        }
+
+        if(PlayerPrefs.GetInt("SOUNDFX_MUTED") == 1)
+        {
+            buttonSound.enabled = false;
         }
     }
 

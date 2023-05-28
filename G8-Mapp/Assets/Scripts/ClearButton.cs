@@ -12,6 +12,7 @@ public class ClearButton : MonoBehaviour
 
     private Button button;
     private GameController gameController;
+    [SerializeField] AudioSource clearButtonSound;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class ClearButton : MonoBehaviour
     public void Update()
     {
         button.interactable = !gameController.GameWon;
+
+        if(PlayerPrefs.GetInt("SOUNDFX_MUTED") == 1)
+        {
+            clearButtonSound.enabled = false;
+        }
     }
 
     public void ClickAction()

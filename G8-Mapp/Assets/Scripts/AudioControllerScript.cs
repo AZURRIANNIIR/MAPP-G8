@@ -11,7 +11,7 @@ public class AudioControllerScript : MonoBehaviour
 
 
     [SerializeField] private AudioSource sfxSource, musicSource;
-    public GameController gameController;
+    
 
     [SerializeField] private bool respectUserSoundSettings;
 
