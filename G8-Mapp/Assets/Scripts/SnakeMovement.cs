@@ -71,7 +71,6 @@ public class SnakeMovement : MonoBehaviour
         //Kontrollera skillnaden mellan ormens position och där fingret befinner sig
         if (Vector3Int.RoundToInt(currentPosition) != Vector3Int.RoundToInt(transform.position))
         {
-            
             OnMovement?.Invoke(currentPosition);
         }
 
@@ -135,12 +134,7 @@ public class SnakeMovement : MonoBehaviour
     {
         Vector3 mousePos = GetMousePosition();
 
-        if (Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse)
-        {
-            //Debug.LogWarning("Avståndet mellan ormen och musen är för långt.");
-            return true;
-        }
-        return false;
+        return Vector2.Distance(mousePos, transform.position) > maxAllowedDistanceFromMouse;
     }
 
     private bool OnTileAndTryingToGetOut()
@@ -172,7 +166,6 @@ public class SnakeMovement : MonoBehaviour
 
         Debug.DrawRay(mouseRay.origin, mouseRay.direction, Color.blue);
 
-        Debug.Log(this.GetType().Name + ": Riktningen mellan musen och ormen: " + mouseRay.direction);
         //Är riktningen ett nummer som är en multiplicering av våran riktningskonstant? En viss avvikelse är godkänd.
         //&&-operatörn behövs för att förhindra att ormen kan röra sig diagonalt på korsningar (det händer om ||-operatorn används)
         bool xDirectionisMultiple = Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE == 0 && Mathf.RoundToInt(mouseRay.direction.x) % DIRECTION_ANGLE <= DIRECTION_LEEWAY;
@@ -200,8 +193,6 @@ public class SnakeMovement : MonoBehaviour
             }
             if (!UndoButton.EventFired && !collision.GetComponent<BridgeTile>().GetTakenStatus())
             {
-                Debug.LogWarning("Försöker hitta en gridTile");
-                Debug.LogWarning(Mathf.RoundToInt(snakeHead.GetZRotation()));
                 CheckForGridTile(collision);
             }
         }
@@ -274,7 +265,6 @@ public class SnakeMovement : MonoBehaviour
         {
             bridgeDisabled = true;
             lastBridgeTile = collision.GetComponent<BridgeTile>();
-            //print("Min plats: " + transform.position);
         }
 
         if (collision.CompareTag("GridTile"))

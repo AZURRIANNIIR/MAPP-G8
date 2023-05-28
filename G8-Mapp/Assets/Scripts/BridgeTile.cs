@@ -84,7 +84,6 @@ public class BridgeTile : GridTile
             if (collision.gameObject.CompareTag("Snake") && crossedOnce && !GetTakenStatus())
             {
                 SetTakenStatus(true);
-                print("ny plats");
                 tileCollider.TakeTile();
                 gameController.TileTaken();
                 OnTakenStatus?.Invoke();
@@ -163,7 +162,6 @@ public class BridgeTile : GridTile
 
     private void TurnOnPath()
     {
-        print("Colliders borde stängas av");
         upperBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
         lowerBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
         leftBoxCollider.GetComponent<BoxCollider2D>().enabled = false;
@@ -172,7 +170,6 @@ public class BridgeTile : GridTile
 
     public void TurnOffPath(string direction)
     {
-        print("Colliders borde sättas på");
         if (direction == "Horizontal"){
             upperBoxCollider.GetComponent<BoxCollider2D>().enabled = true;
             lowerBoxCollider.GetComponent<BoxCollider2D>().enabled = true;

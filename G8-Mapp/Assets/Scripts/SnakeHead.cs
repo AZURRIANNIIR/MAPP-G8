@@ -25,15 +25,6 @@ public class SnakeHead : MonoBehaviour
             { Rotations.down, Vector3.zero }
         };
 
-    private void Awake()
-    {
-        if (rotationList.Count > 0 ) 
-        {
-            Debug.Log(name + ": Dictionaryn kan anv�ndas");
-        }
-        Debug.Log(transform.parent.gameObject.name);
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -52,9 +43,6 @@ public class SnakeHead : MonoBehaviour
 
     private void SetRotation(Vector3 vectorToBaseRotationOn)
     {
-        Debug.Log("Huvudet ska s�tta sin rotation nu");
-        Debug.Log("Current position:" + currentPos);
-        Debug.Log("Vector argument:" + vectorToBaseRotationOn);
         //Till h�ger
         if (Mathf.RoundToInt(currentPos.x) < Mathf.RoundToInt(vectorToBaseRotationOn.x))
         {
@@ -87,11 +75,7 @@ public class SnakeHead : MonoBehaviour
         levelRotations.RemoveAt(levelRotations.Count -1);
 
         //Steg 2; titta om listan är tom innan vi försöker att rotera ormen;
-        if (levelRotations.Count < 1)
-        {
-            Debug.Log(this.GetType().Name + ": Det finns inga sparade rotationer");
-            return;
-        }
+        if (levelRotations.Count < 1) { return; }
 
         //Steg 3: Applicera i så fall rotationen.
         transform.localRotation = levelRotations[levelRotations.Count - 1];
