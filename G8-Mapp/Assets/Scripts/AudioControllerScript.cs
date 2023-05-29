@@ -18,7 +18,10 @@ public class AudioControllerScript : MonoBehaviour
     private void Awake()
     {
         //Subscriba till Undo-knappens event automatiskt, så slipper vi göra det manuellt för varje scen.
-        FindObjectOfType<UndoButton>().GetComponent<Button>().onClick.AddListener(() => DecreasePitchForSFX(PITCH_CHANGE_VALUE));
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            FindObjectOfType<UndoButton>().GetComponent<Button>().onClick.AddListener(() => DecreasePitchForSFX(PITCH_CHANGE_VALUE));
+        }
         AudioSource[] sources = { sfxSource, musicSource };
 
         if (respectUserSoundSettings) 
