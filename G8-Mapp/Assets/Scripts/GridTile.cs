@@ -25,9 +25,6 @@ public class GridTile : MonoBehaviour
         {
             gameController = FindObjectOfType<GameController>();
         }
-
-        
-        
     }
 
 

@@ -33,7 +33,6 @@ public class ClearButton : MonoBehaviour
     public void ClickAction()
     {
         StartCoroutine(ClearEvent());
-        Debug.Log("Spelaren klickade just på ClearKnappen");
     }
 
     private IEnumerator ClearEvent()

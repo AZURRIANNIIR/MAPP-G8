@@ -25,26 +25,17 @@ public abstract class ColliderScript : MonoBehaviour
     protected Sprite TileTakenSprite
     {
         get { return tileTakenSprite; }
-        private set
-        {
-            tileTakenSprite = value;
-        }
+        private set { tileTakenSprite = value; }
     }
     protected Sprite TileStartSprite
     {
         get { return tileStartSprite; }
-        private set
-        {
-            tileStartSprite = value;
-        }
+        private set { tileStartSprite = value; }
     }
     protected Sprite TileDisabledSprite
     {
         get { return tileDisabledSprite; }
-        private set
-        {
-            tileDisabledSprite = value;
-        }
+        private set { tileDisabledSprite = value; }
     }
     #endregion
 
@@ -71,7 +62,6 @@ public abstract class ColliderScript : MonoBehaviour
 
     public void TakeTile()
     {
-        
         ChangeGridSprite(TileTakenSprite);
     }
 
@@ -89,7 +79,6 @@ public abstract class ColliderScript : MonoBehaviour
 
     public virtual void DisableTile()
     {
-        
         EnableCollider();
         ChangeGridSprite(TileDisabledSprite);
     }

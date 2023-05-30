@@ -67,7 +67,6 @@ public class GameController : MonoBehaviour
         if (gridTilesLeft == 0 && player.transform.position == goal.transform.position)
         {
             GameWon = true;
-            
         }
     }
 
