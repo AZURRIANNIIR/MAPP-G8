@@ -53,14 +53,12 @@ public class SnakeMovement : MonoBehaviour
     {
         scanPos = gameObject.transform.position;
         screenPoint = Camera.main.WorldToScreenPoint(scanPos);
-       
     }
 
     private void OnMouseDrag()
     {
         if (OnDisabledTile() || IsMouseDistanceTooLong() || OnTileAndTryingToGetOut() || !IsDirectionStraight())
         {
-            
             return;
         }
 

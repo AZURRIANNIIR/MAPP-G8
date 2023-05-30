@@ -45,7 +45,6 @@ public class GridList : MonoBehaviour
 
     public GameObject GetMostRecentTile()
     {
-        //Om det finns en grid i listan
         return IsListEmpty() ? null : gridList[gridList.Count - 1];
     }
 
@@ -63,7 +62,6 @@ public class GridList : MonoBehaviour
     {
         if (!gridList.Contains(tile))
         {
-            
             return;
         }
 
@@ -104,7 +102,6 @@ public class GridList : MonoBehaviour
 
     public void GridListUndoAction()
     {
-        
         DeleteTileFromList(GetMostRecentTile());
     }
 
